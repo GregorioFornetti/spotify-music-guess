@@ -9,9 +9,20 @@ const code = params.get("code");
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
-    const accessToken = await getAccessToken(clientId, code);
-    const profile = await fetchProfile(accessToken);
-    populateUI(profile);
+    const accessToken = await getAccessToken(clientId, code)
+    const test = await fetch("https://api.spotify.com/v1/me/player/play", {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+            "context_uri": "spotify:playlist:0BjRyg8AxIdh1DMtVE7t6f",
+            "offset": {
+                "position": 5
+            },
+            "position_ms": 0
+        })
+    })
 }
 
 async function fetchProfile(code: string): Promise<UserProfile> {
