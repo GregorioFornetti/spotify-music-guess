@@ -28,6 +28,8 @@ function get_spotify_id_from_url(url: string): string {
 
 
 export default function get_spotify_id(user_playlist: string): string {
+    user_playlist = user_playlist.trim()
+    
     if (is_spotify_uri(user_playlist)) {
         return get_spotify_id_from_uri(user_playlist)
     } else if (is_spotify_url(user_playlist)) {
