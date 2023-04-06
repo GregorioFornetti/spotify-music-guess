@@ -3,6 +3,7 @@
 import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
 import get_spotify_id from "./getSpotifyID";
 
+/*
 async function start_playing_playlist(playlist_URI: String, accessToken: any) {
     const test = await fetch("https://api.spotify.com/v1/me/player/play", {
         method: "PUT",
@@ -11,14 +12,15 @@ async function start_playing_playlist(playlist_URI: String, accessToken: any) {
         },
         body: JSON.stringify({
             "context_uri": playlist_URI,
-            "offset": {
-                "position": 5
-            },
+            //"offset": {
+            //    "position": 5
+            //},
             "position_ms": 0
         })
     })
     return test
 }
+*/
 
 async function get_playlist_info(playlist_id: String, accessToken: any) {
     const test = fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`, {
