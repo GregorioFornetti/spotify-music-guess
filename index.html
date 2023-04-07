@@ -3,7 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Example</title>
+  <title>Spotify music guess</title>
+
+  <link rel="stylesheet" href="src/css/styles.css">
+
   <script src="src/main.ts" type="module"></script>
 
   <script src="src/pages/playlistSelection.ts" type="module"></script>
@@ -26,7 +29,19 @@
     
     <!-- Página de seleção -->
     <div id="playlist-info-page" style="display: none;">
-      sla
+      <img id="playlist-image" src="" alt="Imagem da playlist">
+      <div>
+        <h2 id="playlist-name"></h2>
+        <p id="playlist-description"></p>
+        <p id="playlist-owner"></p>
+        <div id="playlist-tracks">
+          <p>Músicas</p>
+          <p id="playlist-tracks-count"></p>
+          <div id="playlist-tracks-list"></div>
+        </div>
+        <button id="playlist-return">Voltar</button>
+        <button id="game-start">Começar jogo</button>
+      </div>
     </div>
 
     <!-- Página de adivinhar a música -->
