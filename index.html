@@ -4,15 +4,46 @@
 <head>
   <meta charset="utf-8">
   <title>Example</title>
-  <script src="src/script.ts" type="module"></script>
+  <script src="src/main.ts" type="module"></script>
+
+  <script src="src/pages/playlistSelection.ts" type="module"></script>
+  <script src="src/pages/playlistInfo.ts" type="module"></script>
+  <script src="src/pages/songGuess.ts" type="module"></script>
+  <script src="src/pages/songResult.ts" type="module"></script>
+  <script src="src/pages/finalResult.ts" type="module"></script>
 </head>
 
 <body>
-  <form id="playlist-form">
-    <label>Playlist</label>
-    <input type="text" id="playlist-input" name="playlist-input" placeholder="URI, URL ou ID da playlist">
-    <input type="submit" value="Buscar">
-  </form>
+  <main id="main">
+    <!-- Página de seleção de playlists -->
+    <div id="playlist-selection-page" style="display: none;">
+      <form id="playlist-form">
+        <label>Playlist</label>
+        <input type="text" id="playlist-input" name="playlist-input" placeholder="URI, URL ou ID da playlist">
+        <input type="submit" value="Buscar">
+      </form>
+    </div>
+    
+    <!-- Página de seleção -->
+    <div id="playlist-info-page" style="display: none;">
+      sla
+    </div>
+
+    <!-- Página de adivinhar a música -->
+    <div id="song-guess-page" style="display: none;">
+
+    </div>
+
+    <!-- Página de resultados da adivinhação da música que o usuário acabou de responder -->
+    <div id="song-result-page" style="display: none;">
+
+    </div>
+
+    <!-- Página dos resultados finais, após todas as adivinhações terem sido realizadas -->
+    <div id="final-result-page" style="display: none;">
+
+    </div>
+  </main>
 </body>
 
 </html>
