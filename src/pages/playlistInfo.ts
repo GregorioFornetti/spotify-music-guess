@@ -1,5 +1,6 @@
 
 import toggleToPage from './pageToggler'
+import createMusicElement from '../components/music'
 
 export default function showPlaylistInfo(playlist: any): void {
     document.getElementById('playlist-image')!.setAttribute('src', playlist.images[0].url)
@@ -19,6 +20,12 @@ export default function showPlaylistInfo(playlist: any): void {
     }
 
     document.getElementById("playlist-tracks-count")!.innerText = playlist.tracks.total
+
+    const playlistTracks = document.getElementById('playlist-tracks-list')!
+    playlistTracks.innerHTML = ""
+    for (let music of playlist.tracks.items) {
+        playlistTracks.appendChild(createMusicElement(music.track))
+    }
 
     toggleToPage('playlist-info-page')
 }
