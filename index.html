@@ -46,7 +46,18 @@
 
     <!-- Página de adivinhar a música -->
     <div id="song-guess-page" style="display: none;">
+      <div id="playlist-tracks-game">
+        <p>Músicas</p>
+        <div id="playlist-tracks-list-game"></div>
+      </div>
 
+      <label>Nome da música</label>
+      <input type="text" id="song-guess-input" name="song-guess-input" placeholder="Nome da música">
+      <br>
+      <label>Nome do artista/banda</label>
+      <input type="text" id="artist-guess-input" name="song-guess-input" placeholder="Nome da banda/artista">
+      <br>
+      <button id="song-guess-submit">Responder</button>
     </div>
 
     <!-- Página de resultados da adivinhação da música que o usuário acabou de responder -->

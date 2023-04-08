@@ -1,8 +1,9 @@
 
 import toggleToPage from './pageToggler'
 import createMusicElement from '../components/music'
+import showSongGuess, { initShowSongGuess } from './songGuess'
 
-export default function showPlaylistInfo(playlist: any): void {
+export default function showPlaylistInfo(playlist: any, playlistId: string): void {
     document.getElementById('playlist-image')!.setAttribute('src', playlist.images[0].url)
 
     document.getElementById('playlist-name')!.innerText = playlist.name
@@ -25,6 +26,13 @@ export default function showPlaylistInfo(playlist: any): void {
     playlistTracks.innerHTML = ""
     for (let music of playlist.tracks.items) {
         playlistTracks.appendChild(createMusicElement(music.track))
+    }
+
+    document.getElementById('game-start')!.onclick = () => {
+
+        console.log(playlistId)
+        initShowSongGuess(playlist, playlistId)
+        showSongGuess(1)
     }
 
     toggleToPage('playlist-info-page')
