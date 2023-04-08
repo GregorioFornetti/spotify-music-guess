@@ -31,7 +31,7 @@ export default function showPlaylistInfo(playlist: any, playlistId: string): voi
     document.getElementById('game-start')!.onclick = () => {
 
         initShowSongGuess(playlist, playlistId)
-        showSongGuess(1)
+        showSongGuess()
     }
 
     toggleToPage('playlist-info-page')
