@@ -30,7 +30,6 @@ export default function showPlaylistInfo(playlist: any, playlistId: string): voi
 
     document.getElementById('game-start')!.onclick = () => {
 
-        console.log(playlistId)
         initShowSongGuess(playlist, playlistId)
         showSongGuess(1)
     }

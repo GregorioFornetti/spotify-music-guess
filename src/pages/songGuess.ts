@@ -4,13 +4,13 @@ import createMusicElement from '../components/music'
 import AccessToken from '../AccessToken'
 
 var selectedMusicElement: HTMLElement | null = null
+var selectedMusicId: string | null = null
 var playlist: any
 var musicsNumberShuffled: any
 var playlistId: string | null = null
 
 
 async function playMusic(musicPos: number, duration: number) {
-    console.log(playlistId)
     await fetch("https://api.spotify.com/v1/me/player/play", {
         method: "PUT",
         headers: AccessToken.accessTokenHeader,
@@ -42,6 +42,8 @@ export function initShowSongGuess(playlist_param: any, playlistId_param: string)
     }
 
     selectedMusicElement = null
+
+    selectedMusicId = null
     
     playlistId = playlistId_param
 }
@@ -59,6 +61,7 @@ export default function showSongGuess(roundNumber: number) {
             }
             selectedMusicElement = musicElement
             selectedMusicElement.classList.add('selected')
+            selectedMusicId = music.track.id
         })
 
         playlistTracks.appendChild(musicElement)
@@ -68,3 +71,13 @@ export default function showSongGuess(roundNumber: number) {
 
     toggleToPage('song-guess-page')
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("song-guess-submit")?.addEventListener("click", () => {
+        if (selectedMusicId === playlist.tracks.items[musicsNumberShuffled[0]].track.id) {
+            alert("Você acertou!")
+        } else {
+            alert("Você errou!")
+        }
+    })
+})

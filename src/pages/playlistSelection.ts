@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const playlist_input_str = (<HTMLInputElement>document.getElementById("playlist-input")).value;
         try {
             const playlistId = get_spotify_id(playlist_input_str)
-            console.log(playlistId)
             const playlist = await get_playlist_info(playlistId)
-            console.log(playlistId)
             showPlaylistInfo(playlist, playlistId)
         } catch (error) {
             console.log(error)
