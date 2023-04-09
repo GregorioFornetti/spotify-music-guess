@@ -2,6 +2,8 @@
 import toggleToPage from './pageToggler'
 import createMusicElement from '../components/music'
 import AccessToken from '../AccessToken'
+import showSongResult from './songResult'
+import showFinalResultPage from './finalResult'
 
 var selectedMusicElement: HTMLElement | null = null
 var selectedMusicId: string | null = null
@@ -9,6 +11,7 @@ var playlist: any
 var musicsNumberShuffled: any
 var playlistId: string | null = null
 var roundNumber: number = 1
+var correctAnswerCount: number = 0
 
 
 function filterByMusicName(musicName: string, musics: any) {
@@ -65,10 +68,42 @@ export function initShowSongGuess(playlistParam: any, playlistIdParam: string) {
     
     playlistId = playlistIdParam
 
-    roundNumber = 1
+    roundNumber = 0
+
+    correctAnswerCount = 0
+    
+    document.getElementById("song-guess-submit")!.onclick = () => {
+        let correctAnswer = selectedMusicId === playlist.tracks.items[musicsNumberShuffled[roundNumber - 1]].track.id
+        showSongResult(
+            roundNumber, 
+            5, 
+            playlist.tracks.items[musicsNumberShuffled[roundNumber - 1]].track,
+            playlist.tracks.items.filter((music: any) => music.track.id === selectedMusicId)[0].track,
+            correctAnswer
+        )
+        if (correctAnswer) {
+            correctAnswerCount += 1
+        }
+
+        selectedMusicId = null
+        selectedMusicElement = null
+    }
 }
+    
 
 export default function showSongGuess() {
+    console.log('oi')
+    if (roundNumber >= 5) {
+        showFinalResultPage(correctAnswerCount, 5)
+        return
+    }
+
+    const songGuessInput = document.getElementById('song-guess-input') as HTMLInputElement
+    const artistGuessInput = document.getElementById('artist-guess-input') as HTMLInputElement
+
+    songGuessInput.value = ''
+    artistGuessInput.value = ''
+    roundNumber += 1
 
     showMusics(playlist.tracks.items)
 
@@ -105,13 +140,6 @@ function showMusics(musics: any) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("song-guess-submit")?.addEventListener("click", () => {
-        if (selectedMusicId === playlist.tracks.items[musicsNumberShuffled[0]].track.id) {
-            alert("Você acertou!")
-        } else {
-            alert("Você errou!")
-        }
-    })
 
     const songGuessInput = document.getElementById('song-guess-input') as HTMLInputElement
     const artistGuessInput = document.getElementById('artist-guess-input') as HTMLInputElement

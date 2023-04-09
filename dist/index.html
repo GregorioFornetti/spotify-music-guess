@@ -14,7 +14,7 @@
   
   
   
-  <script type="module" crossorigin src="./assets/index-16c62ee3.js"></script>
+  <script type="module" crossorigin src="./assets/index-89772d1c.js"></script>
   <link rel="stylesheet" href="./assets/index-7efc9088.css">
 </head>
 
@@ -64,12 +64,24 @@
 
     <!-- Página de resultados da adivinhação da música que o usuário acabou de responder -->
     <div id="song-result-page" style="display: none;">
+      <h2 id="song-result-title">
+        Rodada <span id="song-result-current-round"></span> de <span id="song-result-total-rounds"></span>
+      </h2>
+      <h3 id="song-result-message"></h3>
+      <p>A música correta era:</p>
+      <div id="song-result-correct-song"></div>
+      <p>A música que foi respondida:</p>
+      <div id="song-result-guessed-song"></div>
 
+      <button id="song-result-next">Próxima rodada</button>
     </div>
 
     <!-- Página dos resultados finais, após todas as adivinhações terem sido realizadas -->
     <div id="final-result-page" style="display: none;">
+      <h2>Resultados</h2>
+      <p>Você acertou <span id="final-result-correct-count"></span> de um total de <span id="final-result-total-rounds"></span></p>
 
+      <button id="final-result-return">Voltar</button>
     </div>
   </main>
 </body>
