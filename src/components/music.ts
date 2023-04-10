@@ -6,7 +6,9 @@ export default function createMusicElement(music: any): HTMLElement {
 
     const musicImage = document.createElement('img')
     musicImage.classList.add('music-image')
-    musicImage.setAttribute('src', music.album.images[0].url)
+    if (music.album.images.length !== 0) {
+        musicImage.setAttribute('src', music.album.images[0].url)
+    }
 
     const musicName = document.createElement('p')
     musicName.classList.add('music-name')

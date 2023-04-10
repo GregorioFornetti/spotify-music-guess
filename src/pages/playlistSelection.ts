@@ -1,26 +1,29 @@
 
 import get_spotify_id from "../getSpotifyID"
-import AccessToken from "../AccessToken"
+import User from "../User"
 import showPlaylistInfo from "./playlistInfo"
 
+const filterPlayableTracks = (track: any) => track.track.is_playable
+
 async function get_playlist_info(playlistId: String): Promise<any> { 
-    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}?market=${User.country}`, {
         method: "GET",
-        headers: AccessToken.accessTokenHeader
+        headers: User.accessTokenHeader
     })
     .then(response => response.json())
     .then(async data => {
         var next = data.tracks.next
+        data.tracks.items = data.tracks.items.filter(filterPlayableTracks)
 
         // Para coletar todas as musicas, pois a API só retorna 100 por vez, por padrão
         while (next) {
             await fetch(next, {
                 method: "GET",
-                headers: AccessToken.accessTokenHeader
+                headers: User.accessTokenHeader
             })
             .then(response => response.json())
             .then(next_data => {
-                data.tracks.items.push(...next_data.items)
+                data.tracks.items.push(...next_data.items.filter(filterPlayableTracks))
                 next = next_data.next
             })
         }
@@ -42,4 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(error)
         }
     })
+
+
 })

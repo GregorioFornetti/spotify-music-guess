@@ -1,7 +1,7 @@
 
 import toggleToPage from './pageToggler'
 import createMusicElement from '../components/music'
-import AccessToken from '../AccessToken'
+import User from '../User'
 import showSongResult from './songResult'
 import showFinalResultPage from './finalResult'
 
@@ -34,10 +34,9 @@ function filterByMusicAndArtistName(musicName: string, artistName: string, music
 async function playMusic(musicPos: number, duration: number) {
     await fetch("https://api.spotify.com/v1/me/player/play", {
         method: "PUT",
-        headers: AccessToken.accessTokenHeader,
+        headers: User.accessTokenHeader,
         body: JSON.stringify({
             context_uri: `spotify:playlist:${playlistId}`,
-            headers: AccessToken.accessTokenHeader,
             position_ms: 0,
             offset: {
                 position: musicPos
@@ -48,7 +47,7 @@ async function playMusic(musicPos: number, duration: number) {
     setTimeout(() => {
         fetch("https://api.spotify.com/v1/me/player/pause", {
             method: "PUT",
-            headers: AccessToken.accessTokenHeader,
+            headers: User.accessTokenHeader,
         })
     }, duration * 1000)
 }
@@ -92,7 +91,7 @@ export function initShowSongGuess(playlistParam: any, playlistIdParam: string) {
     
 
 export default function showSongGuess() {
-    console.log('oi')
+
     if (roundNumber >= 5) {
         showFinalResultPage(correctAnswerCount, 5)
         return
