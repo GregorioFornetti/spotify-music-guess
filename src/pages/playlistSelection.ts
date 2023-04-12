@@ -11,12 +11,13 @@ const filterPlayableTracks = (track: any) => {
 }
 
 async function get_playlist_info(playlistId: String): Promise<any> { 
-    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}?market=${User.country}`, {
+    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}?market=${User.country}&additional_types=episode`, {
         method: "GET",
         headers: User.accessTokenHeader
     })
     .then(response => response.json())
     .then(async data => {
+        console.log(data)
         var next = data.tracks.next
         data.tracks.items = data.tracks.items.filter(filterPlayableTracks)
 
@@ -28,7 +29,6 @@ async function get_playlist_info(playlistId: String): Promise<any> {
             })
             .then(response => response.json())
             .then(next_data => {
-                console.log(next_data)
                 data.tracks.items.push(...next_data.items.filter(filterPlayableTracks))
                 next = next_data.next
             })

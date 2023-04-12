@@ -22,7 +22,11 @@ function filterByMusicName(musicName: string, musics: any) {
 
 function filterByArtistName(artistName: string, musics: any) {
     return musics.filter((music: any) => {
-        return music.track.artists[0].name.toLowerCase().startsWith(artistName.toLowerCase())
+        if (music.track.type === 'episode') {
+            return music.track.show.name.toLowerCase().startsWith(artistName.toLowerCase())
+        } else if (music.track.type === 'track') {
+            return music.track.artists[0].name.toLowerCase().startsWith(artistName.toLowerCase())
+        }
     })
 }
 
