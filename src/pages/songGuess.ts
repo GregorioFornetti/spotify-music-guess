@@ -14,13 +14,13 @@ var roundNumber: number = 1
 var correctAnswerCount: number = 0
 
 
-function filterByMusicName(musicName: string, musics: any) {
+function filterByMusicName(musicName: string, musics: any[]) {
     return musics.filter((music: any) => {
         return music.track.name.toLowerCase().startsWith(musicName.toLowerCase())
     })
 }
 
-function filterByArtistName(artistName: string, musics: any) {
+function filterByArtistName(artistName: string, musics: any[]) {
     return musics.filter((music: any) => {
         if (music.track.type === 'episode') {
             return music.track.show.name.toLowerCase().startsWith(artistName.toLowerCase())
@@ -30,7 +30,7 @@ function filterByArtistName(artistName: string, musics: any) {
     })
 }
 
-function filterByMusicAndArtistName(musicName: string, artistName: string, musics: any) {
+function filterByMusicAndArtistName(musicName: string, artistName: string, musics: any[]) {
     return filterByMusicName(musicName, filterByArtistName(artistName, musics))
 }
 

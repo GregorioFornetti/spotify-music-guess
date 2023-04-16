@@ -6,7 +6,7 @@ import Track from './Track'
 import Episode from './Episode'
 
 
-interface PlaylistTrackObject {
+export interface PlaylistTrackObject {
     /** The date and time the track or episode was added. Note: some very old playlists may return null in this field. */
     added_at: string|null,
 
