@@ -1,7 +1,7 @@
 
 import toggleToPage from './pageToggler'
 import createMusicElement from '../components/music'
-import User from '../User'
+import User from '../global/User'
 import showSongResult from './songResult'
 import showFinalResultPage from './finalResult'
 

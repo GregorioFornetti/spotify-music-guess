@@ -1,6 +1,6 @@
 
 
-export default class AccessToken {
+export default class User {
 
     private static _accessToken: string = ""
     private static _country: string = ""

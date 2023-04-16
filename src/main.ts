@@ -1,8 +1,8 @@
 
-import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce"
+import { redirectToAuthCodeFlow, getAccessToken } from "./spotifyApi/authCodeWithPkce"
 import toggleToPage from "./pages/pageToggler"
-import User from "./User"
-import getUserCountry from "./getUserCountry"
+import User from "./global/User"
+import getUserCountry from "./spotifyApi/requests/getUserCountry"
 
 
 const clientId = "b3c2339a149d46afa94a39347466b623";

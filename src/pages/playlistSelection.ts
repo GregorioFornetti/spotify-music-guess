@@ -1,6 +1,6 @@
 
-import get_spotify_id from "../getSpotifyID"
-import User from "../User"
+import get_spotify_id from "../utils/getSpotifyID"
+import User from "../global/User"
 import showPlaylistInfo from "./playlistInfo"
 
 const filterPlayableTracks = (track: any) => {
