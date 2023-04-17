@@ -9,7 +9,7 @@ function filterPlayableTracks(track: any) {
     return track.track.is_playable
 }
 
-export default async function get_playlist_info(playlistId: String): Promise<Playlist> { 
+export default async function getPlaylist(playlistId: String): Promise<Playlist> { 
     return fetch(`https://api.spotify.com/v1/playlists/${playlistId}?market=${User.country}&additional_types=episode`, {
         method: "GET",
         headers: User.accessTokenHeader

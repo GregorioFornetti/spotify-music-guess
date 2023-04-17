@@ -1,69 +1,26 @@
-
 import toggleToPage from './pageToggler'
 import createMusicElement from '../components/music'
-import User from '../global/User'
+import playMusic from '../spotifyApi/requests/play'
 import showSongResult from './songResult'
 import showFinalResultPage from './finalResult'
+import { filterByMusicAndArtistName } from '../utils/filters'
+import { PlaylistTrackObject } from '../spotifyApi/types/Playlist'
+import Playlist from '../spotifyApi/types/Playlist'
+import shuffle from '../utils/shuffle'
 
 var selectedMusicElement: HTMLElement | null = null
 var selectedMusicId: string | null = null
-var playlist: any
-var musicsNumberShuffled: any
+var playlist: Playlist
+var musicsNumberShuffled: number[]
 var playlistId: string | null = null
 var roundNumber: number = 1
 var correctAnswerCount: number = 0
 
 
-function filterByMusicName(musicName: string, musics: any[]) {
-    return musics.filter((music: any) => {
-        return music.track.name.toLowerCase().startsWith(musicName.toLowerCase())
-    })
-}
-
-function filterByArtistName(artistName: string, musics: any[]) {
-    return musics.filter((music: any) => {
-        if (music.track.type === 'episode') {
-            return music.track.show.name.toLowerCase().startsWith(artistName.toLowerCase())
-        } else if (music.track.type === 'track') {
-            return music.track.artists[0].name.toLowerCase().startsWith(artistName.toLowerCase())
-        }
-    })
-}
-
-function filterByMusicAndArtistName(musicName: string, artistName: string, musics: any[]) {
-    return filterByMusicName(musicName, filterByArtistName(artistName, musics))
-}
-
-
-async function playMusic(musicPos: number, duration: number) {
-    await fetch("https://api.spotify.com/v1/me/player/play", {
-        method: "PUT",
-        headers: User.accessTokenHeader,
-        body: JSON.stringify({
-            context_uri: `spotify:playlist:${playlistId}`,
-            position_ms: 0,
-            offset: {
-                position: musicPos
-            }
-        })
-    })
-
-    setTimeout(() => {
-        fetch("https://api.spotify.com/v1/me/player/pause", {
-            method: "PUT",
-            headers: User.accessTokenHeader,
-        })
-    }, duration * 1000)
-}
-
-export function initShowSongGuess(playlistParam: any, playlistIdParam: string) {
+export function initShowSongGuess(playlistParam: Playlist, playlistIdParam: string) {
     playlist = playlistParam
 
-    musicsNumberShuffled = [...Array(playlist.tracks.items.length).keys()]
-    for (let i = musicsNumberShuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [musicsNumberShuffled[i], musicsNumberShuffled[j]] = [musicsNumberShuffled[j], musicsNumberShuffled[i]];
-    }
+    musicsNumberShuffled = shuffle([...Array(playlist.tracks.items.length).keys()])
 
     selectedMusicElement = null
 
@@ -81,7 +38,7 @@ export function initShowSongGuess(playlistParam: any, playlistIdParam: string) {
             roundNumber, 
             5, 
             playlist.tracks.items[musicsNumberShuffled[roundNumber - 1]].track,
-            playlist.tracks.items.filter((music: any) => music.track.id === selectedMusicId)[0].track,
+            playlist.tracks.items.filter((music: PlaylistTrackObject) => music.track.id === selectedMusicId)[0].track,
             correctAnswer
         )
         if (correctAnswer) {
@@ -110,12 +67,16 @@ export default function showSongGuess() {
 
     showMusics(playlist.tracks.items)
 
-    playMusic(musicsNumberShuffled[roundNumber - 1], 5)
+    if (playlistId) {
+        playMusic(musicsNumberShuffled[roundNumber - 1], 5, playlistId)
+    } else {
+        console.log('Playlist id não encontrado')
+    }
 
     toggleToPage('song-guess-page')
 }
 
-function showMusics(musics: any) {
+function showMusics(musics: PlaylistTrackObject[]) {
     selectedMusicElement = null
     
     const playlistTracks = document.getElementById('playlist-tracks-list-game')!

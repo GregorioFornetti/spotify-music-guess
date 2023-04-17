@@ -2,9 +2,11 @@
 import toggleToPage from "./pageToggler"
 import createMusicElement from "../components/music"
 import showSongGuess from "./songGuess"
+import Track from "../spotifyApi/types/Track"
+import Episode from "../spotifyApi/types/Episode"
 
 
-export default function showSongResult(roundNumber: number, totalRounds: number, correctMusic: any, guessedMusic: any, correctAnswer: boolean) {
+export default function showSongResult(roundNumber: number, totalRounds: number, correctMusic: Track|Episode, guessedMusic: Track|Episode, correctAnswer: boolean) {
 
     if (correctAnswer) {
         document.getElementById('song-result-message')!.innerText = 'Você acertou !'

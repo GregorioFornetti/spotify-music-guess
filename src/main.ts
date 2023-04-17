@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         User.accessToken = await getAccessToken(clientId, code)
         User.country = await getUserCountry()
-        console.log(User.country)
         toggleToPage('playlist-selection-page')
     }
 })

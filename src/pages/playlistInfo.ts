@@ -2,8 +2,9 @@
 import toggleToPage from './pageToggler'
 import createMusicElement from '../components/music'
 import showSongGuess, { initShowSongGuess } from './songGuess'
+import Playlist from '../spotifyApi/types/Playlist'
 
-export default function showPlaylistInfo(playlist: any, playlistId: string): void {
+export default function showPlaylistInfo(playlist: Playlist, playlistId: string): void {
     document.getElementById('playlist-image')!.setAttribute('src', playlist.images[0].url)
 
     document.getElementById('playlist-name')!.innerText = playlist.name
@@ -20,7 +21,7 @@ export default function showPlaylistInfo(playlist: any, playlistId: string): voi
         document.getElementById('playlist-owner')!.innerText = ""
     }
 
-    document.getElementById("playlist-tracks-count")!.innerText = playlist.tracks.total
+    document.getElementById("playlist-tracks-count")!.innerText = String(playlist.tracks.total)
 
     const playlistTracks = document.getElementById('playlist-tracks-list')!
     playlistTracks.innerHTML = ""
