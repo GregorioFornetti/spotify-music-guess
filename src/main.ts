@@ -1,6 +1,6 @@
 
 import { redirectToAuthCodeFlow, getAccessToken } from "./spotifyApi/authCodeWithPkce"
-import toggleToPage from "./pages/pageToggler"
+import toggleToPage from "./utils/pageToggler"
 import User from "./global/User"
 import getUserCountry from "./spotifyApi/requests/getUserCountry"
 

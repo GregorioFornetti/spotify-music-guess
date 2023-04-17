@@ -1,8 +1,8 @@
 
-import toggleToPage from './pageToggler'
+import toggleToPage from '../utils/pageToggler'
 import createMusicElement from '../components/music'
-import showSongGuess, { initShowSongGuess } from './songGuess'
 import Playlist from '../spotifyApi/types/Playlist'
+import initRoundsModeGame from './roundsMode/init'
 
 export default function showPlaylistInfo(playlist: Playlist, playlistId: string): void {
     document.getElementById('playlist-image')!.setAttribute('src', playlist.images[0].url)
@@ -31,8 +31,7 @@ export default function showPlaylistInfo(playlist: Playlist, playlistId: string)
 
     document.getElementById('game-start')!.onclick = () => {
 
-        initShowSongGuess(playlist, playlistId)
-        showSongGuess()
+        initRoundsModeGame(playlist, playlistId)
     }
 
     toggleToPage('playlist-info-page')
