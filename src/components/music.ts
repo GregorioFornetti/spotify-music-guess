@@ -1,7 +1,17 @@
 import Track from "../spotifyApi/types/Track"
 import Episode from "../spotifyApi/types/Episode"
 
+/**
+ * 
+ *  Cria um componente para mostar uma música/episodio.
+ * 
+ *  @param {Track|Episode} music - Objeto contendo todas informações necessárias para mostrar a música ou episódio. Utiliza as informações do SpotifyAPI
+ * 
+ *  @returns Um elemento HTML que pode ser adicionado ao DOM, em alguma parte qualquer da aplicação
+ *  
+ */
 export default function createMusicElement(music: Track|Episode): HTMLElement {
+
     const musicElement = document.createElement('div')
     musicElement.classList.add('music')
 
