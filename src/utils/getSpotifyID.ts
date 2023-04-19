@@ -1,41 +1,96 @@
 
 const idRegexAnyPlace = "([A-Za-z0-9]{22})"
 const idRegex = new RegExp(`^${idRegexAnyPlace}$`)
-const uriRegex = new RegExp(`^spotify:playlist:${idRegexAnyPlace}$`)
-const urlRegex = new RegExp(`^https:\/\/open.spotify.com\/playlist\/${idRegexAnyPlace}(\\?si=.*)?$`)
 
+const uriPlaylistRegex = new RegExp(`^spotify:playlist:${idRegexAnyPlace}$`)
+const urlPlaylistRegex = new RegExp(`^https:\/\/open.spotify.com\/playlist\/${idRegexAnyPlace}(\\?si=.*)?$`)
 
-function isSpotifyUri(uri: string): boolean {
-    return uriRegex.test(uri)
-}
-
-function isSpotifyUrl(url: string): boolean {
-    return urlRegex.test(url)
-}
-
-function isSpotifyId(id: string): boolean {
-    return idRegex.test(id)
-}
-
-
-function getSpotifyIdFromUri(uri: string): string {
-    return uri.match(uriRegex)![1]
-}
-
-function getSpotifyIdFromUrl(url: string): string {
-    return url.match(urlRegex)![1]
+/**
+ * 
+ *  Verifica se uma string é um id válido do spotify. Isso não quer dizer que o id é verdadeiro, e que realmente retornará algo em alguma requisição da API. Essa função apenas verifica se a string recebida segue o padrão de um id, como definido na [documentação](https://developer.spotify.com/documentation/web-api/concepts/spotify-uris-ids)
+ * 
+ *  @param {string} idString - texto(string) que será analisada
+ * 
+ *  @returns retorna True caso o parâmetro seja um id válido para um id Spotify. Caso contrário, retorna False
+ * 
+ */
+function isSpotifyId(idString: string): boolean {
+    return idRegex.test(idString)
 }
 
 
-export default function getSpotifyId(userPlaylist: string): string {
-    userPlaylist = userPlaylist.trim()
+/**
+ * 
+ *  Verifica se uma string é um URI válido do spotify de uma playlist. Isso não quer dizer que é verdadeiro, e que realmente retornará algo em alguma requisição da API. Essa função apenas verifica se a string recebida segue o padrão, como definido na [documentação](https://developer.spotify.com/documentation/web-api/concepts/spotify-uris-ids)
+ * 
+ *  @param {string} uriString - texto(string) que será analisada
+ * 
+ *  @returns retorna True caso o parâmetro seja válido para um URI de playlist do Spotify. Caso contrário, retorna False
+ * 
+ */
+function isSpotifyPlaylistUri(uriString: string): boolean {
+    return uriPlaylistRegex.test(uriString)
+}
+
+/**
+ * 
+ *  Verifica se uma string é um URL válido do spotify de uma playlist. Isso não quer dizer que é verdadeiro, e que realmente retornará algo em alguma requisição da API. Essa função apenas verifica se a string recebida segue o padrão, como definido na [documentação](https://developer.spotify.com/documentation/web-api/concepts/spotify-uris-ids)
+ * 
+ *  @param {string} urlString - texto(string) que será analisada
+ * 
+ *  @returns retorna True caso o parâmetro seja válido para um URL de playlist do Spotify. Caso contrário, retorna False
+ * 
+ */
+function isSpotifyPlaylistUrl(urlString: string): boolean {
+    return urlPlaylistRegex.test(urlString)
+}
+
+/**
+ * 
+ *  Coleta o Spotify ID contido na URI da playlist
+ * 
+ *  @param {string} uri - string com a URI de uma playlist do spotify
+ * 
+ *  @returns retorna o spotify ID contido na URI da playlist. O ID é necessário para fazer algumas requisições.
+ * 
+ */
+function getSpotifyIdFromPlaylistUri(uri: string): string {
+    return uri.match(uriPlaylistRegex)![1]
+}
+
+/**
+ * 
+ *  Coleta o Spotify ID contido na URL da playlist
+ * 
+ *  @param {string} url - string com a URL de uma playlist do spotify
+ * 
+ *  @returns retorna o spotify ID contido na URL da playlist. O ID é necessário para fazer algumas requisições.
+ * 
+ */
+function getSpotifyIdFromPlaylistUrl(url: string): string {
+    return url.match(urlPlaylistRegex)![1]
+}
+
+
+/**
+ * 
+ *  Coleta o spotify ID de um ID, URL ou URI de playlist. OBS: só funciona para playlists, no futuro pode ser que funcione para outros objetos (como albuns ou artistas). Provavelmente, caso tenha esse suporte, o retorno terá que ser modificado para incluir o tipo de ID que é (de um album, artista ou playlist).
+ * 
+ *  @param userInput - texto (string) possivelmente contendo informação necessária para coletar um Spotify ID
+ * 
+ *  @returns spotify ID, caso seja um ID, URL ou URI válido. Caso contrário, lança um erro
+ * 
+ */
+export default function getSpotifyId(userInput: string): string {
+    userInput = userInput.trim()
     
-    if (isSpotifyUri(userPlaylist)) {
-        return getSpotifyIdFromUri(userPlaylist)
-    } else if (isSpotifyUrl(userPlaylist)) {
-        return getSpotifyIdFromUrl(userPlaylist)
-    } else if (isSpotifyId(userPlaylist)) {
-        return userPlaylist
+    if (isSpotifyPlaylistUri(userInput)) {
+        return getSpotifyIdFromPlaylistUri(userInput)
+    } else if (isSpotifyPlaylistUrl(userInput)) {
+        return getSpotifyIdFromPlaylistUrl(userInput)
+    } else if (isSpotifyId(userInput)) {
+        // Talves só pelo ID não dê certo no futuro, já que é necessário identificar do que é o id (playlist, album, etc)
+        return userInput
     } else {
         throw new Error("URI, URL ou ID inválido.")
     }

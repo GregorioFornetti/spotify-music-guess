@@ -1,5 +1,11 @@
-
-export default function toggleToPage(pageId: string) {
+/**
+ * 
+ *  Torna visivel apenas a pagina com o ID especificado. No caso, a página deve estar dentro da tag <main>. 
+ * 
+ *  @param pageId - ID da página. O id deve é aquele contido no atribudo id, em um container dentro da tag <main>
+ *  
+ */
+export default function toggleToPage(pageId: string): void {
     const pages = document.getElementById('main')?.children
 
     if (pages) {
@@ -13,7 +19,16 @@ export default function toggleToPage(pageId: string) {
     }
 }
 
-export function toggleToSubpage(pageId: string, subPageId: string) {
+/**
+ * 
+ *  Torna visivel apenas a sub-pagina com o ID especificado. Uma sub-página deve estar contida em uma página dentro de uma página. Essa sub-página só ficará visível se a página em que ela estiver também estiver visível.
+ * 
+ *  @param pageId - ID da página. O id é aquele contido no atribudo id, em um container dentro da tag <main>
+ * 
+ *  @param subPageId - ID da subpágina. O id é aquele contido no atributo id, em um container dentro de uma página
+ *  
+ */
+export function toggleToSubpage(pageId: string, subPageId: string): void {
     const subpages = document.getElementById(pageId)?.children
 
     if (subpages) {
