@@ -1,4 +1,6 @@
-
+/*
+    Página do resultado final, após o usuário jogar todas rodadas
+*/
 import toggleToPage, { toggleToSubpage } from "../../../utils/pageToggler"
 import GameInfo from "../GameInfo"
 

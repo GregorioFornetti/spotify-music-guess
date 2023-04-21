@@ -1,4 +1,6 @@
-
+/*
+    Página com informações da playlist escolhida pelo usuário
+*/
 import toggleToPage from '../utils/pageToggler'
 import createMusicElement from '../components/music'
 import Playlist from '../spotifyApi/types/Playlist'

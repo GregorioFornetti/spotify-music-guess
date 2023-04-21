@@ -1,4 +1,6 @@
-
+/*
+    Página de termino de uma rodada, após usuário responder qual música achava que era a correta.
+*/
 import { toggleToSubpage } from "../../../utils/pageToggler"
 import createMusicElement from "../../../components/music"
 import showSongGuess from "./songGuess"

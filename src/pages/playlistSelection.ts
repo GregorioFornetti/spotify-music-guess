@@ -1,4 +1,6 @@
-
+/*
+    Página home, na qual usuário pode escolher a playlist que vai jogar
+*/
 import getSpotifyId from "../utils/getSpotifyID"
 import showPlaylistInfo from "./playlistInfo"
 import getPlaylist from "../spotifyApi/requests/getPlaylist"

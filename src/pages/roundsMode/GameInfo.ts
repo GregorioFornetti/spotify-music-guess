@@ -1,3 +1,7 @@
+/*
+    Classe estática, com informações importantes que devem ser passadas entre as sub-páginas do modo de rodadas
+*/
+
 import Playlist from "../../spotifyApi/types/Playlist"
 
 export default class GameInfo {
@@ -67,7 +71,7 @@ export default class GameInfo {
     }
 
     static resetCorrectAnswerCount() {
-        this._correctAnswerCount = 1
+        this._correctAnswerCount = 0
     }
 
     static increaseCorrectAnswerCount() {

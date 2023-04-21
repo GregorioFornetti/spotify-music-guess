@@ -1,3 +1,7 @@
+/*
+    Página principal do modo de jogo de rodadas, na qual o usuário deve escolher qual música acredita ser a correta.
+*/
+
 import createMusicElement from '../../../components/music'
 import playMusic from '../../../spotifyApi/requests/play'
 import showSongResult from './songResult'
@@ -20,19 +24,6 @@ export function initShowSongGuess() {
     musicsNumberShuffled = shuffle([...Array(GameInfo.playlist.tracks.items.length).keys()])
     selectedMusicElement = null
     selectedMusic = null
-    
-    // Tentar jogar no contentLoaded
-    document.getElementById("song-guess-submit")!.onclick = () => {
-        if (selectedMusic) {
-            showSongResult(
-                GameInfo.playlist.tracks.items[musicsNumberShuffled[GameInfo.roundNumber - 1]].track,
-                selectedMusic
-            )
-
-            selectedMusic = null
-            selectedMusicElement = null
-        }
-    }
 
     showSongGuess()
 }
@@ -97,4 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     songGuessInput.addEventListener('input', filterFunction)
     artistGuessInput.addEventListener('input', filterFunction)
+
+    document.getElementById("song-guess-submit")!.onclick = () => {
+        if (selectedMusic) {
+            showSongResult(
+                GameInfo.playlist.tracks.items[musicsNumberShuffled[GameInfo.roundNumber - 1]].track,
+                selectedMusic
+            )
+
+            selectedMusic = null
+            selectedMusicElement = null
+        }
+    }
 })
