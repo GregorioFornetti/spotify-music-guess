@@ -18,6 +18,7 @@
 
 <body>
   <main id="main">
+    
     <!-- Página de seleção de playlists -->
     <div id="playlist-selection-page" style="display: none;">
       <form id="playlist-form">
@@ -45,7 +46,36 @@
     </div>
 
     <div id="rounds-mode-game-page" style="display: none;">
-      <!-- Página de adivinhar a música -->
+      <!-- Sub-página de configurações -->
+      <div id="configs-rounds-subpage" style="display: none;">
+        <form>
+          <label>Quantidade rounds:</label>
+          <input type="number" min="0" name="rounds-number" required>
+          <br>
+    
+          <label>Posição da música:</label>
+          <input type="radio" value="init" name="music-pos" checked>
+          <label>Início</label>
+          <input type="radio" value="random" name="music-pos">
+          <label>Aleatório</label>
+          <br>
+    
+          <label>Tempo de música:</label>
+          <input type="number" min="0.1" step="0.1" name="music-play-time" required>
+          <br>
+    
+          <label>Quantidade de músicas:</label>
+          <input type="number" min="0" name="music-qnt" required>
+          <br>
+    
+          <label>Tentativas extras:</label>
+          <input type="checkbox" name="extra-tries">
+    
+          <input type="submit" value="Jogar">
+        </form>
+      </div>
+
+      <!-- Sub-página de adivinhar a música -->
       <div id="song-guess-rounds-subpage" style="display: none;">
         <div id="playlist-tracks-game">
           <p>Músicas</p>
@@ -61,7 +91,7 @@
         <button id="song-guess-submit">Responder</button>
       </div>
 
-      <!-- Página de resultados da adivinhação da música que o usuário acabou de responder -->
+      <!-- Sub-página de resultados da adivinhação da música que o usuário acabou de responder -->
       <div id="song-result-rounds-subpage" style="display: none;">
         <h2 id="song-result-title">
           Rodada <span id="song-result-current-round"></span> de <span id="song-result-total-rounds"></span>
@@ -75,7 +105,7 @@
         <button id="song-result-next">Próxima rodada</button>
       </div>
 
-      <!-- Página dos resultados finais, após todas as adivinhações terem sido realizadas -->
+      <!-- Sub-página dos resultados finais, após todas as adivinhações terem sido realizadas -->
       <div id="final-result-rounds-subpage" style="display: none;">
         <h2>Resultados</h2>
         <p>Você acertou <span id="final-result-correct-count"></span> de um total de <span id="final-result-total-rounds"></span></p>
