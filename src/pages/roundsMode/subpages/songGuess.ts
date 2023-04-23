@@ -3,7 +3,6 @@
 */
 
 import createMusicElement from '../../../components/music'
-import playMusic from '../../../spotifyApi/requests/play'
 import showSongResult from './songResult'
 import { filterByMusicAndArtistName } from '../../../utils/filters'
 import { PlaylistTrackObject } from '../../../spotifyApi/types/Playlist'
@@ -12,11 +11,16 @@ import { toggleToSubpage } from '../../../utils/pageToggler'
 import GameInfo from '../GameInfo'
 import Track from '../../../spotifyApi/types/Track'
 import Episode from '../../../spotifyApi/types/Episode'
+import MusicPlayer from '../../../utils/MusicPlayers/MusicPlayer'
+import RandomMusicPlayer from '../../../utils/MusicPlayers/RandomMusicPlayer'
+import SequentialMusicPlayer from '../../../utils/MusicPlayers/SequentialMusicPlayer'
 
 
 var selectedMusicElement: HTMLElement | null = null
 var selectedMusic: Track | Episode | null = null
 var musicsNumberShuffled: number[]
+var MusicPlayerClass: (typeof RandomMusicPlayer) | (typeof SequentialMusicPlayer)
+var musicPlayer: MusicPlayer
 
 
 export function initShowSongGuess() {
@@ -24,6 +28,13 @@ export function initShowSongGuess() {
     musicsNumberShuffled = shuffle([...Array(GameInfo.playlist.tracks.items.length).keys()])
     selectedMusicElement = null
     selectedMusic = null
+    
+    const extraTriesBtn = document.getElementById('song-guess-hear-next') as HTMLButtonElement
+    if (GameInfo.extraTries) {
+        extraTriesBtn.disabled = false
+    } else {
+        extraTriesBtn.disabled = true
+    }
 
     showSongGuess()
 }
@@ -39,7 +50,14 @@ export default function showSongGuess() {
 
     showMusics(GameInfo.playlist.tracks.items)
 
-    playMusic(musicsNumberShuffled[GameInfo.roundNumber - 1], 5, GameInfo.playlistId)
+    if (GameInfo.musicPos === 'random') {
+        MusicPlayerClass = RandomMusicPlayer
+    } else if (GameInfo.musicPos === 'start') {
+        MusicPlayerClass = SequentialMusicPlayer
+    }
+    musicPlayer = new MusicPlayerClass(GameInfo.playlist, GameInfo.playlistId, musicsNumberShuffled[GameInfo.roundNumber - 1], GameInfo.musicPlaytime)
+
+    musicPlayer.play()
 
     toggleToSubpage(GameInfo.pageId, 'song-guess-rounds-subpage')
 }
@@ -89,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songGuessInput.addEventListener('input', filterFunction)
     artistGuessInput.addEventListener('input', filterFunction)
 
-    document.getElementById("song-guess-submit")!.onclick = () => {
+    document.getElementById("song-guess-submit")?.addEventListener('click', () => {
         if (selectedMusic) {
             showSongResult(
                 GameInfo.playlist.tracks.items[musicsNumberShuffled[GameInfo.roundNumber - 1]].track,
@@ -99,5 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedMusic = null
             selectedMusicElement = null
         }
-    }
+    })
+
+    document.getElementById('song-guess-hear-next')?.addEventListener('click', () => {
+        musicPlayer.play()
+    })
 })

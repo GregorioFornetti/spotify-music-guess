@@ -28,10 +28,10 @@ export default abstract class MusicPlayer {
     public play(): void {
         if (!this.finished) {
             let duration = this.musicPlaytime
-            if (this.musicPlaytimes[this.currentIndex] + duration > this.musicFullDuration) {
+            if (this.musicPlaytimes[this.currentIndex] + duration * 1000 > this.musicFullDuration) {
                 // Caso o playtime esteja próximo do final, pode ser que a duration do play ultrapasse o fim da música
                 // Para que não comece outra música, é necessário limitar a duração de play
-                duration = (this.musicFullDuration - this.musicPlaytimes[this.currentIndex]) / 1000
+                duration = (this.musicFullDuration - this.musicPlaytimes[this.currentIndex]) / 1000 - 0.01
             }
 
             playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex])
