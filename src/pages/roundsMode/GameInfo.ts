@@ -8,9 +8,13 @@ export default class GameInfo {
 
     private static _playlist: Playlist
     private static _playlistId: string
-    private static _roundNumber: number = 1
-    private static _correctAnswerCount: number = 0
-    private static _totalRounds: number = 0
+    private static _roundNumber: number
+    private static _correctAnswerCount: number
+    private static _totalRounds: number
+    private static _musicPos: "start"|"random"
+    private static _musicPlaytime: number
+    private static _musicsQnt: number
+    private static _extraTries: boolean
 
     static reset() {
         this.resetCorrectAnswerCount()
@@ -79,5 +83,41 @@ export default class GameInfo {
             throw new Error("Número do round não pode ser maior que o número total de rounds")
         }
         this._correctAnswerCount++
+    }
+
+
+    static get musicPos() {
+        return this._musicPos
+    }
+
+    static set musicPos(musicPos: "start"|"random") {
+        this._musicPos = musicPos
+    }
+
+
+    static get musicPlaytime() {
+        return this._musicPlaytime
+    }
+
+    static set musicPlaytime(musicPlaytime: number) {
+        this._musicPlaytime = musicPlaytime
+    }
+
+
+    static get musicsQnt() {
+        return this._musicsQnt
+    }
+
+    static set musicsQnt(musicsQnt: number) {
+        this._musicsQnt = musicsQnt
+    }
+
+    
+    static get extraTries() {
+        return this._extraTries
+    }
+
+    static set extraTries(extraTries: boolean) {
+        this._extraTries = extraTries
     }
 }

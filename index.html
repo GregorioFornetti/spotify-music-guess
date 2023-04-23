@@ -11,6 +11,7 @@
   <script src="src/main.ts" type="module"></script>
   <script src="src/pages/playlistSelection.ts" type="module"></script>
   <script src="src/pages/playlistInfo.ts" type="module"></script>
+  <script src="src/pages/roundsMode/subpages/configs.ts" type="module"></script>
   <script src="src/pages/roundsMode/subpages/songGuess.ts" type="module"></script>
   <script src="src/pages/roundsMode/subpages/songResult.ts" type="module"></script>
   <script src="src/pages/roundsMode/subpages/finalResult.ts" type="module"></script>
@@ -47,30 +48,31 @@
 
     <div id="rounds-mode-game-page" style="display: none;">
       <!-- Sub-página de configurações -->
-      <div id="configs-rounds-subpage" style="display: none;">
-        <form>
+      <div id="configs-rounds-subpage">
+        <form id="configs-rounds-form">
           <label>Quantidade rounds:</label>
-          <input type="number" min="0" name="rounds-number" required>
+          <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
           <br>
     
           <label>Posição da música:</label>
-          <input type="radio" value="init" name="music-pos" checked>
+          <input type="radio" value="start" name="music-pos" checked>
           <label>Início</label>
           <input type="radio" value="random" name="music-pos">
           <label>Aleatório</label>
           <br>
     
           <label>Tempo de música:</label>
-          <input type="number" min="0.1" step="0.1" name="music-play-time" required>
+          <input type="number" min="0.1" max="120" step="0.1" name="music-play-time" value="5" required>
           <br>
     
           <label>Quantidade de músicas:</label>
-          <input type="number" min="0" name="music-qnt" required>
+          <input id="configs-rounds-music-qnt" type="number" min="0" name="music-qnt" required>
           <br>
     
           <label>Tentativas extras:</label>
           <input type="checkbox" name="extra-tries">
-    
+          <br>
+          
           <input type="submit" value="Jogar">
         </form>
       </div>
