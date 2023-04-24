@@ -21,6 +21,7 @@ var selectedMusic: Track | Episode | null = null
 var musicsNumberShuffled: number[]
 var MusicPlayerClass: (typeof RandomMusicPlayer) | (typeof SequentialMusicPlayer)
 var musicPlayer: MusicPlayer
+var possibleMusics: PlaylistTrackObject[]
 
 
 export function initShowSongGuess() {
@@ -48,7 +49,23 @@ export default function showSongGuess() {
     songGuessInput.value = ''
     artistGuessInput.value = ''
 
-    showMusics(GameInfo.playlist.tracks.items)
+    if (GameInfo.playlist.tracks.items.length === GameInfo.musicsQnt) {
+        possibleMusics = GameInfo.playlist.tracks.items
+    } else {
+        let possibleMusicsIndexes: number[] = [musicsNumberShuffled[GameInfo.roundNumber - 1]]
+
+        let randomMusicsIndexes = [...musicsNumberShuffled]
+        delete randomMusicsIndexes[GameInfo.roundNumber - 1]
+        randomMusicsIndexes = shuffle(randomMusicsIndexes)
+        for (let i = 0; i < GameInfo.musicsQnt - 1; i++) {
+            possibleMusicsIndexes.push(randomMusicsIndexes[i])
+        }
+        possibleMusicsIndexes.sort()
+
+        possibleMusics = possibleMusicsIndexes.map((musicIndex) => GameInfo.playlist.tracks.items[musicIndex])
+    }
+
+    showMusics(possibleMusics)
 
     if (GameInfo.musicPos === 'random') {
         MusicPlayerClass = RandomMusicPlayer
@@ -104,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             filterByMusicAndArtistName(
                 songGuessInput.value, 
                 artistGuessInput.value, 
-                GameInfo.playlist.tracks.items
+                possibleMusics
             )
         )
     }
