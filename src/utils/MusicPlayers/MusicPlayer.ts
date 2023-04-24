@@ -58,6 +58,7 @@ export default abstract class MusicPlayer {
                 duration = (this.musicFullDuration - this.musicPlaytimes[this.currentIndex]) / 1000 - 0.01
             }
 
+            console.log('tocando musica de número ' + this.musicNumber)
             this.timeoutId = playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex])
 
             this.currentIndex += 1

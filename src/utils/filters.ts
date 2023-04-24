@@ -13,7 +13,7 @@ import { PlaylistTrackObject } from "../spotifyApi/types/Playlist"
  */
 export function filterByMusicName(musicName: string, musics: PlaylistTrackObject[]) {
     return musics.filter((music) => {
-        return music.track.name.toLowerCase().startsWith(musicName.toLowerCase())
+        return music.track.name.toLowerCase().includes(musicName.toLowerCase())
     })
 }
 
@@ -32,9 +32,9 @@ export function filterByMusicName(musicName: string, musics: PlaylistTrackObject
 export function filterByArtistName(artistName: string, musics: PlaylistTrackObject[]) {
     return musics.filter((music) => {
         if (music.track.type === 'episode') {
-            return music.track.show.name.toLowerCase().startsWith(artistName.toLowerCase())
+            return music.track.show.name.toLowerCase().includes(artistName.toLowerCase())
         } else if (music.track.type === 'track') {
-            return music.track.artists[0].name.toLowerCase().startsWith(artistName.toLowerCase())
+            return music.track.artists[0].name.toLowerCase().includes(artistName.toLowerCase())
         }
         return false
     })

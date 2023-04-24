@@ -27,6 +27,8 @@ var possibleMusics: PlaylistTrackObject[]
 export function initShowSongGuess() {
 
     musicsNumberShuffled = shuffle([...Array(GameInfo.playlist.tracks.items.length).keys()])
+    console.log('musicas sorteadas: ')
+    console.log(musicsNumberShuffled)
     selectedMusicElement = null
     selectedMusic = null
     
