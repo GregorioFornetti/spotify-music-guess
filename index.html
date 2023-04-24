@@ -6,6 +6,8 @@
   <title>Spotify music guess</title>
 
   <link rel="stylesheet" href="src/css/styles.css">
+  <link rel="stylesheet" href="src/css/reset.css">
+  <link rel="stylesheet" href="src/css/header.css">
 
   <!-- Todos os códigos que tiverem algum carregamento inicial (DOMContentLoaded), colocar aqui -->
   <script src="src/main.ts" type="module"></script>
@@ -18,6 +20,22 @@
 </head>
 
 <body>
+  <header>
+    <nav>
+      <div>
+        <h1>Spotify<br>music<br>guess</h1>
+
+        <ul id="nav-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="#">Créditos</a></li>
+        </ul>
+      </div>
+
+      <a id="logout" href="#">Logout</a>
+    </nav>
+  </header>
+
   <main id="main">
     
     <!-- Página home -->

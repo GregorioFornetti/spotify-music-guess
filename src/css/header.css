@@ -1,0 +1,64 @@
+
+:root {
+    --header-width: 250px;
+    --nav-margin-horizontal: 15px;
+    --nav-margin-vertical: 30px;
+}
+
+
+body > header {
+    background-color: var(--header-bg-color);
+    height: 100%;
+    position: absolute;
+    width: var(--header-width);
+    color: var(--header-text-color);
+}
+
+body > header > nav {
+    height: calc(100% - 2 * var(--nav-margin-vertical));
+    margin: var(--nav-margin-vertical) var(--nav-margin-horizontal);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#nav-list {
+    
+}
+
+#nav-list > li > a {
+    color: var(--header-text-color);
+    text-decoration: none;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+#nav-list > li > a:hover {
+    color: var(--header-selected-text-color);
+}
+
+#nav-list > li {
+    margin-bottom: 20px;
+}
+
+#logout {
+    color: var(--header-text-color);
+    text-decoration: none;
+    font-size: 1.7em;
+    padding-top: 50px;
+}
+
+#logout:hover {
+    color: var(--header-selected-text-color);
+}
+
+h1 {
+    color: var(--header-selected-text-color);
+    font-size: 2.5em;
+    padding-bottom: 75px;
+}
+
+body > main {
+    margin-left: var(--header-width);
+}
+

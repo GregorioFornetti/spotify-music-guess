@@ -1,3 +1,17 @@
+
+:root {
+    --header-bg-color: rgb(0, 0, 0);
+    --header-text-color: rgb(200, 200, 200);
+    --header-selected-text-color: rgb(255, 255, 255);
+    --body-bg-color: rgb(24, 24, 24);
+    font-family: sans-serif;
+}
+
+body {
+    background-color: var(--body-bg-color);
+    color: white;
+}
+
 #playlist-image {
     width: 300px;
     height: 300px;
