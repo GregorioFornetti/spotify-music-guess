@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         redirectToAuthCodeFlow(clientId)
     } else {
         User.accessToken = await getAccessToken(clientId, code)
+        console.log(User.accessToken)
         User.country = await getUserCountry()
         toggleToPage('playlist-selection-page')
     }

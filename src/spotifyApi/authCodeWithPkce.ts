@@ -22,23 +22,30 @@ export async function redirectToAuthCodeFlow(clientId: string) {
 }
 
 export async function getAccessToken(clientId: string, code: string) {
-    const verifier = localStorage.getItem("verifier");
+    if (!localStorage.getItem('acess_token')) {
+        const verifier = localStorage.getItem("verifier");
 
-    const params = new URLSearchParams();
-    params.append("client_id", clientId);
-    params.append("grant_type", "authorization_code");
-    params.append("code", code);
-    params.append("redirect_uri", redirect_uri);
-    params.append("code_verifier", verifier!);
+        const params = new URLSearchParams();
+        params.append("client_id", clientId);
+        params.append("grant_type", "authorization_code");
+        params.append("code", code);
+        params.append("redirect_uri", redirect_uri);
+        params.append("code_verifier", verifier!);
 
-    const result = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params
-    });
+        const result = await fetch("https://accounts.spotify.com/api/token", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params
+        });
 
-    const { access_token } = await result.json();
-    return access_token;
+        const { access_token } = await result.json()
+        if (access_token) {
+            localStorage.setItem('acess_token', access_token)
+        }
+        return access_token;
+    } else {
+        return localStorage.getItem('acess_token')
+    }
 }
 
 function generateCodeVerifier(length: number) {
