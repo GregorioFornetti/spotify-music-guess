@@ -1,6 +1,6 @@
 // Códigos do tutorial do spotify: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
 
-const redirect_uri = 'http://localhost:5173/callback'
+const redirect_uri = 'https://gregoriofornetti.github.io/spotify-music-guess/dist'
 // 'http://localhost:5173/callback' 
 // 'https://gregoriofornetti.github.io/spotify-music-guess/dist'
 
@@ -23,6 +23,7 @@ export async function redirectToAuthCodeFlow(clientId: string) {
 
 export async function getAccessToken(clientId: string, code: string) {
     if (!localStorage.getItem('acess_token')) {
+        // Primeiro acesso
         const verifier = localStorage.getItem("verifier");
 
         const params = new URLSearchParams();
@@ -38,13 +39,37 @@ export async function getAccessToken(clientId: string, code: string) {
             body: params
         });
 
-        const { access_token } = await result.json()
+        const { access_token, refresh_token } = await result.json()
         if (access_token) {
             localStorage.setItem('acess_token', access_token)
         }
+        if (refresh_token) {
+            localStorage.setItem('refresh_token', refresh_token)
+        }
         return access_token;
     } else {
-        return localStorage.getItem('acess_token')
+        // Refresh token
+        const refreshToken = localStorage.getItem('refresh_token')
+
+        const params = new URLSearchParams()
+        params.append("client_id", clientId)
+        params.append("grant_type", "refresh_token")
+        params.append("refresh_token", refreshToken!)
+
+        const result = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params
+        })
+        
+        const { access_token, refresh_token } = await result.json()
+        if (access_token) {
+            localStorage.setItem('acess_token', access_token)
+        }
+        if (refresh_token) {
+            localStorage.setItem('refresh_token', refresh_token)
+        }
+        return access_token
     }
 }
 

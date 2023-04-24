@@ -3,6 +3,7 @@ import { redirectToAuthCodeFlow, getAccessToken } from "./spotifyApi/authCodeWit
 import toggleToPage from "./utils/pageToggler"
 import User from "./global/User"
 import getUserCountry from "./spotifyApi/requests/getUserCountry"
+import loadHomePage from "./pages/home"
 
 
 const clientId = "b3c2339a149d46afa94a39347466b623";
@@ -15,8 +16,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         redirectToAuthCodeFlow(clientId)
     } else {
         User.accessToken = await getAccessToken(clientId, code)
-        console.log(User.accessToken)
         User.country = await getUserCountry()
+
+        await loadHomePage()
+
         toggleToPage('playlist-selection-page')
     }
 })

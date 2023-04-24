@@ -9,21 +9,8 @@ import createDeviceElement from "../components/device"
 import selectDevice from "../spotifyApi/requests/selectDevice"
 
 
-
-document.addEventListener('DOMContentLoaded', async () => {
-    document.getElementById("playlist-form")?.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const playlist_input_str = (<HTMLInputElement>document.getElementById("playlist-input")).value;
-        try {
-            const playlistId = getSpotifyId(playlist_input_str)
-            const playlist = await getPlaylist(playlistId)
-            showPlaylistInfo(playlist, playlistId)
-        } catch (error) {
-            console.log(error)
-        }
-    })
-
-    getDevices().then(devices => {
+export default async function loadHomePage() {
+    await getDevices().then(devices => {
         const devicesListElement = document.getElementById('devices-list') as HTMLElement
 
         for (const device of devices) {
@@ -43,6 +30,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (devices.length === 0) {
             devicesListElement.innerHTML = "<p>Nenhum dispositivo encontrado. Abra o spotify em algum dispositivo e recarregue a página para selecionar algum dispositivo para tocar as músicas</p>"
+        }
+    })
+}
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    document.getElementById("playlist-form")?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const playlist_input_str = (<HTMLInputElement>document.getElementById("playlist-input")).value;
+        try {
+            const playlistId = getSpotifyId(playlist_input_str)
+            const playlist = await getPlaylist(playlistId)
+            showPlaylistInfo(playlist, playlistId)
+        } catch (error) {
+            console.log(error)
         }
     })
 })
