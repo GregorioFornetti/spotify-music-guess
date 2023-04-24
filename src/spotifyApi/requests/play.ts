@@ -14,14 +14,16 @@ import pause from "./pause"
  * 
  *  @param musicPlayPos - posição em **milisegundos (ms)** em que a música começará a ser tocada
  *  
+ *  @returns timeout ID, para que seja possível cancelar o pause.
+ *  
  */
-export default async function playMusic(musicPos: number, duration: number, playlistId: string, musicPlayPos?: number) {
+export default function playMusic(musicPos: number, duration: number, playlistId: string, musicPlayPos?: number): number {
     let playPos: number = 0
     if (musicPlayPos) {
         playPos = musicPlayPos
     }
 
-    await fetch("https://api.spotify.com/v1/me/player/play", {
+    fetch("https://api.spotify.com/v1/me/player/play", {
         method: "PUT",
         headers: User.accessTokenHeader,
         body: JSON.stringify({
@@ -33,7 +35,7 @@ export default async function playMusic(musicPos: number, duration: number, play
         })
     })
 
-    setTimeout(() => {
+    return setTimeout(() => {
         pause()
     }, duration * 1000)
 }

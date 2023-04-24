@@ -1,6 +1,7 @@
 
 import Playlist from "../../spotifyApi/types/Playlist"
 import playMusic from "../../spotifyApi/requests/play"
+import pause from "../../spotifyApi/requests/pause"
 
 /**
  *  Classe abstrata base para player de músicas de uma playlist. Para criar um novo tipo de player,
@@ -14,6 +15,7 @@ export default abstract class MusicPlayer {
     protected musicPlaytimes: number[]
     protected currentIndex: number
     protected musicPlaytime: number
+    protected timeoutId: number | undefined
     
     /**
      * 
@@ -56,10 +58,18 @@ export default abstract class MusicPlayer {
                 duration = (this.musicFullDuration - this.musicPlaytimes[this.currentIndex]) / 1000 - 0.01
             }
 
-            playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex])
+            this.timeoutId = playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex])
 
             this.currentIndex += 1
         }
+    }
+    
+    /**
+     *  Para de tocar a musica antecipadamente (caso ela esteja tocando)
+     */
+    public pause() {
+        clearTimeout(this.timeoutId)
+        pause()
     }
 
     /**

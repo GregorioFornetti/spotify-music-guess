@@ -138,6 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             selectedMusic = null
             selectedMusicElement = null
+
+            musicPlayer.pause()
         }
     })
 
