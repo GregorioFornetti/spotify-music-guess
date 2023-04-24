@@ -7,26 +7,33 @@
 
   
 
-  
-
-  
+  <!-- Todos os códigos que tiverem algum carregamento inicial (DOMContentLoaded), colocar aqui -->
   
   
   
   
-  <script type="module" crossorigin src="./assets/index-3c8b47d4.js"></script>
-  <link rel="stylesheet" href="./assets/index-7efc9088.css">
+  
+  
+  
+  <script type="module" crossorigin src="./assets/index-fe492199.js"></script>
+  <link rel="stylesheet" href="./assets/index-8b8147ea.css">
 </head>
 
 <body>
   <main id="main">
-    <!-- Página de seleção de playlists -->
+    
+    <!-- Página home -->
     <div id="playlist-selection-page" style="display: none;">
       <form id="playlist-form">
         <label>Playlist</label>
         <input type="text" id="playlist-input" name="playlist-input" placeholder="URI, URL ou ID da playlist">
         <input type="submit" value="Buscar">
       </form>
+
+      <div id="devices-home-page">
+        <p>Dispositivos</p>
+        <div id="devices-list"></div>
+      </div>
     </div>
     
     <!-- Página de seleção -->
@@ -46,42 +53,75 @@
       </div>
     </div>
 
-    <!-- Página de adivinhar a música -->
-    <div id="song-guess-page" style="display: none;">
-      <div id="playlist-tracks-game">
-        <p>Músicas</p>
-        <div id="playlist-tracks-list-game"></div>
+    <div id="rounds-mode-game-page" style="display: none;">
+      <!-- Sub-página de configurações -->
+      <div id="configs-rounds-subpage">
+        <form id="configs-rounds-form">
+          <label>Quantidade rounds:</label>
+          <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
+          <br>
+    
+          <label>Posição da música:</label>
+          <input type="radio" value="start" name="music-pos" checked>
+          <label>Início</label>
+          <input type="radio" value="random" name="music-pos">
+          <label>Aleatório</label>
+          <br>
+    
+          <label>Tempo de música:</label>
+          <input type="number" min="0.1" max="120" step="0.1" name="music-play-time" value="5" required>
+          <br>
+    
+          <label>Quantidade de músicas:</label>
+          <input id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
+          <br>
+    
+          <label>Tentativas extras:</label>
+          <input type="checkbox" name="extra-tries">
+          <br>
+          
+          <input type="submit" value="Jogar">
+        </form>
       </div>
 
-      <label>Nome da música</label>
-      <input type="text" id="song-guess-input" name="song-guess-input" placeholder="Nome da música">
-      <br>
-      <label>Nome do artista/banda</label>
-      <input type="text" id="artist-guess-input" name="song-guess-input" placeholder="Nome da banda/artista">
-      <br>
-      <button id="song-guess-submit">Responder</button>
-    </div>
+      <!-- Sub-página de adivinhar a música -->
+      <div id="song-guess-rounds-subpage" style="display: none;">
+        <div id="playlist-tracks-game">
+          <p>Músicas</p>
+          <div id="playlist-tracks-list-game"></div>
+        </div>
 
-    <!-- Página de resultados da adivinhação da música que o usuário acabou de responder -->
-    <div id="song-result-page" style="display: none;">
-      <h2 id="song-result-title">
-        Rodada <span id="song-result-current-round"></span> de <span id="song-result-total-rounds"></span>
-      </h2>
-      <h3 id="song-result-message"></h3>
-      <p>A música correta era:</p>
-      <div id="song-result-correct-song"></div>
-      <p>A música que foi respondida:</p>
-      <div id="song-result-guessed-song"></div>
+        <label>Nome da música</label>
+        <input type="text" id="song-guess-input" name="song-guess-input" placeholder="Nome da música">
+        <br>
+        <label>Nome do artista/banda</label>
+        <input type="text" id="artist-guess-input" name="song-guess-input" placeholder="Nome da banda/artista">
+        <br>
+        <button id="song-guess-hear-next">Ouvir mais</button>
+        <button id="song-guess-submit">Responder</button>
+      </div>
 
-      <button id="song-result-next">Próxima rodada</button>
-    </div>
+      <!-- Sub-página de resultados da adivinhação da música que o usuário acabou de responder -->
+      <div id="song-result-rounds-subpage" style="display: none;">
+        <h2 id="song-result-title">
+          Rodada <span id="song-result-current-round"></span> de <span id="song-result-total-rounds"></span>
+        </h2>
+        <h3 id="song-result-message"></h3>
+        <p>A música correta era:</p>
+        <div id="song-result-correct-song"></div>
+        <p>A música que foi respondida:</p>
+        <div id="song-result-guessed-song"></div>
 
-    <!-- Página dos resultados finais, após todas as adivinhações terem sido realizadas -->
-    <div id="final-result-page" style="display: none;">
-      <h2>Resultados</h2>
-      <p>Você acertou <span id="final-result-correct-count"></span> de um total de <span id="final-result-total-rounds"></span></p>
+        <button id="song-result-next">Próxima rodada</button>
+      </div>
 
-      <button id="final-result-return">Voltar</button>
+      <!-- Sub-página dos resultados finais, após todas as adivinhações terem sido realizadas -->
+      <div id="final-result-rounds-subpage" style="display: none;">
+        <h2>Resultados</h2>
+        <p>Você acertou <span id="final-result-correct-count"></span> de um total de <span id="final-result-total-rounds"></span></p>
+
+        <button id="final-result-return">Voltar</button>
+      </div>
     </div>
   </main>
 </body>
