@@ -55,7 +55,12 @@ export default function showSongGuess() {
     } else if (GameInfo.musicPos === 'start') {
         MusicPlayerClass = SequentialMusicPlayer
     }
-    musicPlayer = new MusicPlayerClass(GameInfo.playlist, GameInfo.playlistId, musicsNumberShuffled[GameInfo.roundNumber - 1], GameInfo.musicPlaytime)
+    musicPlayer = new MusicPlayerClass(
+        GameInfo.playlist, 
+        GameInfo.playlistId, 
+        musicsNumberShuffled[GameInfo.roundNumber - 1], 
+        GameInfo.musicPlaytime
+    )
 
     musicPlayer.play()
 

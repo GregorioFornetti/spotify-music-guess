@@ -2,6 +2,10 @@
 import MusicPlayer from "./MusicPlayer"
 import shuffle from "../shuffle"
 
+/**
+ *  Tocador de músicas em posições aleatórias. Toca a trechos das músicas aleatóriamente, sendo que cada trecho foi gerado
+ *  sequencialmente com tempo de duração definido no parâmetro do construtor **musicPlaytime**
+ */
 export default class RandomMusicPlayer extends MusicPlayer {
 
     protected constructPlaytimes(): void {

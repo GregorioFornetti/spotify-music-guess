@@ -1,6 +1,9 @@
 
 import MusicPlayer from "./MusicPlayer";
 
+/**
+ *  Tocador de músicas de forma sequencial. Toca os trechos das músicas sequencialmente, sendo que cada trecho tem tempo de duração definido no *  parâmetro do construtor **musicPlaytime**
+ */
 export default class SequentialMusicPlayer extends MusicPlayer {
 
     protected constructPlaytimes(): void {
