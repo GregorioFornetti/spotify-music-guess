@@ -16,6 +16,6 @@ export default function showFinalResultPage() {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("final-result-return")?.addEventListener("click", () => {
-        toggleToPage('playlist-selection-page')
+        toggleToPage('home-page')
     })
 })

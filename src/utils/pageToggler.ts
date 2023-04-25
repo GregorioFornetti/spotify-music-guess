@@ -13,7 +13,7 @@ export default function toggleToPage(pageId: string): void {
             const page = pages[i] as HTMLElement;
             page.style.display = "none"
             if (page.id === pageId) {
-                page.style.display = "block"
+                page.style.display = "grid"
             }
         }
     }

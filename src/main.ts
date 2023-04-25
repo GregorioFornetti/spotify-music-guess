@@ -20,6 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         await loadHomePage()
 
-        toggleToPage('playlist-selection-page')
+        toggleToPage('home-page')
     }
 })

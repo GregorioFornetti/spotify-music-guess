@@ -42,6 +42,6 @@ export default function showPlaylistInfo(playlist: Playlist, playlistId: string)
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("playlist-return")?.addEventListener("click", () => {
-        toggleToPage('playlist-selection-page')
+        toggleToPage('home-page')
     })
 })

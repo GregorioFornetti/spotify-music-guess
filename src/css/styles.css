@@ -43,3 +43,21 @@ body {
     border: solid 1px black;
     cursor: pointer;
 }
+
+#avoid-header {
+    margin-left: calc(var(--header-width) + 10px);
+    width: calc(100% - var(--header-width) - 10px);
+}
+
+main {
+    padding-top: 10px;
+
+    width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 2em;
+    text-align: center;
+    padding-bottom: 35px;
+}
