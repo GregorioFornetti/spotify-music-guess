@@ -22,10 +22,6 @@ body > header > nav {
     justify-content: space-between;
 }
 
-#nav-list {
-    
-}
-
 #nav-list > li > a {
     color: var(--header-text-color);
     text-decoration: none;
