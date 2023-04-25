@@ -21,12 +21,6 @@ export default class GameInfo {
         this.resetRoundNumber()
     }
 
-
-    static get pageId() {
-        return "rounds-mode-game-page"
-    }
-    
-
     static get playlist() {
         return this._playlist;
     }

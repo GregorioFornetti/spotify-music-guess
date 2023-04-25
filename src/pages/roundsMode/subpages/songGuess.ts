@@ -7,7 +7,7 @@ import showSongResult from './songResult'
 import { filterByMusicAndArtistName } from '../../../utils/filters'
 import { PlaylistTrackObject } from '../../../spotifyApi/types/Playlist'
 import shuffle from '../../../utils/shuffle'
-import { toggleToSubpage } from '../../../utils/pageToggler'
+import toggleToSubpage from '../subpageToggler'
 import GameInfo from '../GameInfo'
 import Track from '../../../spotifyApi/types/Track'
 import Episode from '../../../spotifyApi/types/Episode'
@@ -83,7 +83,7 @@ export default function showSongGuess() {
 
     musicPlayer.play()
 
-    toggleToSubpage(GameInfo.pageId, 'song-guess-rounds-subpage')
+    toggleToSubpage('song-guess-rounds-subpage')
 }
 
 function showMusics(musics: PlaylistTrackObject[]) {

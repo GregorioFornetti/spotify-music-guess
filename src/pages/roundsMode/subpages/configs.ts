@@ -1,6 +1,6 @@
-import GameInfo from "../GameInfo"
-import { toggleToSubpage } from "../../../utils/pageToggler"
+import toggleToSubpage from "../subpageToggler"
 import { initShowSongGuess } from "./songGuess"
+import GameInfo from "../GameInfo"
 
 export default function initConfigSubpage() {
     const playlistMusicsQnt = GameInfo.playlist.tracks.items.length
@@ -12,7 +12,7 @@ export default function initConfigSubpage() {
     inputMusicsQnt.setAttribute('max', playlistMusicsQnt.toString())
     inputMusicsQnt.setAttribute('value', playlistMusicsQnt.toString())
 
-    toggleToSubpage(GameInfo.pageId, 'configs-rounds-subpage')
+    toggleToSubpage('configs-rounds-subpage')
 }
 
 document.addEventListener('DOMContentLoaded', () => {

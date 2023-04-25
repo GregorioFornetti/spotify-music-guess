@@ -22,5 +22,5 @@ export default function init(playlistParam: Playlist, playlistIdParam: string) {
     
     initConfigSubpage()
 
-    toggleToPage(GameInfo.pageId)
+    toggleToPage('rounds-mode-game-page')
 }

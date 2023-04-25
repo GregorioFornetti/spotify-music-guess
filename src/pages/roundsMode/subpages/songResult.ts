@@ -1,7 +1,7 @@
 /*
     Página de termino de uma rodada, após usuário responder qual música achava que era a correta.
 */
-import { toggleToSubpage } from "../../../utils/pageToggler"
+import toggleToSubpage from "../subpageToggler"
 import createMusicElement from "../../../components/music"
 import showSongGuess from "./songGuess"
 import Track from "../../../spotifyApi/types/Track"
@@ -31,7 +31,7 @@ export default function showSongResult(correctMusic: Track|Episode, guessedMusic
     guessedMusicElement.appendChild(createMusicElement(guessedMusic))
 
     
-    toggleToSubpage(GameInfo.pageId, 'song-result-rounds-subpage')
+    toggleToSubpage('song-result-rounds-subpage')
 }
 
 

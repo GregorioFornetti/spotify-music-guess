@@ -11,7 +11,7 @@ const params = new URLSearchParams(window.location.search)
 const code = params.get("code")
 
 document.addEventListener('DOMContentLoaded', async () => {
-    toggleToPage('')
+    toggleToPage('empty-page')
     if (!code) {
         redirectToAuthCodeFlow(clientId)
     } else {

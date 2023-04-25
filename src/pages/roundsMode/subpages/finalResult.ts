@@ -1,8 +1,9 @@
 /*
     Página do resultado final, após o usuário jogar todas rodadas
 */
-import toggleToPage, { toggleToSubpage } from "../../../utils/pageToggler"
+import toggleToPage from "../../../utils/pageToggler"
 import GameInfo from "../GameInfo"
+import toggleToSubpage from "../subpageToggler"
 
 
 export default function showFinalResultPage() {
@@ -11,7 +12,7 @@ export default function showFinalResultPage() {
 
     document.getElementById("final-result-total-rounds")!.innerText = GameInfo.totalRounds.toString()
 
-    toggleToSubpage(GameInfo.pageId, 'final-result-rounds-subpage')
+    toggleToSubpage('final-result-rounds-subpage')
 }
 
 document.addEventListener('DOMContentLoaded', () => {
