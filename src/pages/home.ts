@@ -47,7 +47,7 @@ async function loadUserPlaylists() {
         const userPlaylistsElement = document.getElementById('user-playlists-list') as HTMLElement
 
         for (const playlist of userPlaylists.items) {
-            const playlistElement = createSimplifiedPlaylistElement(playlist)
+            const playlistElement = createSimplifiedPlaylistElement(playlist, true)
             userPlaylistsElement.appendChild(playlistElement)
         }
     })

@@ -12,6 +12,9 @@
     --card-bg-color: rgb(24, 24, 24);
     --card-hover-bg-color: rgb(40, 40, 40);
 
+    --title-color: rgb(255, 255, 255);
+    --description-color: rgb(200, 200, 200);
+
     font-family: sans-serif;
 }
 
