@@ -4,6 +4,8 @@
     --header-text-color: rgb(200, 200, 200);
     --header-selected-text-color: rgb(255, 255, 255);
     --body-bg-color: rgb(24, 24, 24);
+    --btn-color: rgb(30, 164, 96);
+    --btn-hover-color: rgb(30, 215, 96);
     font-family: sans-serif;
 }
 
