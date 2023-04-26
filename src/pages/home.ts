@@ -6,11 +6,13 @@ import showPlaylistInfo from "./playlistInfo"
 import getPlaylist from "../spotifyApi/requests/getPlaylist"
 import getDevices from "../spotifyApi/requests/getDevices"
 import createDeviceElement from "../components/device"
+import createSimplifiedPlaylistElement from "../components/simplifiedPlaylist"
 import selectDevice from "../spotifyApi/requests/selectDevice"
+import getUserPlaylists from "../spotifyApi/requests/getUserPlaylists"
 
 
-export default async function loadHomePage() {
-    await getDevices().then(devices => {
+async function loadDevices() {
+    return getDevices().then(devices => {
         const devicesListElement = document.getElementById('devices-list') as HTMLElement
 
         for (const device of devices) {
@@ -38,6 +40,25 @@ export default async function loadHomePage() {
             document.getElementById('no-device-selected')!.style.display = 'block'
         }
     })
+}
+
+async function loadUserPlaylists() {
+    return getUserPlaylists().then(userPlaylists => {
+        const userPlaylistsElement = document.getElementById('user-playlists-list') as HTMLElement
+
+        for (const playlist of userPlaylists.items) {
+            const playlistElement = createSimplifiedPlaylistElement(playlist)
+            userPlaylistsElement.appendChild(playlistElement)
+        }
+    })
+}
+
+
+export default async function loadHomePage() {
+    await Promise.all([
+        loadDevices(),
+        loadUserPlaylists()
+    ])
 }
 
 

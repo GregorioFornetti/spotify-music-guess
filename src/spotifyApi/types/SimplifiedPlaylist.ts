@@ -2,7 +2,7 @@ import ExternalUrls from "./ExternalUrls"
 import SpotifyImage from "./SpotifyImage"
 import Owner from "./Owner"
 
-export default interface UserSimplifiedPlaylists {
+export default interface SimplifiedPlaylist {
     /** true if the owner allows other users to modify the playlist. */
     collaborative: boolean,
 

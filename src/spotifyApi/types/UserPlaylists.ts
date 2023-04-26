@@ -1,4 +1,4 @@
-import UserSimplifiedPlaylists from "./UserSimplifiedPlaylists";
+import SimplifiedPlaylist from "./SimplifiedPlaylist";
 
 export default interface UserPlaylists {
     /** A link to the Web API endpoint returning the full result of the request */
@@ -20,5 +20,5 @@ export default interface UserPlaylists {
     total: number,
 
     /** An array of simplified playlist objects (wrapped in a paging object) */
-    items: UserSimplifiedPlaylists[]
+    items: SimplifiedPlaylist[]
 }
