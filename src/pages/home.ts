@@ -21,15 +21,21 @@ export default async function loadHomePage() {
                     for (let i = 0; i < devicesListElement.children.length; i++) {
                         const element = devicesListElement.children[i] as HTMLElement
                         element.classList.remove('selected')
+                        element.getElementsByClassName('device-is-selected-text')[0].innerHTML = ""
                     }
                     deviceElement.classList.add('selected')
+                    deviceElement.getElementsByClassName('device-is-selected-text')[0].innerHTML = "Dispositivo selecionado"
+                    
+                    document.getElementById('no-device-selected')!.style.display = 'none'
                 }
             })
             devicesListElement.appendChild(deviceElement)
         }
 
         if (devices.length === 0) {
-            devicesListElement.innerHTML = "<p>Nenhum dispositivo encontrado. Abra o spotify em algum dispositivo e recarregue a página para selecionar algum dispositivo para tocar as músicas</p>"
+            document.getElementById('no-devices-found')!.style.display = 'block'
+        } else if (!devices.some(device => device.is_active)) {
+            document.getElementById('no-device-selected')!.style.display = 'block'
         }
     })
 }

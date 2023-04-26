@@ -32,6 +32,7 @@
     box-shadow: 0px 0px 5px var(--btn-color);
 }
 
+
 #playlist-submit {
     border: none;
     border-radius: 0px var(--playlist-input-border-radius) var(--playlist-input-border-radius) 0px;
@@ -43,4 +44,18 @@
 
 #playlist-submit:hover {
     background-color: var(--btn-hover-color);
+}
+
+
+
+#devices-list {
+    display: flex;
+    gap: 75px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.devices-warning {
+    text-align: center;
+    margin-bottom: 30px;
 }

@@ -3,9 +3,15 @@
     --header-bg-color: rgb(0, 0, 0);
     --header-text-color: rgb(200, 200, 200);
     --header-selected-text-color: rgb(255, 255, 255);
-    --body-bg-color: rgb(24, 24, 24);
+
+    --body-bg-color: rgb(18, 18, 18);
+
     --btn-color: rgb(30, 164, 96);
     --btn-hover-color: rgb(30, 215, 96);
+
+    --card-bg-color: rgb(24, 24, 24);
+    --card-hover-bg-color: rgb(40, 40, 40);
+
     font-family: sans-serif;
 }
 
@@ -37,13 +43,6 @@ body {
 .selected {
     background-color: #85c769;
     border : 1px solid #000000;
-}
-
-.device {
-    width: 100px;
-    height: 100px;
-    border: solid 1px black;
-    cursor: pointer;
 }
 
 #avoid-header {

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="src/css/styles.css">
   <link rel="stylesheet" href="src/css/header.css">
   <link rel="stylesheet" href="src/css/home.css">
+  <link rel="stylesheet" href="src/css/device.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
   <!-- Todos os códigos que tiverem algum carregamento inicial (DOMContentLoaded), colocar aqui -->
@@ -60,17 +61,23 @@
 
         <div id="devices-home-page">
           <h2>Dispositivos</h2>
+          <p class="devices-warning" id="no-devices-found" style="display: none;">
+            Nenhum dispositivo encontrado. Abra o spotify em algum dispositivo e recarregue a página para selecionar algum dispositivo para tocar as músicas
+          </p>
+          <p class="devices-warning" id="no-device-selected" style="display: none;">
+            Nenhum dispositivo selecionado. Selecione algum dispositivo para tocar as músicas
+          </p>
           <div id="devices-list"></div>
-        </div>
-
-        <div>
-          <h2>Jogue novamente</h2>
-          <div id="play-again-list"></div>
         </div>
 
         <div>
           <h2>Suas playlists</h2>
           <div id="user-playlists-list"></div>
+        </div>
+
+        <div>
+          <h2>Jogue novamente</h2>
+          <div id="play-again-list"></div>
         </div>
       </div>
       
