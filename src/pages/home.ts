@@ -9,6 +9,9 @@ import createDeviceElement from "../components/device"
 import createSimplifiedPlaylistElement from "../components/simplifiedPlaylist"
 import selectDevice from "../spotifyApi/requests/selectDevice"
 import getUserPlaylists from "../spotifyApi/requests/getUserPlaylists"
+import SimplifiedPlaylist from "../spotifyApi/types/SimplifiedPlaylist"
+import UserPlaylists from "../spotifyApi/types/UserPlaylists"
+import User from "../global/User"
 
 
 async function loadDevices() {
@@ -42,13 +45,44 @@ async function loadDevices() {
     })
 }
 
+function addSimplifiedPlaylistElements(simplifiePlaylists: SimplifiedPlaylist[], container: HTMLElement) {
+    for (const simplifiedPlaylist of simplifiePlaylists) {
+        const playlistElement = createSimplifiedPlaylistElement(simplifiedPlaylist, true)
+        playlistElement.addEventListener('click', async () => {
+            const playlistId = simplifiedPlaylist.id
+            const playlist = await getPlaylist(playlistId)
+            showPlaylistInfo(playlist, playlistId)
+        })
+        container.appendChild(playlistElement)
+    }
+}
+
 async function loadUserPlaylists() {
     return getUserPlaylists().then(userPlaylists => {
         const userPlaylistsElement = document.getElementById('user-playlists-list') as HTMLElement
+        const loadMoreButton = document.getElementById('user-playlists-load-more') as HTMLButtonElement
 
-        for (const playlist of userPlaylists.items) {
-            const playlistElement = createSimplifiedPlaylistElement(playlist, true)
-            userPlaylistsElement.appendChild(playlistElement)
+        addSimplifiedPlaylistElements(userPlaylists.items, userPlaylistsElement)
+
+        let next = userPlaylists.next
+
+        if (next) {
+            loadMoreButton.onclick = (() => {
+                fetch(next as string, {
+                    method: 'GET',
+                    headers: User.accessTokenHeader
+                })
+                .then(response => response.json())
+                .then((userPlaylists: UserPlaylists) => {
+                    addSimplifiedPlaylistElements(userPlaylists.items, userPlaylistsElement)
+                    next = userPlaylists.next
+                    if (!next) {
+                        loadMoreButton.style.display = 'none'
+                    }
+                })
+            })
+        } else {
+            loadMoreButton.style.display = 'none'
         }
     })
 }

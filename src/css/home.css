@@ -68,3 +68,21 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+#user-playlists-load-more {
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--btn-color);
+    border-radius: 10px;
+    padding: 10px 40px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+}
+
+#user-playlists-load-more:hover {
+    background-color: var(--btn-hover-color);
+}
