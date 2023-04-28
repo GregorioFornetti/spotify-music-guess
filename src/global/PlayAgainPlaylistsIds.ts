@@ -7,9 +7,11 @@ export default class PlayAgainPlaylistsIds {
     static savePlaylistId(playlistId: string): number {
         const indexPlaylistId =  this.ids.indexOf(playlistId)
         if (indexPlaylistId !== -1) {
-            delete this.ids[indexPlaylistId]
+            this.ids.splice(indexPlaylistId, 1)
         }
-        this.ids.push(playlistId)
+        console.log(playlistId)
+        this.ids.unshift(playlistId)
+        console.log(this.ids)
         localStorage.setItem(this.storageName, JSON.stringify(this.ids))
 
         return indexPlaylistId

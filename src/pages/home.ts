@@ -14,6 +14,7 @@ import UserPlaylists from "../spotifyApi/types/UserPlaylists"
 import User from "../global/User"
 import getSimplifiedPlaylist from "../spotifyApi/requests/getSimplifiedPlaylist"
 import PlayAgainPlaylistsIds from "../global/PlayAgainPlaylistsIds"
+import Playlist from "../spotifyApi/types/Playlist"
 
 
 async function loadDevices() {
@@ -53,7 +54,7 @@ function addSimplifiedPlaylistElements(simplifiePlaylists: SimplifiedPlaylist[],
         playlistElement.addEventListener('click', async () => {
             const playlistId = simplifiedPlaylist.id
             const playlist = await getPlaylist(playlistId)
-            showPlaylistInfo(playlist, playlistId)
+            showPlaylistAndSave(playlist, playlistId)
         })
         container.appendChild(playlistElement)
     }
@@ -131,26 +132,39 @@ async function loadPlayAgainPlaylists() {
 }
 
 
-
 export default async function loadHomePage() {
     await Promise.all([
         loadDevices(),
         loadUserPlaylists(),
         loadPlayAgainPlaylists()
     ])
-    console.log(await getSimplifiedPlaylist("0BjRyg8AxIdh1DMtVE7t6f"))
 }
 
+function showPlaylistAndSave(playlist: Playlist, playlistId: string) {
+    const playlistsContainer = document.getElementById('play-again-list') as HTMLElement
+    showPlaylistInfo(playlist, playlistId)
+    const replacedIndex = PlayAgainPlaylistsIds.savePlaylistId(playlistId)
+    if (replacedIndex !== -1 && playlistsContainer.children.length > replacedIndex) {
+        playlistsContainer.removeChild(playlistsContainer.children[replacedIndex])
+    }
+    
+    const playlistElement = createSimplifiedPlaylistElement(playlist, true)
+    playlistElement.addEventListener('click', async () => {
+        showPlaylistAndSave(playlist, playlistId)
+    })
+    playlistsContainer.insertBefore(playlistElement, playlistsContainer.children[0])
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
-
     document.getElementById("playlist-form")?.addEventListener("submit", async (e) => {
         e.preventDefault();
         const playlist_input_str = (<HTMLInputElement>document.getElementById("playlist-input")).value;
         try {
             const playlistId = getSpotifyId(playlist_input_str)
             const playlist = await getPlaylist(playlistId)
-            showPlaylistInfo(playlist, playlistId)
+
+            showPlaylistAndSave(playlist, playlistId)
+
         } catch (error) {
             console.log(error)
         }
