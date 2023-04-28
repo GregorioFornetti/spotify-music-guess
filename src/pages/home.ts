@@ -12,6 +12,7 @@ import getUserPlaylists from "../spotifyApi/requests/getUserPlaylists"
 import SimplifiedPlaylist from "../spotifyApi/types/SimplifiedPlaylist"
 import UserPlaylists from "../spotifyApi/types/UserPlaylists"
 import User from "../global/User"
+import getSimplifiedPlaylist from "../spotifyApi/requests/getSimplifiedPlaylist"
 
 
 async function loadDevices() {
@@ -93,10 +94,12 @@ export default async function loadHomePage() {
         loadDevices(),
         loadUserPlaylists()
     ])
+    console.log(await getSimplifiedPlaylist("0BjRyg8AxIdh1DMtVE7t6f"))
 }
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+
     document.getElementById("playlist-form")?.addEventListener("submit", async (e) => {
         e.preventDefault();
         const playlist_input_str = (<HTMLInputElement>document.getElementById("playlist-input")).value;
