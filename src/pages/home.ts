@@ -13,6 +13,7 @@ import SimplifiedPlaylist from "../spotifyApi/types/SimplifiedPlaylist"
 import UserPlaylists from "../spotifyApi/types/UserPlaylists"
 import User from "../global/User"
 import getSimplifiedPlaylist from "../spotifyApi/requests/getSimplifiedPlaylist"
+import PlayAgainPlaylistsIds from "../global/PlayAgainPlaylistsIds"
 
 
 async function loadDevices() {
@@ -88,11 +89,54 @@ async function loadUserPlaylists() {
     })
 }
 
+async function loadPlayAgainPlaylists() {
+    const playAgainPlaylistsIds = PlayAgainPlaylistsIds.getPlaylistsIds()
+    const playAgainPlaylistsElement = document.getElementById('play-again-list') as HTMLElement
+    const loadMoreButton = document.getElementById('play-again-load-more') as HTMLButtonElement
+    const playlistsPerLoad = 8
+    let currentPlaylistIndex = 0
+
+    return Promise.all(
+        playAgainPlaylistsIds
+        .slice(currentPlaylistIndex, currentPlaylistIndex + playlistsPerLoad)
+        .map(async (playlistId) => {
+            return getSimplifiedPlaylist(playlistId)
+        })
+    ).then(simplifiedPlaylists => {
+        
+        addSimplifiedPlaylistElements(simplifiedPlaylists, playAgainPlaylistsElement)
+        currentPlaylistIndex += playlistsPerLoad
+
+        if (currentPlaylistIndex >= playAgainPlaylistsIds.length) {
+            loadMoreButton.style.display = 'none'
+        } else {
+            loadMoreButton.onclick = (() => {
+                Promise.all(
+                    playAgainPlaylistsIds
+                    .slice(currentPlaylistIndex, currentPlaylistIndex + playlistsPerLoad)
+                    .map(async (playlistId) => {
+                        return getSimplifiedPlaylist(playlistId)
+                    })
+                ).then(simplifiedPlaylists => {
+                    addSimplifiedPlaylistElements(simplifiedPlaylists, playAgainPlaylistsElement)
+                    currentPlaylistIndex += playlistsPerLoad
+                    if (currentPlaylistIndex >= playAgainPlaylistsIds.length) {
+                        loadMoreButton.style.display = 'none'
+                    }
+                })
+            })
+        }
+    })
+    
+}
+
+
 
 export default async function loadHomePage() {
     await Promise.all([
         loadDevices(),
-        loadUserPlaylists()
+        loadUserPlaylists(),
+        loadPlayAgainPlaylists()
     ])
     console.log(await getSimplifiedPlaylist("0BjRyg8AxIdh1DMtVE7t6f"))
 }

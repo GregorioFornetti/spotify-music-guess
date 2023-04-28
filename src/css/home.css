@@ -62,14 +62,14 @@
 
 
 
-#user-playlists-list {
+.playlists-list {
     display: flex;
     gap: 40px 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-#user-playlists-load-more {
+.load-more-btn {
     margin: auto;
     margin-top: 50px;
     display: flex;
@@ -83,6 +83,6 @@
     border: none;
 }
 
-#user-playlists-load-more:hover {
+.load-more-btn:hover {
     background-color: var(--btn-hover-color);
 }
