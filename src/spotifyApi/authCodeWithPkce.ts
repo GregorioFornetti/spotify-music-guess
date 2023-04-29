@@ -1,6 +1,6 @@
 // Códigos do tutorial do spotify: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
 
-const redirect_uri = 'http://localhost:5173/callback'
+const redirect_uri = 'https://gregoriofornetti.github.io/spotify-music-guess/dist'
 // 'http://localhost:5173/callback' 
 // 'https://gregoriofornetti.github.io/spotify-music-guess/dist'
 
