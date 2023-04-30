@@ -1,7 +1,15 @@
 
 import Device from "../spotifyApi/types/Device"
 
-
+/**
+ * 
+ *  Cria um componente HTML que representa um dispositivo
+ * 
+ *  @param device - Objeto contendo as informações do dispositivo
+ * 
+ *  @returns um elemento HTML que representa um dispositivo
+ * 
+ */
 export default function createDeviceElement(device: Device): HTMLElement {
     const deviceElement = document.createElement('div')
     deviceElement.classList.add('device')

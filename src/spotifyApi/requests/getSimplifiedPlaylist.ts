@@ -1,6 +1,15 @@
 import User from "../../global/User"
 import SimplifiedPlaylist from "../types/SimplifiedPlaylist"
 
+/**
+ *  
+ *  Retorna uma playlist simplificada (sem informações das músicas)
+ *  
+ *  @param playlistId - Id da playlist que será retornada
+ * 
+ *  @returns Uma playlist simplificada (sem informações das músicas)
+ *  
+ */
 export default async function getSimplifiedPlaylist(playlistId: string): Promise<SimplifiedPlaylist> {
     const fields = [
         "collaborative",

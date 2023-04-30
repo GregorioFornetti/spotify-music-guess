@@ -1,6 +1,17 @@
 import SimplifiedPlaylist from "../spotifyApi/types/SimplifiedPlaylist";
 
-export default function createSimplifiedPlaylistElement(simplifiedPlaylist: SimplifiedPlaylist, selectable: boolean) {
+/**
+ * 
+ *  Cria um componente HTML que representa uma playlist simplificada (sem informações das músicas)
+ * 
+ *  @param simplifiedPlaylist - Objeto contendo as informações da playlist simplificada
+ * 
+ *  @param selectable - Se a playlist será selecionável ou não (se terá efeitos de seleção ou não)
+ * 
+ *  @returns Um elemento HTML que representa uma playlist simplificada
+ * 
+ */
+export default function createSimplifiedPlaylistElement(simplifiedPlaylist: SimplifiedPlaylist, selectable: boolean): HTMLElement {
     const simplifiedPlaylistElement = document.createElement('div')
     simplifiedPlaylistElement.classList.add('simplified-playlist-container')
     if (selectable) {
