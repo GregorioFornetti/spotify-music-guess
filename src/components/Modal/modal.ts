@@ -1,11 +1,24 @@
 
-
+/**
+ *  Classe para criar componentes Modal
+ */
 export default class Modal {
 
     modal: HTMLElement
     modalBackdrop: HTMLElement
     modalBody: HTMLElement
 
+    /**
+     * 
+     *  Cria o modal e adiciona no documento HTML
+     * 
+     *  @param title - Titulo do modal, irá aparecer no canto superior esquerdo.
+     *  
+     *  @param closable - Se for verdadeiro, um botão de fechar será adicionado no canto superior direito
+     *  
+     *  @param content - Conteúdo que será adicionado no corpo do Modal. Pode não ser passado, para depois ser adicionado através
+     *  do método addContent (isso pode ser necessário para que o conteúdo do modal possa acionar funções do próprio Modal).
+     */
     constructor(title: string, closable: boolean, content?: HTMLElement) {
 
         this.modalBackdrop = document.createElement('div');
@@ -54,10 +67,18 @@ export default class Modal {
         document.body.style.overflow = 'hidden' // Para interromper o scroll
     }
 
+    /**
+     *  Adiciona um conteúdo para o corpo do Modal
+     * 
+     * @param content - conteúdo que será adicionado no Modal
+     */
     addContent(content: HTMLElement): void {
         this.modalBody.appendChild(content)
     }
 
+    /**
+     *  Fecha o modal. Primeiro é feito a animação de fechar, e depois é excluido o Modal do documento.
+     */
     close(): void {
         document.body.style.overflow = 'visible'  // Para voltar o scroll
 
