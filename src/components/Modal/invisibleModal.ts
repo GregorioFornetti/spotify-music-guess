@@ -12,6 +12,8 @@ export default class InvisibleModal {
         }
 
         document.body.appendChild(this.modalBackdrop)
+
+        document.body.style.overflow = 'hidden' // Para interromper o scroll
     }
 
     addContent(content: HTMLElement): void {
@@ -19,6 +21,12 @@ export default class InvisibleModal {
     }
 
     close(): void {
-        this.modalBackdrop.remove()
+        document.body.style.overflow = 'visible' // Para interromper o scroll
+
+        this.modalBackdrop.classList.add('closing')
+
+        this.modalBackdrop.addEventListener('animationend', () => {
+            this.modalBackdrop.remove()
+        })
     }
 }

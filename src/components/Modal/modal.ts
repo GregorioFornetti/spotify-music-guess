@@ -50,6 +50,8 @@ export default class Modal {
         this.modalBackdrop.appendChild(this.modal)
 
         document.body.appendChild(this.modalBackdrop)
+
+        document.body.style.overflow = 'hidden' // Para interromper o scroll
     }
 
     addContent(content: HTMLElement): void {
@@ -57,9 +59,11 @@ export default class Modal {
     }
 
     close(): void {
+        document.body.style.overflow = 'visible'  // Para voltar o scroll
+
         this.modalBackdrop.classList.add('closing')
         this.modal.classList.add('closing')
-        
+
         this.modalBackdrop.addEventListener('animationend', () => {
             this.modalBackdrop.remove()
         })
