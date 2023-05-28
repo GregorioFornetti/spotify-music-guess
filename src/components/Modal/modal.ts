@@ -2,6 +2,7 @@
 
 export default class Modal {
 
+    modal: HTMLElement
     modalBackdrop: HTMLElement
     modalBody: HTMLElement
 
@@ -11,8 +12,8 @@ export default class Modal {
         this.modalBackdrop.className = 'modal-backdrop'
 
 
-        const modal = document.createElement('div')
-        modal.className = 'modal'
+        this.modal = document.createElement('div')
+        this.modal.className = 'modal'
 
 
         const modalHeader = document.createElement('div')
@@ -43,10 +44,10 @@ export default class Modal {
         }
 
 
-        modal.appendChild(modalHeader)
-        modal.appendChild(this.modalBody)
+        this.modal.appendChild(modalHeader)
+        this.modal.appendChild(this.modalBody)
 
-        this.modalBackdrop.appendChild(modal)
+        this.modalBackdrop.appendChild(this.modal)
 
         document.body.appendChild(this.modalBackdrop)
     }
@@ -57,6 +58,8 @@ export default class Modal {
 
     close(): void {
         this.modalBackdrop.classList.add('closing')
+        this.modal.classList.add('closing')
+        
         this.modalBackdrop.addEventListener('animationend', () => {
             this.modalBackdrop.remove()
         })
