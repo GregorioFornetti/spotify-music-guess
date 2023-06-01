@@ -4,6 +4,9 @@ import toggleToPage from "./utils/pageToggler"
 import User from "./global/User"
 import getUserCountry from "./spotifyApi/requests/getUserCountry"
 import loadHomePage from "./pages/home"
+import bootstrap from 'bootstrap'
+
+
 
 
 const clientId = "b3c2339a149d46afa94a39347466b623";
