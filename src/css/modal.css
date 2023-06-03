@@ -1,0 +1,9 @@
+.modal-dialog-invisible {
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.modal-invisible {
+    width: 100%;
+}

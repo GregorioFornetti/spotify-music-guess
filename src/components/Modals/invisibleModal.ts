@@ -1,27 +1,45 @@
+import { Modal } from "bootstrap"
 
 /**
  *  Classe para criação de Modais "invisiveis". Apenas o conteúdo será apresentado (junto com o backdrop)
  */
 export default class InvisibleModal {
 
-    modalBackdrop: HTMLElement
+    modal: Modal
+    modalContent: HTMLElement
 
     /**
      *  Cria o modal e adiciona no documento HTML
      * 
+     *  @param ariaLabel - Por qual nome o modal será identificado por leitores de tela
+     *  
      *  @param content - Conteúdo que será adicionado no corpo do Modal. Pode não ser passado, para depois ser adicionado através
      *  do método addContent (isso pode ser necessário para que o conteúdo do modal possa acionar funções do próprio Modal)
      */
-    constructor(content?: HTMLElement) {
-        this.modalBackdrop = document.createElement('div')
-        this.modalBackdrop.className = 'modal-backdrop'
+    constructor(ariaLabel: string, content?: HTMLElement) {
+        const modalElement = document.createElement('div')
+        modalElement.className = 'modal fade modal-invisible'
+        modalElement.tabIndex = -1
+        modalElement.ariaLabel = ariaLabel
+        modalElement.ariaHidden = 'true'
+        modalElement.dataset.bsTheme = 'dark'
+        modalElement.dataset.bsBackdrop = "static"
+
+        const modalDialogElement = document.createElement('div')
+        modalDialogElement.className = 'modal-dialog modal-dialog-centered modal-dialog-invisible modal-fullscreen'
         if (content) {
-            this.modalBackdrop.appendChild(content)
+            modalDialogElement.appendChild(content)
         }
 
-        document.body.appendChild(this.modalBackdrop)
+        modalElement.appendChild(modalDialogElement)
 
-        document.body.style.overflow = 'hidden' // Para interromper o scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.appendChild(modalElement)
+        })
+
+        this.modalContent = modalDialogElement
+
+        this.modal = new Modal(modalElement)
     }
 
     /**
@@ -30,19 +48,28 @@ export default class InvisibleModal {
      * @param content - conteúdo que será adicionado no Modal
      */
     addContent(content: HTMLElement): void {
-        this.modalBackdrop.appendChild(content)
+        this.modalContent.innerHTML = ''
+        this.modalContent.appendChild(content)
     }
 
     /**
-     *  Fecha o modal. Primeiro é feito a animação de fechar, e depois é excluido o Modal do documento.
+     *  Abre o modal.
+     */
+    show(): void {
+        this.modal.show()
+    }
+
+    /**
+     *  Fecha o modal.
      */
     close(): void {
-        document.body.style.overflow = 'visible' // Para interromper o scroll
+        this.modal.show()
+    }
 
-        this.modalBackdrop.classList.add('closing')
-
-        this.modalBackdrop.addEventListener('animationend', () => {
-            this.modalBackdrop.remove()
-        })
+    /**
+     *  Abre o modal se estiver fechado. Se estiver aberto, fecha o modal.
+     */
+    toggle(): void {
+        this.modal.toggle()
     }
 }
