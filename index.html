@@ -33,7 +33,7 @@
   <header>
     <nav>
       <div>
-        <h1>Spotify<br>music<br>guess</h1>
+        <h1 id="logo">Spotify<br>music<br>guess</h1>
 
         <ul id="nav-list">
           <li><a href="#">Home</a></li>
@@ -55,7 +55,7 @@
       <!-- Página home -->
       <div id="home-page" style="display: none;">
         <div>
-          <h2>Buscar por playlist</h2>
+          <h2 class="home-title">Buscar por playlist</h2>
           <form id="playlist-form">
             <div id="playlist-input-container">
               <input type="text" id="playlist-input" name="playlist-input" placeholder="URI, URL ou ID da playlist">
@@ -67,7 +67,7 @@
         </div>
 
         <div id="devices-home-page">
-          <h2>Dispositivos</h2>
+          <h2 class="home-title">Dispositivos</h2>
           <p class="devices-warning" id="no-devices-found" style="display: none;">
             Nenhum dispositivo encontrado. Abra o spotify em algum dispositivo e recarregue a página para selecionar algum dispositivo para tocar as músicas
           </p>
@@ -78,13 +78,13 @@
         </div>
 
         <div>
-          <h2>Sua biblioteca</h2>
+          <h2 class="home-title">Sua biblioteca</h2>
           <div class="playlists-list" id="user-playlists-list"></div>
           <button class="load-more-btn" id="user-playlists-load-more">Carregar mais</button>
         </div>
 
         <div>
-          <h2>Jogue novamente</h2>
+          <h2 class="home-title">Jogue novamente</h2>
           <div class="playlists-list" id="play-again-list"></div>
           <button class="load-more-btn" id="play-again-load-more">Carregar mais</button>
         </div>
@@ -184,6 +184,7 @@
     </footer>
 
   </div>
+
 </body>
 
 </html>
