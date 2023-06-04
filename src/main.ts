@@ -4,6 +4,7 @@ import toggleToPage from "./utils/pageToggler"
 import User from "./global/User"
 import getUserCountry from "./spotifyApi/requests/getUserCountry"
 import loadHomePage from "./pages/home"
+import modalTeste from "./components/Modals/modalTeste"
 
 const clientId = "b3c2339a149d46afa94a39347466b623";
 const params = new URLSearchParams(window.location.search)
@@ -22,4 +23,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         toggleToPage('home-page')
     }
 
+    modalTeste.show()
 })

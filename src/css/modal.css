@@ -7,3 +7,7 @@
 .modal-invisible {
     width: 100%;
 }
+
+.visible-modal-content {
+    background-color: var(--body-bg-color);
+}

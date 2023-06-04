@@ -70,7 +70,7 @@ export default class ModalComponent {
         }
 
         const modalContentElement = document.createElement('div')
-        modalContentElement.className = 'modal-content'
+        modalContentElement.className = 'modal-content visible-modal-content'
 
         const modalHeaderElement = document.createElement('div')
         modalHeaderElement.className = 'modal-header'
