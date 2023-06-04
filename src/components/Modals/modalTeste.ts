@@ -1,4 +1,4 @@
-import Modal from "./modal"
+import Modal from "./base/visibleModal"
 
 const modalTeste = new Modal(
     'testeModal', 

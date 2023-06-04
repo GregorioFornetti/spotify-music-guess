@@ -4,7 +4,7 @@ import { Modal } from "bootstrap"
 /**
  *  Classe para criar componentes Modal
  */
-export default class ModalComponent {
+export default class VisibleModal {
 
     private modal: Modal
     private modalBody: HTMLElement
