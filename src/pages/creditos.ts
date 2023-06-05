@@ -1,0 +1,1 @@
+const repository = document.getElementById('credits-page');
