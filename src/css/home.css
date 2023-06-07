@@ -46,6 +46,11 @@
     background-color: var(--btn-hover-color);
 }
 
+.home-title {
+    font-size: 2em;
+    text-align: center;
+    padding-bottom: 35px;
+}
 
 
 #devices-list {

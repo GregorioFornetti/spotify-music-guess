@@ -48,7 +48,7 @@ body > header > nav {
     color: var(--header-selected-text-color);
 }
 
-h1 {
+#logo {
     color: var(--header-selected-text-color);
     font-size: 2.5em;
     padding-bottom: 75px;
