@@ -16,11 +16,17 @@ export default class GameInfo {
     private static _musicsQnt: number
     private static _extraTries: boolean
 
+    /**
+     *  Reinicia o jogo. Deve ser chamada sempre que um jogo novo será iniciado
+     */
     static reset() {
         this.resetCorrectAnswerCount()
         this.resetRoundNumber()
     }
 
+    /**
+     *  Informações da playlist em que o usuário está jogando
+     */
     static get playlist() {
         return this._playlist;
     }
@@ -29,7 +35,9 @@ export default class GameInfo {
         this._playlist = playlist
     }
 
-
+    /**
+     *  ID da playlist em que o usuário está jogando
+     */
     static get playlistId(): string {
         return this._playlistId
     }
@@ -38,7 +46,9 @@ export default class GameInfo {
         this._playlistId = playlistId
     } 
 
-
+    /**
+     *  Número da rodada que o usuário está jogando ou acabou de jogar.
+     */
     static get roundNumber() {
         return this._roundNumber
     }
@@ -54,7 +64,9 @@ export default class GameInfo {
         this._roundNumber++
     }
 
-
+    /**
+     *  Número total de rodadas da partida.
+     */
     static get totalRounds() {
         return this._totalRounds
     }
@@ -63,7 +75,9 @@ export default class GameInfo {
         this._totalRounds = totalRounds
     }
 
-
+    /**
+     *  Número de partidas em que a resposta foi correta
+     */
     static get correctAnswersCount() {
         return this._correctAnswerCount
     }
@@ -74,12 +88,17 @@ export default class GameInfo {
 
     static increaseCorrectAnswerCount() {
         if (this._totalRounds <= this._correctAnswerCount) {
-            throw new Error("Número do round não pode ser maior que o número total de rounds")
+            throw new Error("Número de acertos não pode ser maior que o número total de rounds")
         }
         this._correctAnswerCount++
     }
 
-
+    /**
+     *  Modo de seleção de tocar a música, existem 2 tipos:
+     *  - start: a música é tocada pelo inicio, e todas tentativas extras iniciam no ponto em que parou de tocar a última vez.
+     *  - random: a música é tocada em uma posição aleatória, toda tentativa extra seleciona uma nova posição para tocar, sem repetir algo que já
+     *  tocado
+     */
     static get musicPos() {
         return this._musicPos
     }
@@ -88,7 +107,9 @@ export default class GameInfo {
         this._musicPos = musicPos
     }
 
-
+    /**
+     *  Tempo, em segundos, em que as músicas serão tocadas
+     */
     static get musicPlaytime() {
         return this._musicPlaytime
     }
@@ -97,7 +118,12 @@ export default class GameInfo {
         this._musicPlaytime = musicPlaytime
     }
 
-
+    /**
+     *  Quantidade de músicas que serão possíveis de escolher por rodada.
+     *  
+     *  OBS: isso não é o mesmo que o número de músicas disponiveis da playlist,
+     *  isso faz parte da configuração do jogo e o usuário pode mudar esse número
+     */
     static get musicsQnt() {
         return this._musicsQnt
     }
@@ -106,7 +132,9 @@ export default class GameInfo {
         this._musicsQnt = musicsQnt
     }
 
-    
+    /**
+     *  Se for verdadeiro, o usuário poderá ter tentativas extras, ou seja, ouvir mais trechos da música.
+     */
     static get extraTries() {
         return this._extraTries
     }
