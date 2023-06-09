@@ -11,6 +11,9 @@ import showFinalResultPage from "./finalResult"
 
 
 export default function showSongResult(correctMusic: Track|Episode, guessedMusic: Track|Episode) {
+    
+    GameInfo.addRoundHistory(correctMusic, guessedMusic)
+
     if (correctMusic.id === guessedMusic.id) {
         document.getElementById('song-result-message')!.innerText = 'Você acertou !'
         GameInfo.increaseCorrectAnswerCount()

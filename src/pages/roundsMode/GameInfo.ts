@@ -6,7 +6,7 @@ import Episode from "../../spotifyApi/types/Episode"
 import Playlist from "../../spotifyApi/types/Playlist"
 import Track from "../../spotifyApi/types/Track"
 
-interface RoundInfo {
+export interface RoundInfo {
     // Tempo gasto pelo usuário durante a rodada
     timeSpent: number,
     // Música sorteada
@@ -43,6 +43,7 @@ export default class GameInfo {
         this.resetRoundNumber()
         this.resetCurrentTime()
         this.resetExtraTriesCount()
+        this.resetRoundsHistory()
     }
 
     /**
@@ -241,5 +242,12 @@ export default class GameInfo {
             (this._currentTime + this._extraTriesCount * 25)
             , 50 * this._correctAnswerCount
         )
+    }
+
+    /**
+     *  Número de vezes que o usuário errou
+     */
+    static get incorrectAnswerCount() {
+        return this._totalRounds - this._correctAnswerCount
     }
 }
