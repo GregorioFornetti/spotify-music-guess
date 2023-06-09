@@ -6,6 +6,8 @@ import formatTime from "../../../utils/formatTime"
 import toggleToPage from "../../../utils/pageToggler"
 import GameInfo from "../GameInfo"
 import toggleToSubpage from "../subpageToggler"
+import initConfigSubpage from "./configs"
+import { initShowSongGuess } from "./songGuess"
 
 
 export default function showFinalResultPage() {
@@ -40,5 +42,17 @@ export default function showFinalResultPage() {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("final-result-return")?.addEventListener("click", () => {
         toggleToPage('home-page')
+    })
+
+    document.getElementById('play-again-rounds-mode-new-configs')?.addEventListener('click', () => {
+        GameInfo.reset()
+
+        initConfigSubpage()
+    })
+
+    document.getElementById("play-again-rounds-mode-same-configs")?.addEventListener('click', () => {
+        GameInfo.reset()
+
+        initShowSongGuess()
     })
 })

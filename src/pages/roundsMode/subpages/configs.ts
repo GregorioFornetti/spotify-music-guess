@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
             GameInfo.extraTries = false
         }
 
-        configForm.reset()
-
         initShowSongGuess()
+
+        configForm.reset()
     })
 })
