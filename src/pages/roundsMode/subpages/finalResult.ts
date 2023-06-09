@@ -1,6 +1,7 @@
 /*
     Página do resultado final, após o usuário jogar todas rodadas
 */
+import createRoundHistoryElement from "../../../components/roundHistory"
 import formatTime from "../../../utils/formatTime"
 import toggleToPage from "../../../utils/pageToggler"
 import GameInfo from "../GameInfo"
@@ -27,7 +28,11 @@ export default function showFinalResultPage() {
         document.getElementById('rounds-mode-extra-tries')!.style.display = 'none'
     }
 
-    
+    const roundsHistoryContainer = document.getElementById('rounds-mode-history') as HTMLElement
+    roundsHistoryContainer.innerHTML = ''
+    for (let roundInfo of GameInfo.roundsHistory) {
+        roundsHistoryContainer.appendChild(createRoundHistoryElement(roundInfo))
+    }
 
     toggleToSubpage('final-result-rounds-subpage')
 }
