@@ -179,6 +179,7 @@ export default class GameInfo {
 
     static increaseCurrentTime() {
         this._currentTime++
+        this.roundCurrentTime++
     }
 
 
@@ -196,6 +197,7 @@ export default class GameInfo {
 
     static increaseExtraTriesCount() {
         this._extraTriesCount++
+        this.roundExtraTriesCount++
     }
 
     

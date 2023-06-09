@@ -49,7 +49,7 @@ export default abstract class MusicPlayer {
     /**
      *  Toca o próximo trecho da música
      */
-    public play(): void {
+    public async play() {
         if (!this.finished) {
             let duration = this.musicPlaytime
             if (this.musicPlaytimes[this.currentIndex] + duration * 1000 > this.musicFullDuration) {
@@ -59,7 +59,7 @@ export default abstract class MusicPlayer {
             }
 
             console.log('tocando musica de número ' + this.musicNumber)
-            this.timeoutId = playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex])
+            this.timeoutId = await playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex])
 
             this.currentIndex += 1
         }

@@ -17,13 +17,13 @@ import pause from "./pause"
  *  @returns timeout ID, para que seja possível cancelar o pause.
  *  
  */
-export default function playMusic(musicPos: number, duration: number, playlistId: string, musicPlayPos?: number): number {
+export default async function playMusic(musicPos: number, duration: number, playlistId: string, musicPlayPos?: number): Promise<number> {
     let playPos: number = 0
     if (musicPlayPos) {
         playPos = musicPlayPos
     }
 
-    fetch("https://api.spotify.com/v1/me/player/play", {
+    await fetch("https://api.spotify.com/v1/me/player/play", {
         method: "PUT",
         headers: User.accessTokenHeader,
         body: JSON.stringify({

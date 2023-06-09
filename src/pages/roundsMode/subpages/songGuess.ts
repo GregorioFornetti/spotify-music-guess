@@ -14,6 +14,7 @@ import Episode from '../../../spotifyApi/types/Episode'
 import MusicPlayer from '../../../utils/MusicPlayers/MusicPlayer'
 import RandomMusicPlayer from '../../../utils/MusicPlayers/RandomMusicPlayer'
 import SequentialMusicPlayer from '../../../utils/MusicPlayers/SequentialMusicPlayer'
+import formatTime from '../../../utils/formatTime'
 
 
 var selectedMusicElement: HTMLElement | null = null
@@ -22,13 +23,12 @@ var musicsNumberShuffled: number[]
 var MusicPlayerClass: (typeof RandomMusicPlayer) | (typeof SequentialMusicPlayer)
 var musicPlayer: MusicPlayer
 var possibleMusics: PlaylistTrackObject[]
+var intervalId: number = -1
 
 
 export function initShowSongGuess() {
 
     musicsNumberShuffled = shuffle([...Array(GameInfo.playlist.tracks.items.length).keys()])
-    console.log('musicas sorteadas: ')
-    console.log(musicsNumberShuffled)
     selectedMusicElement = null
     selectedMusic = null
     
@@ -39,11 +39,17 @@ export function initShowSongGuess() {
         extraTriesBtn.disabled = true
     }
 
+    const timerElement = document.getElementById('rounds-mode-timer') as HTMLElement
+    timerElement.innerHTML = formatTime(0)
+    if (intervalId !== -1) {
+        clearInterval(intervalId)
+    }
+
     showSongGuess()
 }
     
 
-export default function showSongGuess() {
+export default async function showSongGuess() {
 
     const songGuessInput = document.getElementById('song-guess-input') as HTMLInputElement
     const artistGuessInput = document.getElementById('artist-guess-input') as HTMLInputElement
@@ -81,7 +87,13 @@ export default function showSongGuess() {
         GameInfo.musicPlaytime
     )
 
-    musicPlayer.play()
+    await musicPlayer.play()
+    
+    const timerElement = document.getElementById('rounds-mode-timer') as HTMLElement
+    intervalId = setInterval(() => {
+        GameInfo.increaseCurrentTime()
+        timerElement.innerHTML = formatTime(GameInfo.currentTime)
+    }, 1000)
 
     toggleToSubpage('song-guess-rounds-subpage')
 }
@@ -133,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("song-guess-submit")?.addEventListener('click', () => {
         if (selectedMusic) {
+            clearInterval(intervalId)
+
             showSongResult(
                 GameInfo.playlist.tracks.items[musicsNumberShuffled[GameInfo.roundNumber - 1]].track,
                 selectedMusic
