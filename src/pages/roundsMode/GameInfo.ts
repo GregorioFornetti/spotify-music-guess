@@ -2,7 +2,20 @@
     Classe estática, com informações importantes que devem ser passadas entre as sub-páginas do modo de rodadas
 */
 
+import Episode from "../../spotifyApi/types/Episode"
 import Playlist from "../../spotifyApi/types/Playlist"
+import Track from "../../spotifyApi/types/Track"
+
+interface RoundInfo {
+    // Tempo gasto pelo usuário durante a rodada
+    timeSpent: number,
+    // Música sorteada
+    correctMusic: Track | Episode,
+    // Música que o usuário escolheu como resposta
+    guessedMusic: Track | Episode,
+    // Número de tentativas extras utilizado pelo usuário
+    extraTriesCount?: number
+}
 
 export default class GameInfo {
 
@@ -15,6 +28,12 @@ export default class GameInfo {
     private static _musicPlaytime: number
     private static _musicsQnt: number
     private static _extraTries: boolean
+    private static _currentTime: number
+    private static _extraTriesCount: number
+    private static _roundsHistory: RoundInfo[]
+
+    private static roundCurrentTime: number
+    private static roundExtraTriesCount: number
 
     /**
      *  Reinicia o jogo. Deve ser chamada sempre que um jogo novo será iniciado
@@ -22,6 +41,8 @@ export default class GameInfo {
     static reset() {
         this.resetCorrectAnswerCount()
         this.resetRoundNumber()
+        this.resetCurrentTime()
+        this.resetExtraTriesCount()
     }
 
     /**
@@ -141,5 +162,82 @@ export default class GameInfo {
 
     static set extraTries(extraTries: boolean) {
         this._extraTries = extraTries
+    }
+
+
+    /**
+     *  Tempo, em segundos, que o usuário passou em jogo
+     */
+    static get currentTime() {
+        return this._currentTime
+    }
+
+    static resetCurrentTime() {
+        this._currentTime = 0
+        this.roundCurrentTime = 0
+    }
+
+    static increaseCurrentTime() {
+        this._currentTime++
+    }
+
+
+    /**
+     *  Número de tentativas extras utilizadas pelo usuário
+     */
+    static get extraTriesCount() {
+        return this._extraTriesCount
+    }
+
+    static resetExtraTriesCount() {
+        this._extraTriesCount = 0
+        this.roundExtraTriesCount = 0
+    }
+
+    static increaseExtraTriesCount() {
+        this._extraTriesCount++
+    }
+
+    
+    /**
+     *  Histórico das rodadas que o usuário jogou.
+     *  Basicamente, uma lista contendo informações sobre cada rodada jogada pelo usuário
+     */
+    static get roundsHistory() {
+        return this._roundsHistory
+    }
+
+    static resetRoundsHistory() {
+        this._roundsHistory = []
+    }
+
+    static addRoundHistory(correctMusic: Track | Episode, guessedMusic: Track | Episode,) {
+        if (this.extraTries) {
+            this._roundsHistory.push({
+                timeSpent: this.roundCurrentTime,
+                correctMusic: correctMusic,
+                guessedMusic: guessedMusic,
+            })
+        } else {
+            this._roundsHistory.push({
+                timeSpent: this.roundCurrentTime,
+                correctMusic: correctMusic,
+                guessedMusic: guessedMusic,
+                extraTriesCount: this.roundExtraTriesCount
+            })
+        }
+        this.roundCurrentTime = 0
+        this.roundExtraTriesCount = 0
+    }
+
+    /**
+     *  Retorna a pontuação que o usuário obteve no jogo
+     */
+    static get score() {
+        return Math.max(
+            (this._correctAnswerCount * 500) - 
+            (this._currentTime + this._extraTriesCount * 25)
+            , 50 * this._correctAnswerCount
+        )
     }
 }
