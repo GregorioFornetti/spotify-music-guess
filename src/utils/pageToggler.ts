@@ -3,7 +3,8 @@ const pagesDisplay = {
     "empty-page": "none",
     "home-page": "grid",
     "playlist-info-page": "block",
-    "rounds-mode-game-page": "block"
+    "rounds-mode-game-page": "block",
+    "credits-page": "block"
 }
 
 
