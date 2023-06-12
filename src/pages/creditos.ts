@@ -1,23 +1,14 @@
-// octokit.ts import 
-import { getUser } from "../gitAPI/octokit"
 import toggleToPage from '../utils/pageToggler'
+import {getUser} from '../gitAPI/authCode'
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("credit")?.addEventListener("click", () => {
         toggleToPage('credits-page')
+        // informacoes do usuario
+        const user = getUser()
+        console.log(user)
         }
     )   
 })
-
-async function printUserName() {
-  const userName = await getUser();
-  if (userName) {
-    console.log(userName);
-  } else {
-    console.log("Erro ao obter o nome do usuário.");
-  }
-}
-
-//printUserName();
 
 
