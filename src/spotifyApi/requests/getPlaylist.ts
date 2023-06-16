@@ -1,4 +1,5 @@
 import User from "../../global/User"
+import addLoading from "../../utils/addLoading"
 import Playlist, { PlaylistTrackObject } from "../types/Playlist"
 
 /**
@@ -26,7 +27,7 @@ function isPlayable(playlistTrack: PlaylistTrackObject) {
  *  @returns uma promessa de retorno de um objeto contendo informações sobre uma playlist.
  * 
  */
-export default async function getPlaylist(playlistId: String): Promise<Playlist> { 
+async function makeGetPlaylistRequest(playlistId: String): Promise<Playlist> { 
     return fetch(`https://api.spotify.com/v1/playlists/${playlistId}?market=${User.country}&additional_types=episode`, {
         method: "GET",
         headers: User.accessTokenHeader
@@ -51,4 +52,11 @@ export default async function getPlaylist(playlistId: String): Promise<Playlist>
 
         return data
     })
+}
+
+/**
+ * 
+ */
+export default function getPlaylist(playlistId: String): Promise<Playlist> {
+    return addLoading(makeGetPlaylistRequest, playlistId) as Promise<Playlist>
 }

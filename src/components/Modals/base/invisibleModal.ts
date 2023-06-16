@@ -1,12 +1,10 @@
 import { Modal } from "bootstrap"
+import BaseModal from "./baseModal"
 
 /**
  *  Classe para criação de Modais "invisiveis". Apenas o conteúdo será apresentado (junto com o backdrop)
  */
-export default class InvisibleModal {
-
-    modal: Modal
-    modalContent: HTMLElement
+export default class InvisibleModal extends BaseModal {
 
     /**
      *  Cria o modal e adiciona no documento HTML
@@ -37,39 +35,6 @@ export default class InvisibleModal {
             document.body.appendChild(modalElement)
         })
 
-        this.modalContent = modalDialogElement
-
-        this.modal = new Modal(modalElement)
-    }
-
-    /**
-     *  Adiciona um conteúdo para o corpo do Modal
-     * 
-     * @param content - conteúdo que será adicionado no Modal
-     */
-    addContent(content: HTMLElement): void {
-        this.modalContent.innerHTML = ''
-        this.modalContent.appendChild(content)
-    }
-
-    /**
-     *  Abre o modal.
-     */
-    show(): void {
-        this.modal.show()
-    }
-
-    /**
-     *  Fecha o modal.
-     */
-    close(): void {
-        this.modal.show()
-    }
-
-    /**
-     *  Abre o modal se estiver fechado. Se estiver aberto, fecha o modal.
-     */
-    toggle(): void {
-        this.modal.toggle()
+        super(new Modal(modalElement), modalElement, modalDialogElement)
     }
 }
