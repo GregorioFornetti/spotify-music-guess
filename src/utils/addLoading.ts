@@ -7,3 +7,11 @@ export default async function addLoading(functionToWait: (...args: any[]) => Pro
     loadingModal.hide()
     return results
 }
+
+export async function addLoadingWithConditional(functionToWait: (...args: any[]) => Promise<any>, hasLoading?: boolean, ...args: any[]): Promise<any> {
+    if (hasLoading) {
+        return addLoading(functionToWait, ...args)
+    } else {
+        return functionToWait(...args)
+    }
+}

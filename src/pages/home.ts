@@ -15,6 +15,7 @@ import User from "../global/User"
 import getSimplifiedPlaylist from "../spotifyApi/requests/getSimplifiedPlaylist"
 import PlayAgainPlaylistsIds from "../global/PlayAgainPlaylistsIds"
 import Playlist from "../spotifyApi/types/Playlist"
+import addLoading from "../utils/addLoading"
 
 
 async function loadDevices() {
@@ -53,7 +54,7 @@ function addSimplifiedPlaylistElements(simplifiePlaylists: SimplifiedPlaylist[],
         const playlistElement = createSimplifiedPlaylistElement(simplifiedPlaylist, true)
         playlistElement.addEventListener('click', async () => {
             const playlistId = simplifiedPlaylist.id
-            const playlist = await getPlaylist(playlistId)
+            const playlist = await getPlaylist(playlistId, true)
             showPlaylistAndSave(playlist, playlistId)
         })
         container.appendChild(playlistElement)
@@ -71,17 +72,19 @@ async function loadUserPlaylists() {
 
         if (next) {
             loadMoreButton.onclick = (() => {
-                fetch(next as string, {
-                    method: 'GET',
-                    headers: User.accessTokenHeader
-                })
-                .then(response => response.json())
-                .then((userPlaylists: UserPlaylists) => {
-                    addSimplifiedPlaylistElements(userPlaylists.items, userPlaylistsElement)
-                    next = userPlaylists.next
-                    if (!next) {
-                        loadMoreButton.style.display = 'none'
-                    }
+                addLoading(async () => {
+                    await fetch(next as string, {
+                        method: 'GET',
+                        headers: User.accessTokenHeader
+                    })
+                    .then(response => response.json())
+                    .then((userPlaylists: UserPlaylists) => {
+                        addSimplifiedPlaylistElements(userPlaylists.items, userPlaylistsElement)
+                        next = userPlaylists.next
+                        if (!next) {
+                            loadMoreButton.style.display = 'none'
+                        }
+                    })
                 })
             })
         } else {
@@ -112,19 +115,22 @@ async function loadPlayAgainPlaylists() {
             loadMoreButton.style.display = 'none'
         } else {
             loadMoreButton.onclick = (() => {
-                Promise.all(
-                    playAgainPlaylistsIds
-                    .slice(currentPlaylistIndex, currentPlaylistIndex + playlistsPerLoad)
-                    .map(async (playlistId) => {
-                        return getSimplifiedPlaylist(playlistId)
+                addLoading(async () => {
+                    await Promise.all(
+                        playAgainPlaylistsIds
+                        .slice(currentPlaylistIndex, currentPlaylistIndex + playlistsPerLoad)
+                        .map(async (playlistId) => {
+                            return getSimplifiedPlaylist(playlistId)
+                        })
+                    ).then(simplifiedPlaylists => {
+                        addSimplifiedPlaylistElements(simplifiedPlaylists, playAgainPlaylistsElement)
+                        currentPlaylistIndex += playlistsPerLoad
+                        if (currentPlaylistIndex >= playAgainPlaylistsIds.length) {
+                            loadMoreButton.style.display = 'none'
+                        }
                     })
-                ).then(simplifiedPlaylists => {
-                    addSimplifiedPlaylistElements(simplifiedPlaylists, playAgainPlaylistsElement)
-                    currentPlaylistIndex += playlistsPerLoad
-                    if (currentPlaylistIndex >= playAgainPlaylistsIds.length) {
-                        loadMoreButton.style.display = 'none'
-                    }
                 })
+                
             })
         }
     })
@@ -133,11 +139,13 @@ async function loadPlayAgainPlaylists() {
 
 
 export default async function loadHomePage() {
-    await Promise.all([
-        loadDevices(),
-        loadUserPlaylists(),
-        loadPlayAgainPlaylists()
-    ])
+    addLoading(async () => {
+        await Promise.all([
+            loadDevices(),
+            loadUserPlaylists(),
+            loadPlayAgainPlaylists()
+        ])
+    })
 }
 
 function showPlaylistAndSave(playlist: Playlist, playlistId: string) {
@@ -161,7 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const playlist_input_str = (<HTMLInputElement>document.getElementById("playlist-input")).value;
         try {
             const playlistId = getSpotifyId(playlist_input_str)
-            const playlist = await getPlaylist(playlistId)
+            const playlist = await getPlaylist(playlistId, true)
 
             showPlaylistAndSave(playlist, playlistId)
 
