@@ -3,7 +3,12 @@
 <script>
 	DZ.init({
 		appId  : '615264',
-		channelUrl : 'https://gregoriofornetti.github.io/spotify-music-guess/testandoAPIs/Deezer/channel.html'
+		channelUrl : 'https://gregoriofornetti.github.io/spotify-music-guess/testandoAPIs/Deezer/channel.html',
+        player: {
+            onload: function () {
+                console.log("yes, loaded!")
+            }
+        }
 	});
 
     function playMusic() {
@@ -12,5 +17,5 @@
     }
 </script>
 <body>
-    <button onclick="playMusic()">TOCA A POHA DA MUSICA</button>
+    <button onclick="playMusic()">TOCAR</button>
 </body>
