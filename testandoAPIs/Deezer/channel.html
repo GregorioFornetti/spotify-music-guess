@@ -1,7 +1,28 @@
-<?php
-$cache_expire = 60*60*24*365;
-header("Pragma: public");
-header("Cache-Control: maxage=".$cache_expire);
-header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$cache_expire) . ' GMT');
-?>
-<script src="https://e-cdn-files.dzcdn.net/js/min/dz.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <script>
+    // Capturando o token do Deezer após a autenticação
+    function captureAccessToken() {
+      var hashParams = {};
+      var e, r = /([^&;=]+)=?([^&;]*)/g,
+          q = window.location.hash.substring(1);
+      while (e = r.exec(q)) {
+         hashParams[e[1]] = decodeURIComponent(e[2]);
+      }
+      
+      // Enviando o token para o aplicativo principal
+      if (hashParams.access_token) {
+        window.opener.postMessage(hashParams.access_token, '*');
+      }
+    }
+    
+    // Capturando o token e fechando a janela
+    captureAccessToken();
+    window.close();
+  </script>
+</body>
+</html>

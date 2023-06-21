@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://e-cdn-files.dzcdn.net/js/min/dz.js"></script>
+</head>
+<body>
+  <h1>Reprodutor de música com a Deezer API</h1>
+
+  <div id="player"></div>
+
+  <script>
+    // Chave da API da Deezer
+    const apiKey = 'SUA_CHAVE_DE_API';
+
+    // ID da faixa que você deseja reproduzir
+    const trackId = 1011116422;
+
+    // Obtendo o player da Deezer
+    function createPlayer(trackId) {
+      DZ.init({
+        appId: '615264',
+        channelUrl: "https://gregoriofornetti.github.io/spotify-music-guess/channel.html",
+        player: {
+          container: 'player',
+          width: 400,
+          height: 300,
+          onload: function() {
+            DZ.player.playTracks([trackId]);
+          }
+        }
+      });
+    }
+
+    // Carregando a API da Deezer
+    $.getScript('https://cdns-files.deezer.com/js/min/dz.js', function() {
+      createPlayer(trackId);
+    });
+  </script>
+</body>
+</html>
