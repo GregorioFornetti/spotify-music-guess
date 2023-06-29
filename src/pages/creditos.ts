@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
 
         const users = [ 'A-nita', 'caiopadovan', 'Pandxra', 'GregorioFornetti', 'guilhermesdc', 'N4NiNi'];
+        const cargos = ['Desenvolvedora', 'Desenvolvedor', 'Desenvolvedora', 'Desenvolvedor', 'Desenvolvedor', 'Desenvolvedor'];
         const link_lid = ['https://www.linkedin.com/in/anita-moura/', 'https://www.linkedin.com/in/caio-padovan-b28a97262/', 
         'https://www.linkedin.com/in/cinthiacosta98/]','https://www.linkedin.com/in/greg%C3%B3rio-fornetti-azevedo-4a0193201/', 
         'https://www.linkedin.com/in/guilherme-silva-de-camargo-104618220/', 'https://www.linkedin.com/in/vinicius-nanini/'];
@@ -19,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 //pegar dados do usuário
                 const name = userData.name;
                 const avatar = userData.avatar_url;
-                const bio = userData.bio;
                 const url_user = userData.html_url;
                 const url_lid = link_lid[users.indexOf(user)];
+                const cargo = cargos[users.indexOf(user)];
 
 
                 //criar elementos HTML
@@ -47,15 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 diviconsElement.className='position-relative';
 
                 //definindo estilos
-                colElement.className = 'col d-flex align-items-stretch';
+                colElement.className = 'col-6 col-sm-6 col-md-4 d-flex align-items-stretch';
 
-                divElement.className = 'border-success bg-dark mb-5 card';
+                divElement.className = 'zoomeffect cardborder mb-5 card';
                 divElement.style.width = '18rem';
 
-                giticon.style.color = 'white';
-                ldinicon.style.color = 'white';
 
-                cardBody.className = 'text-white bg-success card-body d-flex align-items-start flex-column';
+                cardBody.className = 'zoomeffect text-white cardcolor card-body d-flex align-items-start flex-column';
 
                 cardTitle.className = 'h5 card-title mb-auto';
 
@@ -64,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardimg.className = 'p-2 card-img-top';
                 cardimg.setAttribute('src', avatar);
 
-                giticon.className = 'bi bi-github fs-2 p-2';
-                ldinicon.className = 'bi bi-linkedin fs-2 p-2';
+                giticon.className = 'social_icon bi bi-github fs-2 p-2';
+                ldinicon.className = 'social_icon bi bi-linkedin fs-2 p-2';
 
                 cardTitle.textContent = name;
-                cardText.textContent = bio;
+                cardText.textContent = cargo;
 
                 //indentação
                 colElement.appendChild(divElement); 
