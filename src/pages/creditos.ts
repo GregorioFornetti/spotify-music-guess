@@ -97,6 +97,7 @@ function clearDiv() {
     creditsElement.innerHTML = '';   
 }
 
+/*
 function addText(text: string, creditsElement: string) {
     const paragraphElement = document.createElement('p');
     paragraphElement.classList.add(text);
@@ -110,3 +111,4 @@ function addImage(image: string, creditsElement: string) {
     imageElement.setAttribute('src', creditsElement);
     return imageElement;
 }
+*/

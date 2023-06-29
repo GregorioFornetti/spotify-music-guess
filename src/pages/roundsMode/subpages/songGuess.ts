@@ -90,7 +90,7 @@ export default async function showSongGuess() {
     await musicPlayer.play()
     
     const timerElement = document.getElementById('rounds-mode-timer') as HTMLElement
-    intervalId = setInterval(() => {
+    intervalId = window.setInterval(() => {
         GameInfo.increaseCurrentTime()
         timerElement.innerHTML = formatTime(GameInfo.currentTime)
     }, 1000)
