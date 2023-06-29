@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 diviconsElement.className='position-relative';
 
                 //definindo estilos
-                colElement.className = 'col-6 col-sm-6 col-md-4 d-flex align-items-stretch';
+                colElement.className = 'col-12 col-sm-6 col-md-4 d-flex align-items-stretch';
 
                 divElement.className = 'zoomeffect cardborder mb-5 card';
                 divElement.style.width = '18rem';
@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 cardBody.className = 'zoomeffect text-white cardcolor card-body d-flex align-items-start flex-column';
 
-                cardTitle.className = 'h5 card-title mb-auto';
+                cardTitle.className = 'cardnome h5 card-title mb-auto';
 
-                cardText.className = 'card-text my-3';
+                cardText.className = 'cardcargo card-text my-3';
 
                 cardimg.className = 'p-2 card-img-top';
                 cardimg.setAttribute('src', avatar);

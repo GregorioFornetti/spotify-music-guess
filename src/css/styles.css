@@ -84,9 +84,18 @@ footer {
     transform: scale(1.1);
 }
 .cardcolor{
-    background-color: rgb(24, 24, 24);
+    background: rgb(24,24,24);
+    background: linear-gradient(0deg, rgba(24,24,24,1) 0%, rgba(40,40,40,1) 100%);
 }
 .cardborder{
     border: 1px solid rgb(30, 164, 96);
     background-color: rgb(40, 40, 40);
+}
+.cardnome{
+    font-weight: bold;
+}
+.cardcargo{
+    font-weight: bold;
+    color: rgb(30, 215, 96);
+    
 }
