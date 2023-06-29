@@ -63,3 +63,39 @@ main {
 footer {
     margin-top: 100px;
 }
+.zoomeffect{
+    overflow: hidden;
+
+}
+.zoomeffect img{
+    width: 100%;
+    transition: 0.2s all ease-in-out;
+}
+
+.zoomeffect img:hover{
+    transform: scale(1.1);
+}
+.social_icon{
+    color: white;
+    transition: 0.2s all ease-in-out;
+}
+.social_icon:hover{
+    color: rgb(30, 164, 96);
+    transform: scale(1.1);
+}
+.cardcolor{
+    background: rgb(24,24,24);
+    background: linear-gradient(0deg, rgba(24,24,24,1) 0%, rgba(40,40,40,1) 100%);
+}
+.cardborder{
+    border: 2px solid rgb(30, 164, 96);
+    background-color: rgb(40, 40, 40);
+}
+.cardnome{
+    font-weight: bold;
+}
+.cardcargo{
+    font-weight: bold;
+    color: rgb(30, 215, 96);
+    
+}
