@@ -20,6 +20,10 @@ import addLoading from "../utils/addLoading"
 
 async function loadDevices() {
     return getDevices().then(devices => {
+        if (!devices) {
+            console.log('Não foi possível carregar os dispositivos')
+        }
+
         const devicesListElement = document.getElementById('devices-list') as HTMLElement
 
         for (const device of devices) {

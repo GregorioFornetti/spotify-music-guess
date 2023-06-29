@@ -14,11 +14,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!code) {
         redirectToAuthCodeFlow(clientId)
     } else {
-        User.accessToken = await getAccessToken(clientId, code)
-        User.country = await getUserCountry()
-
-        await loadHomePage()
-
+        try {
+            User.accessToken = await getAccessToken(clientId, code)
+            User.country = await getUserCountry()
+    
+            await loadHomePage()
+        } catch (error) {
+            console.log('Não foi possível carregar o home page', error)
+        }
         toggleToPage('home-page')
     }
 })
