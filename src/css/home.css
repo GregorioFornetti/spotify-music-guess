@@ -7,14 +7,26 @@
 
 #home-page {
     gap: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 
 #playlist-input-container {
-    max-width: 750px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: auto 60px;
+    /* width: 100%; */
+    width: 60vw;
+    min-width: 300px;
+    /* margin: auto; */
+    display: flex;
+    /* grid-template-columns: auto 60px; */
+}
+
+#playlist-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 
@@ -22,6 +34,7 @@
     border: none;
     border-radius: var(--playlist-input-border-radius) 0px 0px var(--playlist-input-border-radius);
     padding: var(--playlist-input-padding);
+    width: 100%;
     font-size: 1em;
 }
 
@@ -34,7 +47,7 @@
 
 
 #playlist-submit {
-    border: none;
+    border: 1px solid var(--btn-color);
     border-radius: 0px var(--playlist-input-border-radius) var(--playlist-input-border-radius) 0px;
     padding: var(--playlist-input-padding);
     background-color: var(--btn-color);
