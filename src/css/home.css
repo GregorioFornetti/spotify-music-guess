@@ -91,3 +91,7 @@
 .load-more-btn:hover {
     background-color: var(--btn-hover-color);
 }
+main {
+    margin-top: 50px;
+
+}

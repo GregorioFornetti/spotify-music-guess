@@ -14,6 +14,9 @@ body > header {
     color: var(--header-text-color);
 }
 
+cabecalho {
+    position: fixed !important;
+}
 body > header > nav {
     height: calc(100% - 2 * var(--nav-margin-vertical));
     margin: var(--nav-margin-vertical) var(--nav-margin-horizontal);
