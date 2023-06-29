@@ -1,13 +1,11 @@
 
 import { Modal } from "bootstrap"
+import BaseModal from "./baseModal"
 
 /**
  *  Classe para criar componentes Modal
  */
-export default class VisibleModal {
-
-    private modal: Modal
-    private modalBody: HTMLElement
+export default class VisibleModal extends BaseModal {
 
     /**
      * 
@@ -105,38 +103,6 @@ export default class VisibleModal {
             document.body.appendChild(modalElement)
         })
 
-        this.modalBody = modalBodyElement
-        this.modal = new Modal(modalElement)
-    }
-
-    /**
-     *  Adiciona um conteúdo para o corpo do Modal
-     * 
-     * @param content - conteúdo que será adicionado no Modal
-     */
-    addContent(content: HTMLElement): void {
-        this.modalBody.innerHTML = ''
-        this.modalBody.appendChild(content)
-    }
-
-    /**
-     *  Abre o modal.
-     */
-    show(): void {
-        this.modal.show()
-    }
-
-    /**
-     *  Fecha o modal.
-     */
-    close(): void {
-        this.modal.show()
-    }
-
-    /**
-     *  Abre o modal se estiver fechado. Se estiver aberto, fecha o modal.
-     */
-    toggle(): void {
-        this.modal.toggle()
+        super(new Modal(modalElement), modalElement, modalBodyElement)
     }
 }

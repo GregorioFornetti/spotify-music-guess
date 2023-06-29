@@ -1,4 +1,5 @@
 import User from "../../global/User"
+import { addLoadingWithConditional } from "../../utils/addLoading"
 import Playlist, { PlaylistTrackObject } from "../types/Playlist"
 
 /**
@@ -17,16 +18,8 @@ function isPlayable(playlistTrack: PlaylistTrackObject) {
     return playlistTrack.track.is_playable
 }
 
-/**
- * 
- *  Coleta informações de uma playlist, como as músicas/episódios contidos nela, capa, nome, etc. Isso é feito através de uma requisição à API do spotify
- * 
- *  @param playlistId - ID da playlist, que será buscada as informações
- * 
- *  @returns uma promessa de retorno de um objeto contendo informações sobre uma playlist.
- * 
- */
-export default async function getPlaylist(playlistId: String): Promise<Playlist> { 
+
+async function makeGetPlaylistRequest(playlistId: String): Promise<Playlist> { 
     return fetch(`https://api.spotify.com/v1/playlists/${playlistId}?market=${User.country}&additional_types=episode`, {
         method: "GET",
         headers: User.accessTokenHeader
@@ -51,4 +44,19 @@ export default async function getPlaylist(playlistId: String): Promise<Playlist>
 
         return data
     })
+}
+
+/**
+ * 
+ *  Coleta informações de uma playlist, como as músicas/episódios contidos nela, capa, nome, etc. Isso é feito através de uma requisição à API do spotify
+ * 
+ *  @param playlistId - ID da playlist, que será buscada as informações
+ * 
+ *  @param hasLoading - Adiciona no documento um modal de carregamento. O modal é fechado quando a solicitação é finalizada
+ * 
+ *  @returns uma promessa de retorno de um objeto contendo informações sobre uma playlist.
+ * 
+ */
+export default async function getPlaylist(playlistId: String, hasLoading?: boolean): Promise<Playlist> {
+    return addLoadingWithConditional(makeGetPlaylistRequest, hasLoading, playlistId)
 }

@@ -58,8 +58,7 @@ export default abstract class MusicPlayer {
                 duration = (this.musicFullDuration - this.musicPlaytimes[this.currentIndex]) / 1000 - 0.01
             }
 
-            console.log('tocando musica de número ' + this.musicNumber)
-            this.timeoutId = await playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex])
+            this.timeoutId = await playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex], true)
 
             this.currentIndex += 1
         }
@@ -70,7 +69,7 @@ export default abstract class MusicPlayer {
      */
     public pause() {
         clearTimeout(this.timeoutId)
-        pause()
+        pause(true)
     }
 
     /**
