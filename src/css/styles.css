@@ -88,7 +88,7 @@ footer {
     background: linear-gradient(0deg, rgba(24,24,24,1) 0%, rgba(40,40,40,1) 100%);
 }
 .cardborder{
-    border: 1px solid rgb(30, 164, 96);
+    border: 2px solid rgb(30, 164, 96);
     background-color: rgb(40, 40, 40);
 }
 .cardnome{
