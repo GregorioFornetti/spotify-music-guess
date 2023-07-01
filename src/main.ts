@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         } catch (error) {
             console.log('Não foi possível carregar o home page', error)
         }
-        toggleToPage('home-page')
+        //toggleToPage('home-page')
+        toggleToPage('tests-page')
+
+        
     }
 })

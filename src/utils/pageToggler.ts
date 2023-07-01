@@ -4,7 +4,8 @@ const pagesDisplay = {
     "home-page": "flex",
     "playlist-info-page": "block",
     "rounds-mode-game-page": "block",
-    "credits-page": "block"
+    "credits-page": "block",
+    "tests-page": "block"
 }
 
 
