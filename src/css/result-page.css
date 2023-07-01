@@ -1,0 +1,129 @@
+/*.music-name-round-history {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.statistics-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    width: fit-content;
+    padding: 10px;
+    border: 1px solid white;
+}
+
+.music-round-history-correct {
+    margin-right: 30px;
+}
+
+#result-title {
+    text-align: center;
+    font-size: 2em;
+}
+
+.music-round-history {
+    margin: 20px auto;
+    width: 100%;
+    border: 1px solid white;
+    width: fit-content;
+    padding: 10px;
+}
+
+.music-round-history-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.music-name-round-history {
+    margin-top: 10px;
+    margin: 10px auto;
+}
+
+#tempo-gasto-round {
+    margin: 10px auto;
+    text-align: center;
+}
+
+#final-result-return {
+    justify-content: center;
+}
+
+#play-again-rounds-mode-same-configs {
+    margin: 10px auto;
+    
+}*/
+
+#tests-page {
+    display: none;
+    text-align: center;
+}
+
+    #result-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .statistics-game p {
+    margin-bottom: 5px;
+  }
+
+  .statistics-game span {
+    font-weight: bold;
+  }
+
+  #rounds-mode-extra-tries {
+    display: none;
+  }
+
+  .music-round-history {
+    margin-bottom: 15px;
+  }
+
+  .music-round-history-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+
+  .music-round-history-correct,
+  .music-round-history-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .music-round-history-type {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .music-image-round-history {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+
+  .music-name-round-history,
+  .music-artist-round-history {
+    margin: 1px;
+  }
+
+  #tempo-gasto-round {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  #final-result-return,
+  #play-again-rounds-mode-same-configs,
+  #play-again-rounds-mode-new-configs {
+    display: block;
+    margin: 10px auto;
+  }

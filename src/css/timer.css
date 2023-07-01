@@ -1,0 +1,16 @@
+@font-face {
+    font-family: Timer;
+    src: url(../fonts/DS-DIGIT.TTF);
+}
+
+.timer {
+    font-size: 3em;
+    font-family: Timer;
+    color: white;
+    background-color: black;
+    border: 2px solid gray;
+    padding: 8px 0px;
+    text-align: center;
+    width: 120px;
+    margin: 0px auto;
+}
