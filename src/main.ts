@@ -31,17 +31,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Sem a função opcional
         const testsContainer = document.getElementById('tests-page')
-        const playlist = await getPlaylist('0BjRyg8AxIdh1DMtVE7t6f?si=b78d225f3b1c47a0')
-        const playlistElement = createPlaylistElement(playlist)
-        testsContainer?.appendChild(playlistElement)
+        const playlist = await getPlaylist('6DCbOaHW1GCtQajUIrXILx')
+        
 
-        /*
+        
         // Com função opcional
         const funcOpcional =  (music: Track|Episode) => {
             console.log(music)
         }
-        const playlistElement2 = createPlaylistElement(playlistElement, funcOpcional)
+        const playlistElement2 = createPlaylistElement(playlist, funcOpcional)
         testsContainer?.appendChild(playlistElement2)
-        */
+        
     }
 })
