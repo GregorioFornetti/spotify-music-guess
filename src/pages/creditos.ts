@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const link_lid = ['https://www.linkedin.com/in/anita-moura/', 'https://www.linkedin.com/in/caio-padovan-b28a97262/', 
         'https://www.linkedin.com/in/cinthiacosta98/]','https://www.linkedin.com/in/greg%C3%B3rio-fornetti-azevedo-4a0193201/', 
         'https://www.linkedin.com/in/guilherme-silva-de-camargo-104618220/', 'https://www.linkedin.com/in/vinicius-nanini/'];
+
         const creditsElement = document.getElementById('credits_cards')!;
         
         for (let user of users) {
