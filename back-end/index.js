@@ -6,7 +6,9 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const root =  dirname(dirname(__filename));
+
+console.log(root)
 
 const app = express()
 const port = 3000
@@ -25,12 +27,16 @@ var authOptions = {
   json: true
 }
 
-app.get('/test-fetch.js', (req, res) => {
-  res.sendFile('test-fetch.js', {root: __dirname})
+app.get('/', (req, res) => {
+  res.sendFile('front-end/dist/login-page.html', {root: root})
 })
 
-app.get('/', (req, res) => {
-  res.sendFile('teste.html', {root: __dirname})
+app.get('/index.html', (req, res) => {
+  res.sendFile('front-end/dist/index.html', {root: root})
+})
+
+app.get('/assets/:asset', (req, res) => {
+  res.sendFile(`front-end/dist/assets/${req.params.asset}`, {root: root})
 })
 
 app.get('/auth-without-login', async (req, res) => {
