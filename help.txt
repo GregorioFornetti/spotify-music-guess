@@ -1,0 +1,11 @@
+Agora para rodar o projeto:
+
+Dentro da pasta do front-end:
+npm run build
+
+Dentro da pasta do back-end:
+npm run server
+
+Antes, nas duas pastas, rodar o comando npm i
+
+Agora sempre que for feito alguma alteração, é necessário rodar esses dois comandos para vizualizar a mudança...

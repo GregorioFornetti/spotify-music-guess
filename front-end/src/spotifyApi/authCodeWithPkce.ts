@@ -1,8 +1,6 @@
 // Códigos do tutorial do spotify: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
 
-const redirect_uri = 'http://localhost:5173/callback'
-// 'http://localhost:5173/callback' 
-// 'https://gregoriofornetti.github.io/spotify-music-guess/dist'
+import { redirectUri } from "./configs";
 
 export async function redirectToAuthCodeFlow(clientId: string) {
     const verifier = generateCodeVerifier(128);
@@ -13,7 +11,7 @@ export async function redirectToAuthCodeFlow(clientId: string) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", redirect_uri);
+    params.append("redirect_uri", redirectUri);
     params.append("scope", "user-read-private user-read-email user-modify-playback-state user-read-playback-state playlist-read-private playlist-read-collaborative user-library-read");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
@@ -30,7 +28,7 @@ export async function getAccessToken(clientId: string, code: string) {
         params.append("client_id", clientId);
         params.append("grant_type", "authorization_code");
         params.append("code", code);
-        params.append("redirect_uri", redirect_uri);
+        params.append("redirect_uri", redirectUri);
         params.append("code_verifier", verifier!);
 
         const result = await fetch("https://accounts.spotify.com/api/token", {

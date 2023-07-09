@@ -28,11 +28,11 @@ var authOptions = {
 }
 
 app.get('/', (req, res) => {
-  res.sendFile('front-end/dist/login-page.html', {root: root})
+  res.sendFile('front-end/dist/index.html', {root: root})
 })
 
-app.get('/index.html', (req, res) => {
-  res.sendFile('front-end/dist/index.html', {root: root})
+app.get('/home', (req, res) => {
+  res.sendFile('front-end/dist/home.html', {root: root})
 })
 
 app.get('/assets/:asset', (req, res) => {
