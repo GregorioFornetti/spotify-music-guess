@@ -20,10 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             params.append("acessToken", accessToken)
             params.append("country", country)
 
-            alert(accessToken)
-            alert(country)
-
-            document.location = `home?${params.toString()}`
+            document.location = `home.html?${params.toString()}`
         }
         catch (error) {
             console.log('Não foi possível carregar o home page', error)
@@ -43,6 +40,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         params.append("acessToken", token)
         params.append("country", "br")
 
-        document.location = `home?${params.toString()}`
+        document.location = `home.html?${params.toString()}`
     })
 })

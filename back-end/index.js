@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
   res.sendFile('front-end/dist/index.html', {root: root})
 })
 
-app.get('/home', (req, res) => {
+app.get('/home.html', (req, res) => {
   res.sendFile('front-end/dist/home.html', {root: root})
 })
 

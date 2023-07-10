@@ -14,5 +14,8 @@ export default defineConfig({
         home: resolve(__dirname, 'home.html'),
       }
     }
+  },
+  server: {
+    port: '3000'
   }
 })
