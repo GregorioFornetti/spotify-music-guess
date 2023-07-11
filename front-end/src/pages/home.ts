@@ -143,13 +143,19 @@ async function loadPlayAgainPlaylists() {
 
 
 export default async function loadHomePage() {
-    addLoading(async () => {
-        await Promise.all([
-            loadDevices(),
-            loadUserPlaylists(),
-            loadPlayAgainPlaylists()
-        ])
-    })
+    if (User.isLogged) {
+        addLoading(async () => {
+            await Promise.all([
+                loadDevices(),
+                loadUserPlaylists(),
+                loadPlayAgainPlaylists()
+            ])
+        })
+    } else {
+        document.getElementById('user-library')!.style.display = 'none'
+        document.getElementById('devices-home-page')!.style.display = 'none'
+        addLoading(loadPlayAgainPlaylists)
+    }
 }
 
 function showPlaylistAndSave(playlist: Playlist, playlistId: string) {

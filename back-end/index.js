@@ -44,6 +44,8 @@ app.get('/auth-without-login', async (req, res) => {
     if (!error && response.statusCode === 200) {
       var token = body.access_token;
       res.send(token)
+    } else {
+      console.log(error)
     }
   })
 })

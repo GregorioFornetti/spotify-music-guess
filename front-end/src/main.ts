@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     User.accessToken = acessToken
     User.country = country
-
-    console.log(logged)
+    User.isLogged = logged
 
     await loadHomePage()
     toggleToPage('home-page')

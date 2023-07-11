@@ -6,8 +6,9 @@
  */
 export default class User {
 
-    private static _accessToken: string = ""
-    private static _country: string = ""
+    private static _accessToken: string
+    private static _country: string
+    private static _isLogged: boolean
 
     /**
      *  Valor necessário para fazer as requisições da API
@@ -39,5 +40,16 @@ export default class User {
 
     static set country(country: string) {
         this._country = country;
+    }
+
+    /**
+     *  Verdadeiro se o usuário usou sua conta do spotify para fazer login, caso contrário, é falso
+     */
+    static get isLogged() {
+        return this._isLogged
+    }
+
+    static set isLogged(isLogged: boolean) {
+        this._isLogged = isLogged
     }
 }

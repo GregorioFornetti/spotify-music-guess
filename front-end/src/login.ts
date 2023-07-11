@@ -33,6 +33,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
 
     const noLoginBtn = document.getElementById('no-login')
+    console.log('oiiiiiiiiiiii')
+    console.log('oiiiiiiiiiiii')
+    console.log('oiiiiiiiiiiii')
+    console.log('oiiiiiiiiiiii')
     noLoginBtn?.addEventListener('click', async () => {
         const token = await fetch('/auth-without-login').then((res) => (res.text()))
 
@@ -40,6 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         params.append("acessToken", token)
         params.append("country", "br")
 
+        console.log('oiiiiiiiiiiii')
         document.location = `home.html?${params.toString()}`
     })
 })
