@@ -1,16 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
 @font-face {
-    font-family: Timer;
-    src: url(../fonts/DS-DIGIT.TTF);
+    font-family: 'Roboto Mono', monospace;
 }
 
 .timer {
     font-size: 3em;
-    font-family: Timer;
+    font-family: Roboto Mono;
     color: white;
-    background-color: black;
-    border: 2px solid gray;
     padding: 8px 0px;
     text-align: center;
-    width: 120px;
+    width: 150px;
     margin: 0px auto;
 }
