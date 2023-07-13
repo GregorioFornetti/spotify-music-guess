@@ -53,6 +53,21 @@ body {
     width: calc(100% - var(--header-width) - 10px);
 }
 
+#credits-page {
+    width: 100%;
+    background-color: ;
+}
+
+#credits_cards {
+    margin-right: 0 !important;
+}
+
+#credits_cards > div {
+   /* border: #85c769 2px solid; */
+   display: flex;
+   align-items: center;
+    justify-content: center;
+}
 
 footer {
     margin-top: 100px;
