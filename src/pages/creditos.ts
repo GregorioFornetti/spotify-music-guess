@@ -6,23 +6,29 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleToPage('credits-page')
         clearDiv();
         
+    //    lista/json de usuários
 
-        const users = [ 'A-nita', 'caiopadovan', 'Pandxra', 'GregorioFornetti', 'guilhermesdc', 'N4NiNi'];
-        const cargos = ['Desenvolvedora', 'Desenvolvedor', 'Desenvolvedora', 'Desenvolvedor', 'Desenvolvedor', 'Desenvolvedor'];
-        const link_lid = ['https://www.linkedin.com/in/anita-moura/', 'https://www.linkedin.com/in/caio-padovan-b28a97262/', 
-        'https://www.linkedin.com/in/cinthiacosta98/]','https://www.linkedin.com/in/greg%C3%B3rio-fornetti-azevedo-4a0193201/', 
-        'https://www.linkedin.com/in/guilherme-silva-de-camargo-104618220/', 'https://www.linkedin.com/in/vinicius-nanini/'];
+        const users = [ 
+            { nickname: "A-nita", cargos: ["Diretora de Artes", "Desenvolvedora"], linkedin: "https://www.linkedin.com/in/anita-moura/" },
+            { nickname: "caiopadovan", cargos: ["Desenvolvedor"], linkedin: "https://www.linkedin.com/in/caio-padovan-b28a97262/" },
+            { nickname: "Pandxra", cargos: ["Faltou na reunião", "Desenvolvedora"], linkedin: "https://www.linkedin.com/in/cinthiacosta98/" },
+            { nickname: "GregorioFornetti", cargos: ["Chefe", "Desenvolvedor"], linkedin: "https://www.linkedin.com/in/greg%C3%B3rio-fornetti-azevedo-4a0193201/" },
+            { nickname: "guilhermesdc", cargos: ["Desenvolvedor"], linkedin: "https://www.linkedin.com/in/guilherme-silva-de-camargo-104618220/" },
+            { nickname: "N4NiNi", cargos: ["Analista"], linkedin: "https://www.linkedin.com/in/vinicius-nanini/"}
+        ];
+
+
         const creditsElement = document.getElementById('credits_cards')!;
         
         for (let user of users) {
-            const userDataPromise = getInfo(user);
+            const userDataPromise = getInfo(user.nickname);
             userDataPromise.then(userData => {
                 //pegar dados do usuário
                 const name = userData.name;
                 const avatar = userData.avatar_url;
                 const url_user = userData.html_url;
-                const url_lid = link_lid[users.indexOf(user)];
-                const cargo = cargos[users.indexOf(user)];
+                const url_lid = user.linkedin;
+                const cargo = user.cargos[0];
 
 
                 //criar elementos HTML
@@ -57,7 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardBody.className = 'zoomeffect text-white cardcolor card-body d-flex align-items-start flex-column';
 
                 cardTitle.className = 'cardnome h5 card-title mb-auto';
-
+                 
+                // for (let i = 0; i < cargo.length; i++) {
+                //     cardText.textContent += cargo[i] + '\n';
+                // }
                 cardText.className = 'cardcargo card-text my-3';
 
                 cardimg.className = 'p-2 card-img-top';
