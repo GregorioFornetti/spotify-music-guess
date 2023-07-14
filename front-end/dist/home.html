@@ -29,9 +29,9 @@
   
   
   
-  <script type="module" crossorigin src="/assets/home-0b6beac0.js"></script>
+  <script type="module" crossorigin src="/assets/home-1a847faf.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/addLoading-d4a3ae7d.js">
-  <link rel="stylesheet" href="/assets/home-4f89eb20.css">
+  <link rel="stylesheet" href="/assets/home-b915f314.css">
 </head>
 
 <body>
@@ -130,19 +130,23 @@
       <!-- Sub-página de configurações -->
       <div id="configs-rounds-subpage">
         <form id="configs-rounds-form">
+          <label>Modo premium:</label>
+          <input id="input-premium" type="checkbox" name="premium">
+          <br>
+
           <label>Quantidade rounds:</label>
           <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
           <br>
     
           <label>Posição da música:</label>
-          <input type="radio" value="start" name="music-pos" checked>
+          <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
           <label>Início</label>
-          <input type="radio" value="random" name="music-pos">
+          <input type="radio" value="random" name="music-pos" id="music-pos-random">
           <label>Aleatório</label>
           <br>
     
           <label>Tempo de música:</label>
-          <input type="number" min="0.1" max="120" step="0.1" name="music-play-time" value="5" required>
+          <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
           <br>
     
           <label>Quantidade de músicas:</label>
@@ -229,7 +233,7 @@
     <!-- Página de creditos -->
     <div id="credits-page" style="display: none;">
       <h1 class="h1 text-center">Créditos</h1>
-      <div class="row ms-5" id="credits_cards">
+      <div class="row " id="credits_cards">
       </div>
       
     </div>

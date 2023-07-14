@@ -127,19 +127,23 @@
       <!-- Sub-página de configurações -->
       <div id="configs-rounds-subpage">
         <form id="configs-rounds-form">
+          <label>Modo premium:</label>
+          <input id="input-premium" type="checkbox" name="premium">
+          <br>
+
           <label>Quantidade rounds:</label>
           <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
           <br>
     
           <label>Posição da música:</label>
-          <input type="radio" value="start" name="music-pos" checked>
+          <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
           <label>Início</label>
-          <input type="radio" value="random" name="music-pos">
+          <input type="radio" value="random" name="music-pos" id="music-pos-random">
           <label>Aleatório</label>
           <br>
     
           <label>Tempo de música:</label>
-          <input type="number" min="0.1" max="120" step="0.1" name="music-play-time" value="5" required>
+          <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
           <br>
     
           <label>Quantidade de músicas:</label>

@@ -1,8 +1,11 @@
 import toggleToSubpage from "../subpageToggler"
 import { initShowSongGuess } from "./songGuess"
 import GameInfo from "../GameInfo"
+import User from "../../../global/User"
 
 export default function initConfigSubpage() {
+    resetForm(document.getElementById('configs-rounds-form') as HTMLFormElement)
+
     const playlistMusicsQnt = GameInfo.playlist.tracks.items.length
 
     const inputRoundsNumber = document.getElementById('configs-rounds-rounds-number') as HTMLElement
@@ -15,10 +18,51 @@ export default function initConfigSubpage() {
     toggleToSubpage('configs-rounds-subpage')
 }
 
+function changeMusicsPosInputs(enable: boolean) {
+    const musicPosInitInput = document.getElementById('music-pos-init') as HTMLInputElement
+    const musicPosRandomInput = document.getElementById('music-pos-random') as HTMLInputElement
+
+    if (enable) {
+        // Habilita as opções de posições de musica
+        musicPosInitInput.disabled = false
+        musicPosInitInput.checked = true
+        musicPosRandomInput.disabled = false
+    } else {
+        // Desabilita as opções de posições de musica
+        musicPosInitInput.disabled = true
+        musicPosInitInput.checked = false
+        musicPosRandomInput.disabled = true
+        musicPosRandomInput.checked = false
+    }
+}
+
+function resetForm(form: HTMLFormElement) {
+    const inputPremiumMode = document.getElementById('input-premium') as HTMLInputElement
+
+    form.reset()
+
+    if (User.isLogged) {
+        inputPremiumMode.checked = true
+        inputPremiumMode.disabled = false
+        changeMusicsPosInputs(true)
+    } else {
+        inputPremiumMode.checked = false
+        inputPremiumMode.disabled = true
+        changeMusicsPosInputs(false)
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    const inputPremiumMode = document.getElementById('input-premium') as HTMLInputElement
+
+    inputPremiumMode.addEventListener('input', () => {
+        changeMusicsPosInputs(inputPremiumMode.checked)
+    })
+
     const configForm = document.getElementById('configs-rounds-form') as HTMLFormElement
 
-    configForm.addEventListener('submit', (event) => {
+    configForm.addEventListener('submit', async (event) => {
         event.preventDefault()
 
         const formValues = new FormData(configForm)
@@ -32,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
             GameInfo.extraTries = false
         }
 
-        initShowSongGuess()
+        await initShowSongGuess()
 
-        configForm.reset()
+        resetForm(configForm)
     })
 })

@@ -45,7 +45,8 @@ app.get('/auth-without-login', async (req, res) => {
       var token = body.access_token;
       res.send(token)
     } else {
-      console.log(error)
+      console.log('Autenticação falhou')
+      console.log('Verifique se as chaves de autenticação foram substituidas')
     }
   })
 })

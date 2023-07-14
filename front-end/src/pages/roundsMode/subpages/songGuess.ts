@@ -26,7 +26,7 @@ var possibleMusics: PlaylistTrackObject[]
 var intervalId: number = -1
 
 
-export function initShowSongGuess() {
+export async function initShowSongGuess() {
 
     musicsNumberShuffled = shuffle([...Array(GameInfo.playlist.tracks.items.length).keys()])
     selectedMusicElement = null
@@ -45,7 +45,7 @@ export function initShowSongGuess() {
         clearInterval(intervalId)
     }
 
-    showSongGuess()
+    await showSongGuess()
 }
     
 
