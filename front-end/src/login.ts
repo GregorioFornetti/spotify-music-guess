@@ -3,6 +3,7 @@ import { redirectToAuthCodeFlow, getAccessToken } from "./spotifyApi/authCodeWit
 import getUserCountry from "./spotifyApi/requests/getUserCountry"
 import clientId from "./spotifyApi/clientId"
 import User from "./global/User"
+import { redirectUri } from "./spotifyApi/configs"
 
 const params = new URLSearchParams(window.location.search)
 const code = params.get("code")
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             params.append("acessToken", accessToken)
             params.append("country", country)
 
-            document.location = `home.html?${params.toString()}`
+            document.location = `${redirectUri}/home.html?${params.toString()}`
         }
         catch (error) {
             console.log('Não foi possível carregar o home page', error)
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const noLoginBtn = document.getElementById('no-login')
     noLoginBtn?.addEventListener('click', async () => {
-        const token = await fetch('http://154.49.246.169:3000/auth-without-login').then((res) => (res.text()))
+        const token = await fetch('/auth-without-login').then((res) => (res.text()))
 
         params.append("login", "false")
         params.append("acessToken", token)
