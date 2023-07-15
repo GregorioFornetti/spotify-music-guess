@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const loginBtn = document.getElementById('login')
     loginBtn?.addEventListener('click', () => {
-        document.location = `${redirectUri}/login.html?${params.toString()}`
+        document.location = `${redirectUri}?${params.toString()}`
     })
 
     const noLoginBtn = document.getElementById('no-login')
