@@ -31,6 +31,7 @@ export default class GameInfo {
     private static _currentTime: number
     private static _extraTriesCount: number
     private static _roundsHistory: RoundInfo[]
+    private static _isPremiumMode: boolean
 
     private static roundCurrentTime: number
     private static roundExtraTriesCount: number
@@ -250,4 +251,17 @@ export default class GameInfo {
     static get incorrectAnswerCount() {
         return this._totalRounds - this._correctAnswerCount
     }
+
+
+    /**
+     *  Verdadeiro se o modo premium foi escolhido, falso caso contrário
+     */
+    static get isPremiumMode() {
+        return this._isPremiumMode
+    }
+    
+    static set isPremiumMode(isPremiumMode: boolean) {
+        this._isPremiumMode = isPremiumMode
+    }
+
 }

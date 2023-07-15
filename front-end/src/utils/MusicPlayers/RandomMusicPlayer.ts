@@ -19,4 +19,8 @@ export default class RandomMusicPlayer extends MusicPlayer {
 
         this.musicPlaytimes = shuffle(this.musicPlaytimes)
     }
+
+    public close(): void {
+        
+    }
 }

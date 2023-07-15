@@ -15,12 +15,13 @@ import MusicPlayer from '../../../utils/MusicPlayers/MusicPlayer'
 import RandomMusicPlayer from '../../../utils/MusicPlayers/RandomMusicPlayer'
 import SequentialMusicPlayer from '../../../utils/MusicPlayers/SequentialMusicPlayer'
 import formatTime from '../../../utils/formatTime'
+import PreviewMusicPlayer from '../../../utils/MusicPlayers/PreviewMusicPlayer'
 
 
 var selectedMusicElement: HTMLElement | null = null
 var selectedMusic: Track | Episode | null = null
 var musicsNumberShuffled: number[]
-var MusicPlayerClass: (typeof RandomMusicPlayer) | (typeof SequentialMusicPlayer)
+var MusicPlayerClass: (typeof RandomMusicPlayer) | (typeof SequentialMusicPlayer) | (typeof PreviewMusicPlayer)
 var musicPlayer: MusicPlayer
 var possibleMusics: PlaylistTrackObject[]
 var intervalId: number = -1
@@ -75,7 +76,9 @@ export default async function showSongGuess() {
 
     showMusics(possibleMusics)
 
-    if (GameInfo.musicPos === 'random') {
+    if (!GameInfo.isPremiumMode) {
+        MusicPlayerClass = PreviewMusicPlayer
+    } else if (GameInfo.musicPos === 'random') {
         MusicPlayerClass = RandomMusicPlayer
     } else if (GameInfo.musicPos === 'start') {
         MusicPlayerClass = SequentialMusicPlayer
@@ -156,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedMusicElement = null
 
             musicPlayer.pause()
+            musicPlayer.close()
         }
     })
 

@@ -70,11 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
         GameInfo.musicPos = formValues.get('music-pos') as typeof GameInfo.musicPos
         GameInfo.musicPlaytime = Number(formValues.get('music-play-time'))
         GameInfo.musicsQnt = Number(formValues.get('music-qnt'))
-        if (formValues.get('extra-tries') == 'on') {
-            GameInfo.extraTries = true
-        } else {
-            GameInfo.extraTries = false
-        }
+        GameInfo.isPremiumMode = formValues.get('premium') === 'on'
+        GameInfo.extraTries = formValues.get('extra-tries') === 'on'
 
         await initShowSongGuess()
 

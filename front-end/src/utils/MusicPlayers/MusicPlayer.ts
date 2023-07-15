@@ -78,4 +78,6 @@ export default abstract class MusicPlayer {
     public get finished(): boolean {
         return this.currentIndex >= this.musicPlaytimes.length
     }
+
+    public abstract close(): void
 }
