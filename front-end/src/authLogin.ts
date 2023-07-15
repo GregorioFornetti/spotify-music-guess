@@ -26,21 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         catch (error) {
             console.log('Não foi possível carregar o home page', error)
         }
-    }
-
-    const loginBtn = document.getElementById('login')
-    loginBtn?.addEventListener('click', () => {
+    } else {
         redirectToAuthCodeFlow(clientId)
-    })
-
-    const noLoginBtn = document.getElementById('no-login')
-    noLoginBtn?.addEventListener('click', async () => {
-        const token = await fetch('/auth-without-login').then((res) => (res.text()))
-
-        params.append("login", "false")
-        params.append("acessToken", token)
-        params.append("country", "br")
-
-        document.location = `home.html?${params.toString()}`
-    })
+    }
 })

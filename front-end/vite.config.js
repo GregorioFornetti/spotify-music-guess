@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'index.html'),
         home: resolve(__dirname, 'home.html'),
+        login: resolve(__dirname, 'login.html')
       }
     }
   },
