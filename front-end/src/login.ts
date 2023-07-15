@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const noLoginBtn = document.getElementById('no-login')
     noLoginBtn?.addEventListener('click', async () => {
-        const token = await fetch('/auth-without-login').then((res) => (res.text()))
+        const token = await fetch('http://154.49.246.169:3000/auth-without-login').then((res) => (res.text()))
 
         params.append("login", "false")
         params.append("acessToken", token)
