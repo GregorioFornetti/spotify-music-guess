@@ -2,6 +2,7 @@ import toggleToSubpage from "../subpageToggler"
 import { initShowSongGuess } from "./songGuess"
 import GameInfo from "../GameInfo"
 import User from "../../../global/User"
+import { PlaylistTrackObject } from "../../../spotifyApi/types/Playlist"
 
 export default function initConfigSubpage() {
     resetForm(document.getElementById('configs-rounds-form') as HTMLFormElement)
@@ -72,6 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
         GameInfo.musicsQnt = Number(formValues.get('music-qnt'))
         GameInfo.isPremiumMode = formValues.get('premium') === 'on'
         GameInfo.extraTries = formValues.get('extra-tries') === 'on'
+
+        // Essa filtragem não deve ficar aqui, depois, os tipos de jogos (premium ou não) devem ser selecionados antes de mostras as musicas...
+        if (GameInfo.isPremiumMode) {
+            // Remove as músicas que não possuem o preview, no caso de jogar sem login
+            GameInfo.playlist.tracks.items = GameInfo.playlist.tracks.items.filter((playlistTrack: PlaylistTrackObject) => {
+                const music = playlistTrack.track
+                if (music.type === 'track') {
+                    return music.preview_url !== null
+                } else if (music.type === 'episode') {
+                    return music.audio_preview_url !== null
+                }
+                return false
+            })
+        }
 
         await initShowSongGuess()
 

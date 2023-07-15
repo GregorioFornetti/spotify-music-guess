@@ -7,7 +7,7 @@ import Show from "./Show"
 
 export default interface Episode {
     /** A URL to a 30 second preview (MP3 format) of the episode. null if not available. */
-    audio_preview_url: string,
+    audio_preview_url: string|null,
 
     /** A description of the episode. HTML tags are stripped away from this field, use html_description field in case HTML tags are needed. */
     description: string,
