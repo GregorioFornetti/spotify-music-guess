@@ -3,7 +3,7 @@ import { redirectToAuthCodeFlow, getAccessToken } from "./spotifyApi/authCodeWit
 import getUserCountry from "./spotifyApi/requests/getUserCountry"
 import clientId from "./spotifyApi/clientId"
 import User from "./global/User"
-import { redirectUri } from "./spotifyApi/configs"
+import { loginHomeUri } from "./spotifyApi/configs"
 
 const params = new URLSearchParams(window.location.search)
 const code = params.get("code")
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             params.append("acessToken", accessToken)
             params.append("country", country)
 
-            document.location = `${redirectUri}/home.html?${params.toString()}`
+            document.location = `${loginHomeUri}?${params.toString()}`
         }
         catch (error) {
             console.log('Não foi possível carregar o home page', error)
