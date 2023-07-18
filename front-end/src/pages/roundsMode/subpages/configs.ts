@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         GameInfo.extraTries = formValues.get('extra-tries') === 'on'
 
         // Essa filtragem não deve ficar aqui, depois, os tipos de jogos (premium ou não) devem ser selecionados antes de mostras as musicas...
-        if (GameInfo.isPremiumMode) {
+        if (!GameInfo.isPremiumMode) {
             // Remove as músicas que não possuem o preview, no caso de jogar sem login
             GameInfo.playlist.tracks.items = GameInfo.playlist.tracks.items.filter((playlistTrack: PlaylistTrackObject) => {
                 const music = playlistTrack.track
@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return false
             })
+            GameInfo.musicsQnt = Math.min(GameInfo.playlist.tracks.items.length, GameInfo.musicsQnt)
         }
 
         await initShowSongGuess()

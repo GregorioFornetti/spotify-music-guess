@@ -8,8 +8,6 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const root =  dirname(dirname(__filename));
 
-console.log(root)
-
 const app = express()
 const port = 3000
 
