@@ -16,17 +16,30 @@
       --card-bg-color: rgb(24, 24, 24);
       --card-hover-bg-color: rgb(40, 40, 40);
     }
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+      background-color: black !important;
+    }
 
     .playlist-container {
       display: flex;
       justify-content: center;
-      width: 100%;
+      width: fit-content;
+      border-radius: 15px !important;
+
+
     }
 
     .playlist-table {
       width: 100%;
       max-width: 900px;
       color: white;
+      /* border: solid 1px green; */
+      border-radius: 15px !important;
+
     }
 
     .playlist-head{
@@ -36,21 +49,33 @@
     .playlist-head tr,
     .playlist-body tr {
       display: grid;
-      grid-template-columns: 30px 50px 1fr 1fr 1fr;
+      grid-template-columns:  50px 1fr 1fr 1fr;
       padding: 10px;
+    }
+    .playlist-head tr {
+      padding-top: 20px;      
     }
 
     .playlist-body tr td,
     .playlist-body tr th {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+      /* text-align: center; */
       min-width: 0;
+
     }
+    th {
+      margin-left: 15px;
+
+    }
+    
 
     .playlist-body tr td span {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-left: 15px;
     }
 
     .playlist-body {
@@ -58,7 +83,8 @@
       height: 75vh;
       overflow: auto;
       scrollbar-width: 0px;
-      width: calc(100% + 15px);
+      background-color: var(--card-bg-color);
+      /* width: calc(100% + 15px); */
       /* 15px tamanho perdido com scrollbar. Problema, e se n tiver scroll ? ... */
     }
 
@@ -67,15 +93,35 @@
       width: 60%;
       padding: 5px 5px 5px;
       background-color:rgb(50, 50, 50);
-      border: none;
+      border: 2px solid transparent;
+      outline: none;
+      border-radius: 15px;
+      padding-left: 15px;
+    }
+    input:focus {
+      border: 2px solid rgb(30, 215, 96);
+      outline: none;
     }
 
     .body-bgcolor {
       background-color: var(--card-bg-color);
+      /* text-align: center; */
     }
 
     tbody tr:hover {
       background-color: var(--card-hover-bg-color);
+    }
+    tbody::-webkit-scrollbar {
+      width: 8px;               /* width of the entire scrollbar */
+    }
+    tbody::-webkit-scrollbar-track {
+      background: transparent;        /* color of the tracking area */
+    }
+
+    tbody::-webkit-scrollbar-thumb {
+      background-color: rgb(138, 138, 138);    /* color of the scroll thumb */
+      border-radius: 15px;       /* roundness of the scroll thumb */
+      border: none;  /* creates padding around scroll thumb */
     }
 
     /* Remove o scrollbar, mas deixa scrollar */
@@ -97,14 +143,15 @@
     <table class="playlist-table">
       <thead class="playlist-head">
         <tr>
-          <th>#</th>
-          <th>Capa</th>
+          <!-- <th>#</th>
+          <th>Capa</th> -->
+          <!-- <th>#</th> -->
+          <th></th>
           <th>Nome</th>
           <th>Artista</th>
           <th>Álbum</th>
         </tr>
         <tr>
-          <td></td>
           <td></td>
           <td><input type="text" name="Filtro" size="13" placeholder="Nome"></td>
           <td><input type="text" name="Filtro" size="13" placeholder="Artista"></td>
@@ -113,105 +160,105 @@
       </thead>
       <tbody class="playlist-body">
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Baldeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
           <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <th scope="row">3</th>
+          <!-- <th scope="row">3</th> -->
           <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
           <td><span>Oi Balde</span></td>
           <td><span>Zé Neto & Cristiano</span></td>
