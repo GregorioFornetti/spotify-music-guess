@@ -195,25 +195,31 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       let selectedOption = 'name'
-      const options = {
-        'name': {
-          'name': "Nome",
-          'value': ''
-        },
-        'artist': {
-          'name': "Artista",
-          'value': ''
-        },
-        'album': {
-          'name': "Album",
-          'value': ''
-        }
-      }
 
       const playlistTable = document.getElementsByClassName('playlist-table')[0]
 
-      // Mobile elements
+      const playlistNameInput = playlistTable.getElementsByClassName('name-input')[0]
+      const playlistArtistInput = playlistTable.getElementsByClassName('artist-input')[0]
+      const playlistAlbumInput = playlistTable.getElementsByClassName('album-input')[0]
+      const options = {
+        name: {
+          name: "Nome",
+          value: '',
+          input: playlistNameInput
+        },
+        artist: {
+          name: "Artista",
+          value: '',
+          input: playlistArtistInput
+        },
+        album: {
+          name: "Album",
+          value: '',
+          input: playlistAlbumInput
+        }
+      }
 
+      
       const playlistDropdown = playlistTable.getElementsByClassName('playlist-dropdown-btn')[0]
       
       const playlistGeneralInput = playlistTable.getElementsByClassName('general-input')[0]
@@ -234,10 +240,21 @@
 
       playlistGeneralInput.addEventListener('input', () => {
         options[selectedOption]['value'] = playlistGeneralInput.value
+        options[selectedOption]['input'].value = playlistGeneralInput.value
       })
 
 
-      // Desktop elements
+      const onPlaylistInput = (event, inputName) => {
+        const newValue = event.target.value
+        options[inputName]['value'] = newValue
+        if (inputName === selectedOption) {
+          playlistGeneralInput.value = newValue
+        }
+      }
+
+      playlistNameInput.addEventListener('input', (event) => { onPlaylistInput(event, 'name') })
+      playlistArtistInput.addEventListener('input', (event) => { onPlaylistInput(event, 'artist') })
+      playlistAlbumInput.addEventListener('input', (event) => { onPlaylistInput(event, 'album') })
     })
   </script>
 </head>
