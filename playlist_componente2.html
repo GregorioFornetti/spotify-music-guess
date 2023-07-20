@@ -28,9 +28,8 @@
       display: flex;
       justify-content: center;
       width: fit-content;
-      border-radius: 15px !important;
-
-
+      max-width: 900px;
+      width: 100%;
     }
 
     .playlist-table {
@@ -38,7 +37,9 @@
       max-width: 900px;
       color: white;
       /* border: solid 1px green; */
-      border-radius: 15px !important;
+      border-collapse: collapse;
+      border-radius: 1em;
+      overflow: hidden;
 
     }
 
@@ -49,9 +50,10 @@
     .playlist-head tr,
     .playlist-body tr {
       display: grid;
-      grid-template-columns:  50px 1fr 1fr 1fr;
+      grid-template-columns: 50px 1fr 1fr 1fr;
       padding: 10px;
     }
+
     .playlist-head tr {
       padding-top: 20px;      
     }
@@ -135,6 +137,55 @@
       width: 50px;
       height: 50px;
     }
+
+    .playlist-head .mobile {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .playlist-head tr,
+      .playlist-body tr {
+          grid-template-areas: 
+            "cover name"
+            "cover artist"
+            "cover album"
+          ;
+          grid-template-columns: 75px 1fr;
+      }
+
+      .playlist-img {
+        width: 75px;
+        height: 75px;
+      }
+    
+      .playlist-table .album-img {
+        grid-area: cover;
+      }
+
+      .playlist-table .name {
+        grid-area: name;
+      }
+
+      .playlist-table .artist {
+        grid-area: artist;
+      }
+
+      .playlist-table .album {
+        grid-area: album;
+      }
+
+      .playlist-head .mobile {
+        display: grid;
+      }
+
+      .playlist-head .desktop {
+        display: none;
+      }
+
+      .playlist-container {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -142,127 +193,105 @@
   <div class="playlist-container">
     <table class="playlist-table">
       <thead class="playlist-head">
-        <tr>
-          <!-- <th>#</th>
-          <th>Capa</th> -->
-          <!-- <th>#</th> -->
+        <tr class="desktop">
           <th></th>
           <th>Nome</th>
           <th>Artista</th>
           <th>Álbum</th>
         </tr>
-        <tr>
+        <tr class="desktop">
           <td></td>
           <td><input type="text" name="Filtro" size="13" placeholder="Nome"></td>
           <td><input type="text" name="Filtro" size="13" placeholder="Artista"></td>
           <td><input type="text" name="Filtro" size="13" placeholder="Álbum"></td>
         </tr>
+        <tr class="mobile">
+          <th></th>
+          <th>Música</th>
+        </tr>
+        <tr class="mobile">
+          <td></td>
+          <td><input type="text"></td>
+        </tr>
       </thead>
       <tbody class="playlist-body">
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
         <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
-        </tr>
-        <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Baldeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
-        </tr>
-        <tr>
-          <!-- <th scope="row">3</th> -->
-          <td><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
-          <td><span>Oi Balde</span></td>
-          <td><span>Zé Neto & Cristiano</span></td>
-          <td><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
+          <td class="album-img"><img src="viva-la-vida.jpg" alt="Oi Balde - Zé Neto & Cristiano" class="playlist-img"></td>
+          <td class="name"><span>Oi Balde</span></td>
+          <td class="artist"><span>Zé Neto & Cristiano</span></td>
+          <td class="album"><span>Escolhas, Ep. 1(Ao Vivo)</span></td>
         </tr>
       </tbody>
     </table>
