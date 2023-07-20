@@ -146,6 +146,10 @@
       width: 100px;
     }
 
+    .playlist-dropdown-btn {
+      border-radius: 15px;
+    }
+
     @media (max-width: 900px) {
       .playlist-head tr,
       .playlist-body tr {
@@ -167,15 +171,19 @@
       }
 
       .playlist-table .name {
+        font-weight: bold;
+        font-size: 1.1em;
         grid-area: name;
       }
 
       .playlist-table .artist {
         grid-area: artist;
+        opacity: 0.8;
       }
 
       .playlist-table .album {
         grid-area: album;
+        opacity: 0.8;
       }
 
       .playlist-head .mobile {
@@ -188,6 +196,10 @@
 
       .playlist-container {
         width: 100%;
+      }
+
+      .playlist-head tr {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -276,7 +288,6 @@
           <td><input class="album-input" type="text" name="Filtro" size="13" placeholder="Álbum"></td>
         </tr>
         <tr class="mobile">
-          <td></td>
           <td>
             <div class="input-group mb-3">
               <button class="playlist-dropdown-btn btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Nome</button>
@@ -288,10 +299,6 @@
               <input class="general-input" type="text" placeholder="Filtro">
             </div>
           </td>
-        </tr>
-        <tr class="mobile">
-          <th></th>
-          <th>Música</th>
         </tr>
       </thead>
       <tbody class="playlist-body">
