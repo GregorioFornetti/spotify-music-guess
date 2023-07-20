@@ -142,6 +142,10 @@
       display: none;
     }
 
+    .playlist-dropdown-btn {
+      width: 100px;
+    }
+
     @media (max-width: 900px) {
       .playlist-head tr,
       .playlist-body tr {
@@ -187,6 +191,55 @@
       }
     }
   </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let selectedOption = 'name'
+      const options = {
+        'name': {
+          'name': "Nome",
+          'value': ''
+        },
+        'artist': {
+          'name': "Artista",
+          'value': ''
+        },
+        'album': {
+          'name': "Album",
+          'value': ''
+        }
+      }
+
+      const playlistTable = document.getElementsByClassName('playlist-table')[0]
+
+      // Mobile elements
+
+      const playlistDropdown = playlistTable.getElementsByClassName('playlist-dropdown-btn')[0]
+      
+      const playlistGeneralInput = playlistTable.getElementsByClassName('general-input')[0]
+
+      const onOptionSelect = (optionName) => {
+        selectedOption = optionName
+        playlistDropdown.innerHTML = options[optionName]['name']
+        playlistGeneralInput.value = options[optionName]['value']
+      }
+
+      const playlistDropdownNameOption = playlistTable.getElementsByClassName('name-option')[0]
+      const playlistDropdownArtistOption = playlistTable.getElementsByClassName('artist-option')[0]
+      const playlistDropdownAlbumOption = playlistTable.getElementsByClassName('album-option')[0]
+
+      playlistDropdownNameOption.addEventListener('click', () => { onOptionSelect('name') })
+      playlistDropdownArtistOption.addEventListener('click', () => { onOptionSelect('artist') })
+      playlistDropdownAlbumOption.addEventListener('click', () => { onOptionSelect('album') })
+
+      playlistGeneralInput.addEventListener('input', () => {
+        options[selectedOption]['value'] = playlistGeneralInput.value
+      })
+
+
+      // Desktop elements
+    })
+  </script>
 </head>
 
 <body class="body-bgcolor">
@@ -201,9 +254,9 @@
         </tr>
         <tr class="desktop">
           <td></td>
-          <td><input type="text" name="Filtro" size="13" placeholder="Nome"></td>
-          <td><input type="text" name="Filtro" size="13" placeholder="Artista"></td>
-          <td><input type="text" name="Filtro" size="13" placeholder="Álbum"></td>
+          <td><input class="name-input" type="text" name="Filtro" size="13" placeholder="Nome"></td>
+          <td><input class="artist-input" type="text" name="Filtro" size="13" placeholder="Artista"></td>
+          <td><input class="album-input" type="text" name="Filtro" size="13" placeholder="Álbum"></td>
         </tr>
         <tr class="mobile">
           <th></th>
@@ -211,7 +264,17 @@
         </tr>
         <tr class="mobile">
           <td></td>
-          <td><input type="text"></td>
+          <td>
+            <div class="input-group mb-3">
+              <button class="playlist-dropdown-btn btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Nome</button>
+              <ul class="dropdown-menu">
+                <li><a class="name-option dropdown-item" href="#">Nome</a></li>
+                <li><a class="artist-option dropdown-item" href="#">Artista</a></li>
+                <li><a class="album-option dropdown-item" href="#">Album</a></li>
+              </ul>
+              <input class="general-input" type="text" placeholder="Filtro">
+            </div>
+          </td>
         </tr>
       </thead>
       <tbody class="playlist-body">
