@@ -49,12 +49,6 @@ export async function initShowSongGuess() {
 
 export default async function showSongGuess() {
 
-    const songGuessInput = document.getElementById('song-guess-input') as HTMLInputElement
-    const artistGuessInput = document.getElementById('artist-guess-input') as HTMLInputElement
-
-    songGuessInput.value = ''
-    artistGuessInput.value = ''
-
     if (GameInfo.playlist.tracks.items.length === GameInfo.musicsQnt) {
         possibleMusics = GameInfo.playlist.tracks.items
     } else {
