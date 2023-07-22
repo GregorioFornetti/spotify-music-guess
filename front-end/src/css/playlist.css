@@ -1,0 +1,160 @@
+
+.playlist-container {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    max-width: 900px;
+    width: 100%;
+}
+
+.playlist-table {
+    width: 100%;
+    max-width: 900px;
+    color: white;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.playlist-head{
+    background-color: var(--card-hover-bg-color);
+}
+
+.playlist-head tr,
+.playlist-body tr {
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 1fr;
+    padding: 10px;
+}
+
+.playlist-head tr {
+    padding-top: 20px;      
+}
+
+.playlist-body tr td,
+.playlist-body tr th {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+}
+
+.playlist-body tr th {
+    margin-left: 15px;
+}
+
+
+.playlist-body tr td span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 15px;
+}
+
+.playlist-body {
+    display: block;
+    height: 75vh;
+    overflow: auto;
+    scrollbar-width: 0px;
+    background-color: var(--card-bg-color);
+}
+
+.playlist-head input {
+    color: white;
+    width: 60%;
+    padding: 5px 5px 5px;
+    background-color:rgb(50, 50, 50);
+    border: 2px solid transparent;
+    outline: none;
+    border-radius: 15px;
+    padding-left: 15px;
+}
+.playlist-head input:focus {
+    border: 2px solid rgb(30, 215, 96);
+    outline: none;
+}
+
+.playlist-body tr:hover {
+    background-color: var(--card-hover-bg-color);
+}
+.playlist-body::-webkit-scrollbar {
+    width: 8px;               /* width of the entire scrollbar */
+}
+.playlist-body::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+.playlist-body::-webkit-scrollbar-thumb {
+    background-color: rgb(138, 138, 138);    /* color of the scroll thumb */
+    border-radius: 15px;       /* roundness of the scroll thumb */
+    border: none;  /* creates padding around scroll thumb */
+}
+
+.playlist-img {
+    width: 50px;
+    height: 50px;
+}
+
+.playlist-head .mobile {
+    display: none;
+}
+
+.playlist-dropdown-btn {
+    width: 100px;
+}
+
+.playlist-dropdown-btn {
+    border-radius: 15px;
+}
+
+@media (max-width: 900px) {
+    .playlist-head tr,
+    .playlist-body tr {
+        grid-template-areas: 
+        "cover name"
+        "cover artist"
+        "cover album"
+        ;
+        grid-template-columns: 75px 1fr;
+    }
+
+    .playlist-img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .playlist-table .album-img {
+        grid-area: cover;
+    }
+
+    .playlist-table .name {
+        font-weight: bold;
+        font-size: 1.1em;
+        grid-area: name;
+    }
+
+    .playlist-table .artist {
+        grid-area: artist;
+        opacity: 0.8;
+    }
+
+    .playlist-table .album {
+        grid-area: album;
+        opacity: 0.8;
+    }
+
+    .playlist-head .mobile {
+        display: grid;
+    }
+
+    .playlist-head .desktop {
+        display: none;
+    }
+
+    .playlist-container {
+        width: 100%;
+    }
+
+    .playlist-head tr {
+        grid-template-columns: 1fr;
+    }
+}
