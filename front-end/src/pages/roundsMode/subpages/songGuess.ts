@@ -17,7 +17,6 @@ import PreviewMusicPlayer from '../../../utils/MusicPlayers/PreviewMusicPlayer'
 import createPlaylistElement from '../../../components/playlist'
 
 
-var selectedMusicElement: HTMLElement | null = null
 var selectedMusic: Track | Episode | null = null
 var musicsNumberShuffled: number[]
 var MusicPlayerClass: (typeof RandomMusicPlayer) | (typeof SequentialMusicPlayer) | (typeof PreviewMusicPlayer)
@@ -29,7 +28,6 @@ var intervalId: number = -1
 export async function initShowSongGuess() {
 
     musicsNumberShuffled = shuffle([...Array(GameInfo.playlist.tracks.items.length).keys()])
-    selectedMusicElement = null
     selectedMusic = null
     
     const extraTriesBtn = document.getElementById('song-guess-hear-next') as HTMLButtonElement
@@ -103,7 +101,6 @@ export default async function showSongGuess() {
 }
 
 function showMusics(playlist: Playlist) {
-    selectedMusicElement = null
     
     const playlistTracks = document.getElementById('playlist-tracks-list-game')!
     playlistTracks.innerHTML = ""
@@ -125,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
             )
 
             selectedMusic = null
-            selectedMusicElement = null
 
             musicPlayer.pause()
             musicPlayer.close()
