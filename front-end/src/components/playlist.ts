@@ -72,6 +72,7 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
     const dropdownBtn = document.createElement('button')
     dropdownBtn.className = 'playlist-dropdown-btn btn btn-outline-secondary dropdown-toggle'
     dropdownBtn.dataset.bsToggle = "dropdown"
+    dropdownBtn.ariaExpanded = "false"
     dropdownBtn.innerHTML = 'Nome'
 
     const dropdownMenu = document.createElement('ul')
@@ -79,22 +80,19 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
 
     const nameListItem = document.createElement('li')
     const playlistDropdownNameOption = document.createElement('a')
-    playlistDropdownNameOption.className = 'dropdown-item'
-    playlistDropdownNameOption.href = '#'
+    playlistDropdownNameOption.className = 'playlist-dropdown-item dropdown-item'
     playlistDropdownNameOption.innerHTML = 'Nome'
     nameListItem.appendChild(playlistDropdownNameOption)
 
     const artistListItem = document.createElement('li')
     const playlistDropdownArtistOption = document.createElement('a')
-    playlistDropdownArtistOption.className = 'dropdown-item'
-    playlistDropdownArtistOption.href = '#'
+    playlistDropdownArtistOption.className = 'playlist-dropdown-item dropdown-item'
     playlistDropdownArtistOption.innerHTML = 'Artista'
     artistListItem.appendChild(playlistDropdownArtistOption)
 
     const albumListItem = document.createElement('li')
     const playlistDropdownAlbumOption = document.createElement('a')
-    playlistDropdownAlbumOption.className = 'dropdown-item'
-    playlistDropdownAlbumOption.href = '#'
+    playlistDropdownAlbumOption.className = 'playlist-dropdown-item dropdown-item'
     playlistDropdownAlbumOption.innerHTML = 'Álbum'
     albumListItem.appendChild(playlistDropdownAlbumOption)
 
@@ -112,6 +110,8 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
     playlistMobileData.appendChild(playlistMobileInputContainer)
 
     playlistHeadMobileTr.appendChild(playlistMobileData)
+
+    playlistHead.appendChild(playlistHeadMobileTr)
 
 
     const playlistBody = document.createElement('tbody')
@@ -133,6 +133,7 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
             }
     
             if (onMusicSelect) {
+                musicItem.classList.add('clickable')
                 musicItem.addEventListener('click', () => {
                     onMusicSelect(item.track);
                     if (selectedMusic === item.track) {
@@ -187,19 +188,19 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
 
     // Inputs especificos, são inputs separados para cada tipo de busca, para modo desktop
     const onSpecificPlaylistInput = (inputName: string) => {
-        createFilteredMusics()
         const newValue = options[inputName].input.value
         options[inputName]['value'] = newValue
         if (inputName === selectedOption) {
             playlistGeneralInput.value = newValue
         }
+        createFilteredMusics()
     }
 
     const onOptionSelect = (optionName: string) => {
         selectedOption = optionName
         dropdownBtn.innerHTML = options[optionName]['name']
         playlistGeneralInput.value = options[optionName]['value']
-      }
+    }
 
     createMusics(playlist.tracks.items);
 
@@ -232,26 +233,24 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
  */
 function createMusicElement(music: Track|Episode) {
     const musicElement = document.createElement('tr')
-    musicElement.classList.add('music')
 
     const musicImageData = document.createElement('td')
+    musicImageData.classList.add('album-img')
     const musicImage = document.createElement('img')
-    musicImage.classList.add('album-img')
+    musicImage.classList.add('playlist-img')
 
     const musicNameData = document.createElement('td')
+    musicNameData.classList.add('name')
     const musicName = document.createElement('span')
-    musicName.classList.add('name')
     musicName.innerText = music.name
 
     const musicArtistData = document.createElement('td')
+    musicArtistData.classList.add('artist')
     const musicArtist = document.createElement('span')
-    musicArtist.classList.add('artist')
 
     const musicAlbumData = document.createElement('td')
+    musicAlbumData.classList.add('album')
     const musicAlbum = document.createElement('span')
-    musicAlbum.classList.add('album')
-
-
 
     if (music.type === 'track') {
         if (music.album.images.length !== 0) {
@@ -269,13 +268,13 @@ function createMusicElement(music: Track|Episode) {
 
     musicImageData.appendChild(musicImage)
     musicNameData.appendChild(musicName)
-    musicArtistData.appendChild(musicArtistData)
+    musicArtistData.appendChild(musicArtist)
     musicAlbumData.appendChild(musicAlbum)
 
     musicElement.appendChild(musicImageData)
     musicElement.appendChild(musicNameData)
     musicElement.appendChild(musicArtistData)
-    musicElement.appendChild(musicAlbum)
+    musicElement.appendChild(musicAlbumData)
 
     return musicElement
 }

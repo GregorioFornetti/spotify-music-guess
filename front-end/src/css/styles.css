@@ -33,21 +33,6 @@ body {
     height: 100px;
 }
 
-#playlist-tracks-list, #playlist-tracks-list-game {
-    width: 300px;
-    height: 300px;
-    overflow: auto;
-}
-
-.clickable {
-    cursor: pointer;
-}
-
-.selected {
-    background-color: #85c769;
-    border : 1px solid #000000;
-}
-
 #avoid-header {
     margin-left: calc(var(--header-width) + 10px);
     width: calc(100% - var(--header-width) - 10px);
@@ -55,7 +40,10 @@ body {
 
 #credits-page {
     width: 100%;
-    background-color: ;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 #credits_cards {

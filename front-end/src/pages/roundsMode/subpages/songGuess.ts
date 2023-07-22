@@ -2,10 +2,8 @@
     Página principal do modo de jogo de rodadas, na qual o usuário deve escolher qual música acredita ser a correta.
 */
 
-import createMusicElement from '../../../components/music'
 import showSongResult from './songResult'
-import { filterByMusicAndArtistName } from '../../../utils/filters'
-import { PlaylistTrackObject } from '../../../spotifyApi/types/Playlist'
+import Playlist, { PlaylistTrackObject } from '../../../spotifyApi/types/Playlist'
 import shuffle from '../../../utils/shuffle'
 import toggleToSubpage from '../subpageToggler'
 import GameInfo from '../GameInfo'
@@ -16,6 +14,7 @@ import RandomMusicPlayer from '../../../utils/MusicPlayers/RandomMusicPlayer'
 import SequentialMusicPlayer from '../../../utils/MusicPlayers/SequentialMusicPlayer'
 import formatTime from '../../../utils/formatTime'
 import PreviewMusicPlayer from '../../../utils/MusicPlayers/PreviewMusicPlayer'
+import createPlaylistElement from '../../../components/playlist'
 
 
 var selectedMusicElement: HTMLElement | null = null
@@ -74,7 +73,9 @@ export default async function showSongGuess() {
         possibleMusics = possibleMusicsIndexes.map((musicIndex) => GameInfo.playlist.tracks.items[musicIndex])
     }
 
-    showMusics(possibleMusics)
+    const filteredPlaylist = GameInfo.playlist
+    filteredPlaylist.tracks.items = possibleMusics
+    showMusics(GameInfo.playlist)
 
     if (!GameInfo.isPremiumMode) {
         MusicPlayerClass = PreviewMusicPlayer
@@ -101,50 +102,18 @@ export default async function showSongGuess() {
     toggleToSubpage('song-guess-rounds-subpage')
 }
 
-function showMusics(musics: PlaylistTrackObject[]) {
+function showMusics(playlist: Playlist) {
     selectedMusicElement = null
     
     const playlistTracks = document.getElementById('playlist-tracks-list-game')!
     playlistTracks.innerHTML = ""
 
-    for (let music of musics) {
-        const musicElement = createMusicElement(music.track)
-        musicElement.classList.add('clickable')
-        musicElement.addEventListener('click', () => {
-            if (selectedMusicElement) {
-                selectedMusicElement.classList.remove('selected')
-            }
-            selectedMusicElement = musicElement
-            selectedMusicElement.classList.add('selected')
-            selectedMusic = music.track
-        })
-
-        if (selectedMusic && music.track.id === selectedMusic.id) {
-            selectedMusicElement = musicElement
-            selectedMusicElement.classList.add('selected')
-        }
-
-        playlistTracks.appendChild(musicElement)
-    }
+    playlistTracks.appendChild(createPlaylistElement(playlist, (music) => {
+        selectedMusic = music
+    }))
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    const songGuessInput = document.getElementById('song-guess-input') as HTMLInputElement
-    const artistGuessInput = document.getElementById('artist-guess-input') as HTMLInputElement
-
-    const filterFunction = () => {
-        showMusics(
-            filterByMusicAndArtistName(
-                songGuessInput.value, 
-                artistGuessInput.value, 
-                possibleMusics
-            )
-        )
-    }
-
-    songGuessInput.addEventListener('input', filterFunction)
-    artistGuessInput.addEventListener('input', filterFunction)
 
     document.getElementById("song-guess-submit")?.addEventListener('click', () => {
         if (selectedMusic) {
