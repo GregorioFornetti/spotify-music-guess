@@ -1,0 +1,13 @@
+Para rodar o projeto para testar a parte de sem o login, é preciso fazer o seguinte:
+
+Dentro da pasta do front-end:
+npm run build
+
+Dentro da pasta do back-end:
+npm run server
+
+Além disso, no index.js do back-end, é necessário colocar o client_id e client_secret, pedir para o Greg esses valores...
+
+Antes, nas duas pastas, rodar o comando npm i
+
+Agora sempre que for feito alguma alteração, é necessário rodar esses dois comandos para vizualizar a mudança...

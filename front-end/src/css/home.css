@@ -1,0 +1,112 @@
+
+:root {
+    --playlist-input-border-radius: 10px;
+    --playlist-input-padding: 10px;
+}
+
+
+#home-page {
+    gap: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#playlist-input-container {
+    width: 50vw;
+    min-width: 270px;
+    display: flex;
+}
+
+#playlist-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+#playlist-input {
+    border: none;
+    border-radius: var(--playlist-input-border-radius) 0px 0px var(--playlist-input-border-radius);
+    padding: var(--playlist-input-padding);
+    width: 100%;
+    font-size: 1em;
+}
+
+#playlist-input:focus {
+    outline: none;
+    border: 2px solid var(--btn-color);
+    padding: calc(var(--playlist-input-padding) - 2px);
+    box-shadow: 0px 0px 5px var(--btn-color);
+}
+
+
+#playlist-submit {
+    border: 1px solid var(--btn-color);
+    border-radius: 0px var(--playlist-input-border-radius) var(--playlist-input-border-radius) 0px;
+    padding: var(--playlist-input-padding);
+    background-color: var(--btn-color);
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+#playlist-submit:hover {
+    background-color: var(--btn-hover-color);
+}
+
+.home-title {
+    font-size: 2em;
+    text-align: center;
+    padding-bottom: 35px;
+}
+
+
+#devices-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    padding: 0px 20px;
+    gap: 75px;
+    max-width: 1000px;
+}
+
+.devices-warning {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0px 20px;
+}
+
+
+
+.playlists-list {
+    display: flex;
+    gap: 40px 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+}
+
+.load-more-btn {
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--btn-color);
+    border-radius: 10px;
+    padding: 10px 40px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+}
+
+.load-more-btn:hover {
+    background-color: var(--btn-hover-color);
+}
+main {
+    margin-top: 50px;
+
+}

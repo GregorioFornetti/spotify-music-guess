@@ -1,0 +1,98 @@
+
+:root {
+    --header-bg-color: rgb(0, 0, 0);
+    --header-text-color: rgb(200, 200, 200);
+    --header-selected-text-color: rgb(255, 255, 255);
+
+    --body-bg-color: rgb(18, 18, 18);
+
+    --btn-color: rgb(30, 164, 96);
+    --btn-hover-color: rgb(30, 215, 96);
+
+    --card-bg-color: rgb(24, 24, 24);
+    --card-hover-bg-color: rgb(40, 40, 40);
+
+    --title-color: rgb(255, 255, 255);
+    --description-color: rgb(200, 200, 200);
+
+    font-family: sans-serif;
+}
+
+body {
+    background-color: var(--body-bg-color);
+    color: white;
+}
+
+#playlist-image {
+    width: 300px;
+    height: 300px;
+}
+
+.music-image {
+    width: 100px;
+    height: 100px;
+}
+
+#avoid-header {
+    margin-left: calc(var(--header-width) + 10px);
+    width: calc(100% - var(--header-width) - 10px);
+}
+
+#credits-page {
+    width: 100%;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+#credits_cards {
+    margin-right: 0 !important;
+}
+
+#credits_cards > div {
+   /* border: #85c769 2px solid; */
+   display: flex;
+   align-items: center;
+    justify-content: center;
+}
+
+footer {
+    margin-top: 100px;
+}
+.zoomeffect{
+    overflow: hidden;
+
+}
+.zoomeffect img{
+    width: 100%;
+    transition: 0.2s all ease-in-out;
+}
+
+.zoomeffect img:hover{
+    transform: scale(1.1);
+}
+.social_icon{
+    color: white;
+    transition: 0.2s all ease-in-out;
+}
+.social_icon:hover{
+    color: rgb(30, 164, 96);
+    transform: scale(1.1);
+}
+.cardcolor{
+    background: rgb(24,24,24);
+    background: linear-gradient(0deg, rgba(24,24,24,1) 0%, rgba(40,40,40,1) 100%);
+}
+.cardborder{
+    border: 2px solid rgb(30, 164, 96);
+    background-color: rgb(40, 40, 40);
+}
+.cardnome{
+    font-weight: bold;
+}
+.cardcargo{
+    font-weight: bold;
+    color: rgb(30, 215, 96);
+    
+}

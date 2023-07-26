@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify music guess</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+  <!-- Estilos próprios -->
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <!-- Todos os códigos que tiverem algum carregamento inicial (DOMContentLoaded), colocar aqui -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <script type="module" crossorigin src="/assets/home-fec1dcc5.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
+  <link rel="modulepreload" crossorigin href="/assets/addLoading-c08e133b.js">
+  <link rel="stylesheet" href="/assets/home-4d461229.css">
+  <link rel="stylesheet" href="/assets/reset-0b93f2c6.css">
+</head>
+
+<body>
+  <!-- Modal -->
+
+  <nav class="navbar fixed-top navbar-dark cabecalho">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title logo" id="offcanvasNavbarLabel">Spotfy<br> Music <br>Guess</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <div class="offcanvas-body" style="display: flex; flex-direction: column;">
+          <ul class="navbar-nav justify-content-start flex-grow-1 pe-5">
+            
+            <li class="nav-item nav-link-sidebar">
+              <a class="nav-link nav-link-sidebar" href="#">Home</a>
+            </li>
+            <li class="nav-item nav-link-sidebar">
+              <a class="nav-link nav-link-sidebar" href="#">Ajuda</a>
+            </li>
+            <li class="nav-item nav-link-sidebar">
+              <a id='credit' class="nav-link nav-link-sidebar" href="#">Créditos</a>
+            </li>
+            
+          </ul>
+            
+          <a id="logout" href="#">Logout</a>
+        </div>   
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Página home -->
+    <div id="home-page" >
+      <div>
+        <h2 class="home-title">Buscar por playlist</h2>
+        <form id="playlist-form">
+          <div id="playlist-input-container">
+            <input type="text" id="playlist-input" name="playlist-input" placeholder="URI, URL ou ID da playlist">
+            <button type="submit" id="playlist-submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="devices-home-page">
+        <h2 class="home-title">Dispositivos</h2>
+        <p class="devices-warning" id="no-devices-found" style="display: none;">
+          Nenhum dispositivo encontrado. Abra o spotify em algum dispositivo e recarregue a página para selecionar algum dispositivo para tocar as músicas
+        </p>
+        <p class="devices-warning" id="no-device-selected" style="display: none;">
+          Nenhum dispositivo selecionado. Selecione algum dispositivo para tocar as músicas
+        </p>
+        <div id="devices-list"></div>
+      </div>
+
+      <div id="user-library">
+        <h2 class="home-title">Sua biblioteca</h2>
+        <div class="playlists-list" id="user-playlists-list"></div>
+        <button class="load-more-btn" id="user-playlists-load-more">Carregar mais</button>
+      </div>
+
+      <div>
+        <h2 class="home-title">Jogue novamente</h2>
+        <div class="playlists-list" id="play-again-list"></div>
+        <button class="load-more-btn" id="play-again-load-more">Carregar mais</button>
+      </div>
+    </div>
+    
+    <!-- Página de seleção -->
+    <div id="playlist-info-page" style="display: none;">
+      <img id="playlist-image" src="" alt="Imagem da playlist">
+      <div>
+        <h2 id="playlist-name"></h2>
+        <p id="playlist-description"></p>
+        <p id="playlist-owner"></p>
+        <div id="playlist-tracks">
+          <p>Músicas</p>
+          <p id="playlist-tracks-count"></p>
+          <div id="playlist-tracks-list"></div>
+        </div>
+        <button id="playlist-return">Voltar</button>
+        <button id="game-start">Começar jogo</button>
+      </div>
+    </div>
+
+    <div id="rounds-mode-game-page" style="display: none;">
+      <!-- Sub-página de configurações -->
+      <div id="configs-rounds-subpage">
+        <form id="configs-rounds-form">
+          <label>Modo premium:</label>
+          <input id="input-premium" type="checkbox" name="premium">
+          <br>
+
+          <label>Quantidade rounds:</label>
+          <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
+          <br>
+    
+          <label>Posição da música:</label>
+          <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
+          <label>Início</label>
+          <input type="radio" value="random" name="music-pos" id="music-pos-random">
+          <label>Aleatório</label>
+          <br>
+    
+          <label>Tempo de música:</label>
+          <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
+          <br>
+    
+          <label>Quantidade de músicas:</label>
+          <input id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
+          <br>
+    
+          <label>Tentativas extras:</label>
+          <input type="checkbox" name="extra-tries">
+          <br>
+          
+          <input type="submit" value="Jogar">
+        </form>
+      </div>
+
+      <!-- Sub-página de adivinhar a música -->
+      <div id="song-guess-rounds-subpage" style="display: none;">
+        <div id="rounds-mode-timer">
+          
+        </div>
+        <div id="playlist-tracks-game">
+          <p>Músicas</p>
+          <div id="playlist-tracks-list-game"></div>
+        </div>
+        
+        <button id="song-guess-hear-next">Ouvir mais</button>
+        <button id="song-guess-submit">Responder</button>
+      </div>
+
+      <!-- Sub-página de resultados da adivinhação da música que o usuário acabou de responder -->
+      <div id="song-result-rounds-subpage" style="display: none;">
+        <h2 id="song-result-title">
+          Rodada <span id="song-result-current-round"></span> de <span id="song-result-total-rounds"></span>
+        </h2>
+        <h3 id="song-result-message"></h3>
+        <p>A música correta era:</p>
+        <div id="song-result-correct-song"></div>
+        <p>A música que foi respondida:</p>
+        <div id="song-result-guessed-song"></div>
+
+        <button id="song-result-next">Próxima rodada</button>
+      </div>
+
+      <!-- Sub-página dos resultados finais, após todas as adivinhações terem sido realizadas -->
+      <div id="final-result-rounds-subpage" style="display: none;">
+        <h2>Resultados</h2>
+
+        <div>
+          <p>
+            Pontuação: <span id="rounds-mode-score"></span>
+          </p>
+          <p>
+            Acertos: <span id="rounds-mode-correct-count"></span>
+          </p>
+          <p>
+            Erros: <span id="rounds-mode-incorrect-count"></span>
+          </p>
+          <p>
+            Número total de rodadas: <span id="rounds-mode-total-rounds"></span>
+          </p>
+          <p>
+            Tempo gasto: <span id="rounds-mode-total-time"></span>
+          </p>
+          <p id="rounds-mode-extra-tries">
+            Número de tentativas extras utilizadas: <span id="rounds-mode-extra-tries-count"></span>
+          </p>
+        </div>
+
+        <div id="rounds-mode-history">
+
+        </div>
+
+        <button id="final-result-return">Voltar</button>
+        <button id="play-again-rounds-mode-same-configs">Jogar novamente com mesmas configurações</button>
+        <button id="play-again-rounds-mode-new-configs">Jogar novamente com configurações diferentes</button>
+      </div>
+    </div>
+
+    <!-- Página de creditos -->
+    <div id="credits-page" style="display: none;">
+      <h1 class="h1 text-center">Créditos</h1>
+      <div class="row " id="credits_cards">
+      </div>
+      
+    </div>
+
+    <div id="tests-page" style="display: none;">
+    </div>
+  </main>
+
+  <footer>
+    
+  </footer>
+
+
+</body>
+
+</html>
