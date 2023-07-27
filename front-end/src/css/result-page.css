@@ -70,15 +70,21 @@
   display: none;
 }
 
+.carro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel-inner{
+  max-width: 80%;
+  margin: 0 auto;
+  padding: -1000px;
+}
+
 .rounds-mode-history {
   border-radius: 15px;
   background-color: rgb(5,5,5);
   border: 6px solid black;
-  width: fit-content;
-  padding-top: 40px !important;
-  padding: 20px;
-  align-content: center;
-  margin: 10px auto;
 }
 
 .rounds-mode-history-rejected {
@@ -87,6 +93,7 @@
 
 .rounds-mode-history-accepted {
   border: 6px solid rgb(30, 164, 96);
+
 }
 
 .music-round-history {
@@ -106,6 +113,10 @@
 }
 .music-round-history-image img {
   border-radius: 15px;
+  transition: transform .2s;
+}
+.music-round-history-image img:hover {
+  transform: scale(1.03);
 }
 
 .music-round-history-correct,
@@ -129,6 +140,7 @@
   font-size: 25px;
   margin-bottom: 10px;
   line-height: 30px;
+  text-align: center;
 }
 
 .music-image-round-history {
@@ -141,6 +153,7 @@
 .music-name-round-history,
 .music-artist-round-history {
   margin: 5px;
+  text-align: center;
 }
 .music-name-round-history {
   font-size: 25px ;
@@ -159,6 +172,14 @@
   width: 50%;
   margin: 0px auto;
   margin-top: -30px;
+}
+.btn_result{
+  background-color: white;
+  transition: 0.2s all ease-in-out;
+}
+.btn_result:hover{
+  background-color: rgba(255, 255, 255, 0.966);
+  transform: scale(1.03);
 }
 
 #final-result-return,
