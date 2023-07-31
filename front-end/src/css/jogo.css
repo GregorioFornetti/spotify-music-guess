@@ -89,6 +89,7 @@ main{
     
     border-radius: 15px;
     width: 150px;
+    font-weight: 600;
 }
 
 .botoes{
@@ -97,7 +98,7 @@ main{
     align-items: center;
     justify-content: center;
     gap: 40px;
-    margin-top: 15px 0;    
+    margin-top: 20px 0;    
 }
 
 #playlist-return {
@@ -109,4 +110,30 @@ main{
     background-color: #1DB954;
     border: 2px solid #1DB954;
     color: black;
+}
+
+@media (max-width: 900px) {
+    #vontade-de-morrer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;    
+    }
+    #playlist-info-text {
+        font-family: 'Open Sans', sans-serif;
+        font-family: 'Roboto', sans-serif;    
+        /* background-color: aqua; */
+    
+        /* margin:  auto; */
+        gap: 20px;
+        margin-top: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;  
+    }
+
 }
