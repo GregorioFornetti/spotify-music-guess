@@ -2,7 +2,7 @@
 const pagesDisplay = {
     "empty-page": "none",
     "home-page": "flex",
-    "playlist-info-page": "block",
+    "playlist-info-page": "flex",
     "rounds-mode-game-page": "block",
     "credits-page": "block",
     'tests-page': 'block'

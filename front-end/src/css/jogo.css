@@ -1,0 +1,112 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#playlist-info-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    width: 60%;
+    
+}
+#vontade-de-morrer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+
+}
+#playlist-image {
+    width: 200px;
+    height: 200px;
+}
+
+#playlist-info-text {
+
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+
+    /* background-color: aqua; */
+    height: 200px;
+
+    /* margin:  auto; */
+    /* gap: 20px; */
+    margin-top: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;  
+}
+#playlist-info-text-linha {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+}
+#playlist-info-text-linha .spam-title {
+    font-weight: bold;
+}
+#playlist-info-text-linha .spam-content {
+    color: rgba(255, 255, 255, 0.685);
+}
+
+#playlist-name {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+#playlist-description {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.685);
+}
+
+
+#playlist-e-botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#playlist-e-botoes .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    /* background-color: blue; */
+    
+    border-radius: 15px;
+    width: 150px;
+}
+
+.botoes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 15px 0;    
+}
+
+#playlist-return {
+    background-color: black;
+    border: 2px solid black;
+    color: #1DB954;
+}
+#game-start {
+    background-color: #1DB954;
+    border: 2px solid #1DB954;
+    color: black;
+}
