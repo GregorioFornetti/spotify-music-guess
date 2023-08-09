@@ -30,17 +30,21 @@ export default function showFinalResultPage() {
         document.getElementById('rounds-mode-extra-tries')!.style.display = 'none'
     }
 
-    const roundsHistoryContainer = document.getElementById('rounds-mode-history') as HTMLElement
+    const roundsHistoryContainer = document.getElementById('carousel-inner') as HTMLElement
     roundsHistoryContainer.innerHTML = ''
 
+    // const roundTest
     
     const nslidesContainer = document.getElementById('nslides') as HTMLElement
     nslidesContainer.innerHTML = ''
     var i = 0;
+
+    
     for (let roundInfo of GameInfo.roundsHistory) {
         //criar button dentro de nslides
         const button = document.createElement('button');
         const elementRound = createRoundHistoryElement(roundInfo)
+
         nslidesContainer.appendChild(button);
         button.dataset.bsTarget = '#carouselExampleCaptions';
         button.dataset.bsSlideTo = i.toString();
@@ -49,11 +53,13 @@ export default function showFinalResultPage() {
             button.setAttribute('aria-current', 'true');
             elementRound.classList.add('active');
         }
+
         button.setAttribute('aria-label', `Slide ${i+1}`);
         roundsHistoryContainer.appendChild(elementRound)
 
         i++;
     }
+    
 
     toggleToSubpage('final-result-rounds-subpage')
 }
