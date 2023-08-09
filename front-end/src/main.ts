@@ -16,5 +16,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     User.isLogged = logged
 
     await loadHomePage()
-    toggleToPage('tests-page')
+    toggleToPage('home-page')
 })
