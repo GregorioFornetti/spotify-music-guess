@@ -32,7 +32,7 @@
   <script src="src/pages/roundsMode/subpages/songGuess.ts" type="module"></script>
   <script src="src/pages/roundsMode/subpages/songResult.ts" type="module"></script>
   <script src="src/pages/roundsMode/subpages/finalResult.ts" type="module"></script>
-
+  <script src="src/components/Modals/deviceSelectedModal.ts" type="module"></script>
 </head>
 
 <body>
@@ -54,7 +54,7 @@
           <ul class="navbar-nav justify-content-start flex-grow-1 pe-5">
             
             <li class="nav-item nav-link-sidebar">
-              <a class="nav-link nav-link-sidebar" href="#">Home</a>
+              <a id='home-btn' class="nav-link nav-link-sidebar" href="#">Home</a>
             </li>
             <li class="nav-item nav-link-sidebar">
               <a class="nav-link nav-link-sidebar" href="#">Ajuda</a>
@@ -65,7 +65,7 @@
             
           </ul>
             
-          <a id="logout" href="#">Logout</a>
+          <a id="logout" href="/">Logout</a>
         </div>   
       </div>
     </div>
@@ -158,7 +158,7 @@
           <input type="checkbox" name="extra-tries">
           <br>
           
-          <input type="submit" value="Jogar">
+          <input type="submit" value="Jogar" >
         </form>
       </div>
 
