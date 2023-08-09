@@ -145,13 +145,13 @@ async function loadPlayAgainPlaylists() {
 
 
 export default async function loadHomePage() {
-    /*addLoading(async () => {
+    addLoading(async () => {
         await Promise.all([
             loadDevices(),
             loadUserPlaylists(),
             loadPlayAgainPlaylists()
         ])
-    })*/
+    })
 }
 
 function showPlaylistAndSave(playlist: Playlist, playlistId: string) {
