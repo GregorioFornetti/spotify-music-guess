@@ -12,6 +12,7 @@ main{
     justify-content: center;
     margin-top: 50px;
     width: 60%;
+    min-width: 60%;
     
 }
 #vontade-de-morrer {
