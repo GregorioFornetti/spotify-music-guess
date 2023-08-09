@@ -42,6 +42,9 @@ function createMusicElement(music: Track | Episode) {
 export default function createRoundHistoryElement(roundInfo: RoundInfo) {
     const roundHistoryElement = document.createElement('div')
 
+    roundHistoryElement.classList.add('carousel-item')
+    
+
     roundHistoryElement.appendChild(createMusicElement(roundInfo.guessedMusic))
     roundHistoryElement.appendChild(createMusicElement(roundInfo.correctMusic))
 
@@ -49,11 +52,11 @@ export default function createRoundHistoryElement(roundInfo: RoundInfo) {
     timeSpentElement.innerText = `Tempo gasto: ${formatTime(roundInfo.timeSpent)}`
     roundHistoryElement.appendChild(timeSpentElement)
 
-    if (roundInfo.extraTriesCount) {
-        const extraTriesCountElement = document.createElement('p')
-        extraTriesCountElement.innerText = `Tentativas extras utilizadas: ${roundInfo.extraTriesCount}`
-        roundHistoryElement.appendChild(extraTriesCountElement)
-    }
+    // if (roundInfo.extraTriesCount) {
+    //     const extraTriesCountElement = document.createElement('p')
+    //     extraTriesCountElement.innerText = `Tentativas extras utilizadas: ${roundInfo.extraTriesCount}`
+    //     roundHistoryElement.appendChild(extraTriesCountElement)
+    // }
 
     return roundHistoryElement
 }
