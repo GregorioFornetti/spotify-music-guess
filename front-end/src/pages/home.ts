@@ -16,6 +16,8 @@ import getSimplifiedPlaylist from "../spotifyApi/requests/getSimplifiedPlaylist"
 import PlayAgainPlaylistsIds from "../global/PlayAgainPlaylistsIds"
 import Playlist from "../spotifyApi/types/Playlist"
 import addLoading from "../utils/addLoading"
+import pause from "../spotifyApi/requests/pause"
+import toggleToPage from "../utils/pageToggler"
 
 
 async function loadDevices() {
@@ -143,19 +145,13 @@ async function loadPlayAgainPlaylists() {
 
 
 export default async function loadHomePage() {
-    if (User.isLogged) {
-        addLoading(async () => {
-            await Promise.all([
-                loadDevices(),
-                loadUserPlaylists(),
-                loadPlayAgainPlaylists()
-            ])
-        })
-    } else {
-        document.getElementById('user-library')!.style.display = 'none'
-        document.getElementById('devices-home-page')!.style.display = 'none'
-        addLoading(loadPlayAgainPlaylists)
-    }
+    addLoading(async () => {
+        await Promise.all([
+            loadDevices(),
+            loadUserPlaylists(),
+            loadPlayAgainPlaylists()
+        ])
+    })
 }
 
 function showPlaylistAndSave(playlist: Playlist, playlistId: string) {
@@ -186,5 +182,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         } catch (error) {
             console.log(error)
         }
+    })
+
+    document.getElementById('home-btn')?.addEventListener('click', () => {
+        if (User.isLogged) {
+            pause()
+        }
+        toggleToPage('home-page')
     })
 })

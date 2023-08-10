@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+@font-face {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.timer {
+    font-size: 3em;
+    font-family: Roboto Mono;
+    color: white;
+    padding: 8px 0px;
+    text-align: center;
+    width: 150px;
+    margin: 0px auto;
+}
