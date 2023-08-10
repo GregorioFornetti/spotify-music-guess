@@ -1,4 +1,8 @@
-#tests-page {
+#tests-page{
+  flex-direction: column;
+  gap: 30px;
+}
+#final-result-rounds-subpage{
   flex-direction: column;
   gap: 30px;
 }
@@ -91,7 +95,7 @@
   border: 6px solid rgb(158, 39, 39);
 }
 
-.rounds-mode-history-accepted {
+.rounds-mode-history-accepted{
   border: 6px solid rgb(30, 164, 96);
 
 }
@@ -128,11 +132,19 @@
   margin: 5px;
 }
 
-.music-round-history-choice-re {
+.music-round-history-choice-re{
   color: rgb(195, 65, 65);
+  
 }
-.music-round-history-choice-ac {
+.music-round-history-choice-re img{
+  border: 6px solid rgb(158, 39, 39);
+  
+}
+.music-round-history-choice-ac{
   color: rgb(30, 164, 96);
+}
+.music-round-history-choice-ac img{
+  border: 6px solid rgb(30, 164, 96);
 }
 
 .music-round-history-type {
@@ -171,7 +183,6 @@
   justify-content: center;
   width: 50%;
   margin: 0px auto;
-  margin-top: -30px;
 }
 .btn_result{
   background-color: white;
