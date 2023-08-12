@@ -238,10 +238,17 @@ export default class GameInfo {
      *  Retorna a pontuação que o usuário obteve no jogo
      */
     static get score() {
-        return Math.max(
-            (this._correctAnswerCount * 500) - 
-            (this._currentTime + this._extraTriesCount * 25)
-            , 50 * this._correctAnswerCount
+        // O plano é que o usuário que escolher ouvir menos da música e acerte ganhe mais pontos.
+        // A formula 8 / (musicPlayTime + 3) faz com que ao escolher 5 segundos de música ganhe um multiplicador padrão (1)
+        // e caso escolha 1 segundo de música ganhe o dobro de multiplicador (2)
+        
+        return Math.round(
+            Math.max(
+                (this._correctAnswerCount * 100) * 
+                (8 / (this._musicPlaytime + 3)) - 
+                (this._currentTime + this._extraTriesCount * 10)
+                , 25 * this._correctAnswerCount
+            )
         )
     }
 
