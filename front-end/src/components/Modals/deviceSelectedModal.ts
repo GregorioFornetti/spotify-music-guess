@@ -1,3 +1,4 @@
+
 import Modal from "./base/visibleModal"
 import getDevices from "../../spotifyApi/requests/getDevices"
 import createDeviceElement from "../device"
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         let devicesList = document.getElementById('devices-list');
 
-        /* se a div estiver vazia nenhum device foi selecionado o usuário deve ser orientado a abrir o spotify */
+        // se a div estiver vazia nenhum device foi selecionado o usuário deve ser orientado a abrir o spotify
         if (devicesList?.innerHTML.trim() === '') {
             modalContent = document.createElement('div');
             var paragrafo = document.createElement('p');
@@ -28,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             deviceSelectedModal.show()
 
         } else {
-            /* se houverem dispositivos na div, podem estar selecionados ou não
-            caso não tenha nenhum dispositivo selecionado pedir ao usuário para selecionar um dispositivo, se não deixa passar */
+            // se houverem dispositivos na div, podem estar selecionados ou não
+            // caso não tenha nenhum dispositivo selecionado pedir ao usuário para selecionar um dispositivo, se não deixa passar 
             console.log('tem device, agora seleciona')
-            /* se não tem elementos selecionados */
+            // se não tem elementos selecionados
             const premium = document.getElementById('input-premium') as HTMLInputElement
         
             if (premium) {
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             }
         }   
-        })  /*deixar passar */
+        }) 
 })
 
 export default deviceSelectedModal
