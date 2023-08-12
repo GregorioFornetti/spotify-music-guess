@@ -20,6 +20,10 @@
   
   
   
+  
+  
+  
+  
 
   <!-- Todos os códigos que tiverem algum carregamento inicial (DOMContentLoaded), colocar aqui -->
   
@@ -30,10 +34,11 @@
   
   
   
-  <script type="module" crossorigin src="./assets/home-fec1dcc5.js"></script>
+  
+  <script type="module" crossorigin src="./assets/home-ad79c427.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-3cfb730f.js">
-  <link rel="modulepreload" crossorigin href="./assets/addLoading-c08e133b.js">
-  <link rel="stylesheet" href="./assets/home-4d461229.css">
+  <link rel="modulepreload" crossorigin href="./assets/addLoading-82809337.js">
+  <link rel="stylesheet" href="./assets/home-8e44daea.css">
   <link rel="stylesheet" href="./assets/reset-0b93f2c6.css">
 </head>
 
@@ -56,7 +61,7 @@
           <ul class="navbar-nav justify-content-start flex-grow-1 pe-5">
             
             <li class="nav-item nav-link-sidebar">
-              <a class="nav-link nav-link-sidebar" href="#">Home</a>
+              <a id='home-btn' class="nav-link nav-link-sidebar" href="#">Home</a>
             </li>
             <li class="nav-item nav-link-sidebar">
               <a class="nav-link nav-link-sidebar" href="#">Ajuda</a>
@@ -64,10 +69,9 @@
             <li class="nav-item nav-link-sidebar">
               <a id='credit' class="nav-link nav-link-sidebar" href="#">Créditos</a>
             </li>
-            
           </ul>
             
-          <a id="logout" href="#">Logout</a>
+          <a id="logout" href="/">Logout</a>
         </div>   
       </div>
     </div>
@@ -114,18 +118,31 @@
     
     <!-- Página de seleção -->
     <div id="playlist-info-page" style="display: none;">
-      <img id="playlist-image" src="" alt="Imagem da playlist">
       <div>
-        <h2 id="playlist-name"></h2>
-        <p id="playlist-description"></p>
-        <p id="playlist-owner"></p>
-        <div id="playlist-tracks">
-          <p>Músicas</p>
-          <p id="playlist-tracks-count"></p>
-          <div id="playlist-tracks-list"></div>
+        <div id="vontade-de-morrer">
+          <img id="playlist-image" src="" alt="Imagem da playlist">
+          <div id="playlist-info-text">
+            <h2 id="playlist-name"></h2>
+            <p id="playlist-description"></p>
+            <div id="playlist-info-text-linha">
+              <spam class="spam-title">Autor:</spam>  <spam id="playlist-owner" class="spam-content"></spam>
+              <spam class="spam-title">Músicas:</spam><spam id="playlist-tracks-count" class="spam-content"></spam>
+            </div>
+        
+        
+          </div>
         </div>
-        <button id="playlist-return">Voltar</button>
-        <button id="game-start">Começar jogo</button>
+        
+        <div id="playlist-e-botoes">
+            <div id="playlist-tracks">
+            <div id="playlist-tracks-list"></div>
+          </div>
+          <div class="botoes">
+            <button id="playlist-return" class="btn">Voltar</button>
+            <button id="game-start" class="btn">Começar jogo</button>
+          </div>
+        
+        </div>
       </div>
     </div>
 
@@ -133,34 +150,46 @@
       <!-- Sub-página de configurações -->
       <div id="configs-rounds-subpage">
         <form id="configs-rounds-form">
-          <label>Modo premium:</label>
-          <input id="input-premium" type="checkbox" name="premium">
-          <br>
-
-          <label>Quantidade rounds:</label>
-          <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
-          <br>
-    
-          <label>Posição da música:</label>
-          <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
-          <label>Início</label>
-          <input type="radio" value="random" name="music-pos" id="music-pos-random">
-          <label>Aleatório</label>
-          <br>
-    
-          <label>Tempo de música:</label>
-          <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
-          <br>
-    
-          <label>Quantidade de músicas:</label>
-          <input id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
-          <br>
-    
-          <label>Tentativas extras:</label>
-          <input type="checkbox" name="extra-tries">
-          <br>
+          <div class="element-form">
+            <label for="input-premium">Modo premium:</label>
+            <input id="input-premium" class="checkbox" type="checkbox" name="premium">
+            
+          </div>
           
-          <input type="submit" value="Jogar">
+          <div class="element-form">
+            <label>Quantidade rounds:</label>
+            <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
+            
+          </div>
+
+          <div class="element-form">
+            <label>Posição da música:</label>
+            <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
+            <label>Início</label>
+            <input type="radio" value="random" name="music-pos" id="music-pos-random">
+            <label>Aleatório</label>
+          </div>    
+    
+          <div class="element-form">
+            <label>Tempo de música:</label>
+            <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
+            
+          </div>
+    
+          <div class="element-form">
+            <label>Quantidade de músicas:</label>
+            <input id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
+            
+          </div>
+    
+          <div class="element-form">
+            <label>Tentativas extras:</label>
+            <input type="checkbox" name="extra-tries">
+           
+          </div>   
+          
+          
+          <input id="config-btn-submit" type="submit" value="Jogar">
         </form>
       </div>
 
@@ -194,37 +223,57 @@
 
       <!-- Sub-página dos resultados finais, após todas as adivinhações terem sido realizadas -->
       <div id="final-result-rounds-subpage" style="display: none;">
-        <h2>Resultados</h2>
+        <h2 id="result-title">Resultados</h2>
 
-        <div>
-          <p>
-            Pontuação: <span id="rounds-mode-score"></span>
-          </p>
-          <p>
-            Acertos: <span id="rounds-mode-correct-count"></span>
-          </p>
-          <p>
-            Erros: <span id="rounds-mode-incorrect-count"></span>
-          </p>
-          <p>
-            Número total de rodadas: <span id="rounds-mode-total-rounds"></span>
-          </p>
-          <p>
-            Tempo gasto: <span id="rounds-mode-total-time"></span>
-          </p>
-          <p id="rounds-mode-extra-tries">
-            Número de tentativas extras utilizadas: <span id="rounds-mode-extra-tries-count"></span>
-          </p>
+        <div class="statistics-game">
+          <div class="timer"> 
+            <span id="rounds-mode-total-time"></span>
+          </div>
+          <div class="statistics-game-body">
+            <div class="statistics-game-body-upper">
+              <p>
+                Pontuação: <span id="rounds-mode-score"></span>
+              </p>
+              <p>
+                Acertos: <span id="rounds-mode-correct-count"></span>
+              </p>
+            </div>
+            <div class="statistics-game-body-bottom">
+              <p>
+                Erros: <span id="rounds-mode-incorrect-count"></span>
+              </p>
+              <p>
+                Rodadas: <span id="rounds-mode-total-rounds"></span>
+              </p>
+              <p id="rounds-mode-extra-tries">
+                Número de tentativas extras utilizadas: <span id="rounds-mode-extra-tries-count"></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div id="rounds-mode-history">
+      <p class="rounds-mode-history-title"> Histórico de rodadas </p>
+      <div id="carouselExampleCaptions" class="carousel slide carro">
+        <div id = "nslides" class="carousel-indicators">
+          <!--<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+        </div>
+        <div class="carousel-inner" id="carousel-inner">
 
         </div>
 
-        <button id="final-result-return">Voltar</button>
-        <button id="play-again-rounds-mode-same-configs">Jogar novamente com mesmas configurações</button>
-        <button id="play-again-rounds-mode-new-configs">Jogar novamente com configurações diferentes</button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
+    <div class="buttons">
+      <button id="final-result-return" class="btn_result"> <i class="bi bi-arrow-return-left"></i> Voltar</button>
+      <button id="play-again-rounds-mode-same-configs" class="btn_result"> <i class="bi bi-arrow-clockwise"></i> Jogar novamente</button>
     </div>
 
     <!-- Página de creditos -->
@@ -235,7 +284,9 @@
       
     </div>
 
+    <!-- Página para testes -->
     <div id="tests-page" style="display: none;">
+      
     </div>
   </main>
 
