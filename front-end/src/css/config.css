@@ -1,3 +1,10 @@
+#configs-rounds-subpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #configs-rounds-form {
     background-color: rgb(12, 158, 51);
     display: flex;
@@ -5,7 +12,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    width: 100%;
+
     height: 100%;
     margin-top: 150px;
     margin-bottom: 20px;
