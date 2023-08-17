@@ -4,8 +4,8 @@ import toggleToPage from '../utils/pageToggler'
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("credit")?.addEventListener("click", () => {
         toggleToPage('credits-page')
-        clearDiv();
-        
+        clearDiv()
+
     //    lista/json de usuários
 
         const users = [ 
