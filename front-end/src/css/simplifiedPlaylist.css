@@ -17,7 +17,7 @@
 .simplified-playlist-image {
     border-radius: 10px;
     width: 100%;
-    height: auto;
+    aspect-ratio : 1 / 1;
 }
 
 

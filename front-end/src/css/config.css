@@ -1,0 +1,52 @@
+#configs-rounds-subpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#configs-rounds-form {
+    background-color: rgb(12, 158, 51);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    height: 100%;
+    margin-top: 150px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 20px;
+
+}
+.element-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+#config-btn-submit{
+    align-self: center;
+    width: 50%;
+    height: 50px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(12, 158, 51);
+    border: none;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);  
+    margin-top: 20px;
+}
+
+#input-premium {
+  width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}

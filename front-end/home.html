@@ -13,6 +13,8 @@
 
   <!-- Estilos próprios -->
   <link rel="stylesheet" href="src/css/reset.css">
+  <link rel="stylesheet" href="src/css/jogo.css">
+  <link rel="stylesheet" href="src/css/config.css">
   <link rel="stylesheet" href="src/css/styles.css">
   <link rel="stylesheet" href="src/css/header.css">
   <link rel="stylesheet" href="src/css/home.css">
@@ -33,7 +35,6 @@
   <script src="src/pages/roundsMode/subpages/songGuess.ts" type="module"></script>
   <script src="src/pages/roundsMode/subpages/songResult.ts" type="module"></script>
   <script src="src/pages/roundsMode/subpages/finalResult.ts" type="module"></script>
-  <script src="src/components/Modals/deviceSelectedModal.ts" type="module"></script>
 </head>
 
 <body>
@@ -112,53 +113,76 @@
     
     <!-- Página de seleção -->
     <div id="playlist-info-page" style="display: none;">
-      <img id="playlist-image" src="" alt="Imagem da playlist">
-      <div>
-        <h2 id="playlist-name"></h2>
-        <p id="playlist-description"></p>
-        <p id="playlist-owner"></p>
-        <div id="playlist-tracks">
-          <p>Músicas</p>
-          <p id="playlist-tracks-count"></p>
-          <div id="playlist-tracks-list"></div>
+
+        <div id="vontade-de-morrer">
+          <img id="playlist-image" src="" alt="Imagem da playlist">
+          <div id="playlist-info-text">
+            <h2 id="playlist-name"></h2>
+            <p id="playlist-description"></p>
+            <div id="playlist-info-text-linha">
+              <spam class="spam-title">Autor:</spam>  <spam id="playlist-owner" class="spam-content"></spam>
+              <spam class="spam-title">Músicas:</spam><spam id="playlist-tracks-count" class="spam-content"></spam>
+            </div>
+        
+        
+          </div>
         </div>
-        <button id="playlist-return">Voltar</button>
-        <button id="game-start">Começar jogo</button>
-      </div>
+        
+        <div id="playlist-e-botoes">
+            <div id="playlist-tracks-list"></div>
+          <div class="botoes">
+            <button id="playlist-return" class="btn">Voltar</button>
+            <button id="game-start" class="btn">Começar jogo</button>
+          </div>
+        
+        </div>
+
     </div>
 
     <div id="rounds-mode-game-page" style="display: none;">
       <!-- Sub-página de configurações -->
       <div id="configs-rounds-subpage">
         <form id="configs-rounds-form">
-          <label>Modo premium:</label>
-          <input id="input-premium" type="checkbox" name="premium">
-          <br>
-
-          <label>Quantidade rounds:</label>
-          <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
-          <br>
-    
-          <label>Posição da música:</label>
-          <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
-          <label>Início</label>
-          <input type="radio" value="random" name="music-pos" id="music-pos-random">
-          <label>Aleatório</label>
-          <br>
-    
-          <label>Tempo de música:</label>
-          <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
-          <br>
-    
-          <label>Quantidade de músicas:</label>
-          <input id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
-          <br>
-    
-          <label>Tentativas extras:</label>
-          <input type="checkbox" name="extra-tries">
-          <br>
+          <div class="element-form">
+            <label for="input-premium">Modo premium:</label>
+            <input id="input-premium" class="checkbox" type="checkbox" name="premium">
+            
+          </div>
           
-          <input type="submit" value="Jogar" >
+          <div class="element-form">
+            <label>Quantidade rounds:</label>
+            <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
+            
+          </div>
+
+          <div class="element-form">
+            <label>Posição da música:</label>
+            <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
+            <label>Início</label>
+            <input type="radio" value="random" name="music-pos" id="music-pos-random">
+            <label>Aleatório</label>
+          </div>    
+    
+          <div class="element-form">
+            <label>Tempo de música:</label>
+            <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
+            
+          </div>
+    
+          <div class="element-form">
+            <label>Quantidade de músicas:</label>
+            <input id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
+            
+          </div>
+    
+          <div class="element-form">
+            <label>Tentativas extras:</label>
+            <input type="checkbox" name="extra-tries">
+           
+          </div>   
+          
+          
+          <input id="config-btn-submit" type="submit" value="Jogar">
         </form>
       </div>
 
@@ -263,105 +287,9 @@
     </div>
 
     <!-- Página para testes -->
-    <div id="tests-page">
-      <h2 id="result-title">Resultados</h2>
-
-      <div class="statistics-game">
-        <div class="timer"> 
-          <span id="rounds-mode-total-time">00:11</span>
-        </div>
-        <div class="statistics-game-body">
-          <div class="statistics-game-body-upper">
-            <p>
-              Pontuação <span id="rounds-mode-score">489</span>
-            </p>
-            <p>
-              Acertos <span id="rounds-mode-correct-count">1</span>
-            </p>
-          </div>
-          <div class="statistics-game-body-bottom">
-            <p>
-              Erros <span id="rounds-mode-incorrect-count">1</span>
-            </p>
-            <p>
-              Rodadas <span id="rounds-mode-total-rounds">2</span>
-            </p>
-            <p id="rounds-mode-extra-tries" style="display: none;">
-              Número de tentativas extras utilizadas <span id="rounds-mode-extra-tries-count">0</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <p class="rounds-mode-history-title"> Histórico de rodadas </p>
-      <div id="carouselExampleCaptions" class="carousel slide carro">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-
-        </div>
-          <div class="carousel-inner">
-
-            <div class="carousel-item active rounds-mode-history rounds-mode-history-accepted">
-              <div class="timer">00:05</div>
-              <div class="music-round-history">
-                <div class="music-round-history-image">
-                  <div class="music-round-history-correct">
-                    <p class="music-round-history-type">Música sorteada</p>
-                    <img class="img-fluid music-image-round-history"
-                      src="https://i.scdn.co/image/ab67616d0000b2734b0ddebba0d5b34f2a2f07a4">
-                    <p class="music-name-round-history">Cracker Island (feat. Thundercat)</p>
-                    <p class="music-artist-round-history">Gorillaz</p>
-                  </div>
-                  <div class="music-round-history-choice-ac">
-                    <p class="music-round-history-type">Música escolhida</p>
-                    <img class="img-fluid music-image-round-history"
-                      src="https://i.scdn.co/image/ab67616d0000b2734b0ddebba0d5b34f2a2f07a4">
-                    <p class="music-name-round-history">Cracker Island (feat. Thundercat)</p>
-                    <p class="music-artist-round-history">Gorillaz</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="carousel-item rounds-mode-history rounds-mode-history-rejected">
-              <div class="timer">00:05</div>
-              <div class="music-round-history">
-                <div class="music-round-history-image">
-                  <div class="music-round-history-correct">
-                    <p class="music-round-history-type">Música sorteada</p>
-                    <img class="img-fluid music-image-round-history"
-                      src="https://i.scdn.co/image/ab67616d0000b2734b0ddebba0d5b34f2a2f07a4">
-                    <p class="music-name-round-history">Cracker Island (feat. Thundercat)</p>
-                    <p class="music-artist-round-history">Gorillaz</p>
-                  </div>
-                  <div class="music-round-history-choice-re">
-                    <p class="music-round-history-type">Música escolhida</p>
-                    <img class="img-fluid music-image-round-history"
-                      src="https://i.scdn.co/image/ab67616d0000b2734b0ddebba0d5b34f2a2f07a4">
-                    <p class="music-name-round-history">Cracker Island (feat. Thundercat)</p>
-                    <p class="music-artist-round-history">Gorillaz</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+    <div id="tests-page" style="display: none;">
+      
     </div>
-    
-    <!-- colocar os dois botões na mesma linha -->
-    <div class="buttons">
-      <button id="final-result-return" class="btn_result"> <i class="bi bi-arrow-return-left"></i> Voltar</button>
-      <button id="play-again-rounds-mode-same-configs" class="btn_result"> <i class="bi bi-arrow-clockwise"></i> Jogar novamente</button>
-    </div>
-  </div>
   </main>
 
   <footer>

@@ -2,7 +2,6 @@
 .playlist-container {
     display: flex;
     justify-content: center;
-    width: fit-content;
     max-width: 900px;
     width: 100%;
 }
@@ -17,6 +16,7 @@
 }
 
 .playlist-head{
+    width: 100%;
     background-color: var(--card-hover-bg-color);
 }
 
@@ -111,7 +111,9 @@
 }
 
 .playlist-body tr.selected {
-    background-color: var(--btn-color);
+    background-color: rgb(200, 200, 200);
+    color: black;
+    font-weight: bold;
 }
 
 @media (max-width: 900px) {

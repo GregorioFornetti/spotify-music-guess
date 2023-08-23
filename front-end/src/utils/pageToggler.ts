@@ -1,7 +1,7 @@
 const pagesDisplay = {
     "empty-page": "none",
     "home-page": "flex",
-    "playlist-info-page": "block",
+    "playlist-info-page": "flex",
     "rounds-mode-game-page": "block",
     "credits-page": "block",
     "tests-page": "block"
@@ -39,7 +39,7 @@ export default function toggleToPage(pageId: keyof typeof pagesDisplay): void {
  *  @param subPageId - ID da subpágina. O id é aquele contido no atributo id, em um container dentro de uma página
  *  
  */
-export function toggleToSubpage(pageId: keyof typeof pagesDisplay, subPageId: string): void {
+export function toggleToSubpage(pageId: keyof typeof pagesDisplay, subPageId: string, subpageDisplay: string): void {
     const subpages = document.getElementById(pageId)?.children
 
     if (subpages) {
@@ -47,7 +47,7 @@ export function toggleToSubpage(pageId: keyof typeof pagesDisplay, subPageId: st
             const subpage = subpages[i] as HTMLElement
             subpage.style.display = 'none'
             if (subpage.id === subPageId) {
-                subpage.style.display = 'block'
+                subpage.style.display = subpageDisplay
             }
         }
     }

@@ -13,7 +13,7 @@ interface PlaylistOptions {
 }
 
 
-export default function createPlaylistElement(playlist: Playlist, onMusicSelect?: (music: Track | Episode) => void): HTMLElement {
+export default function createPlaylistElement(playlist: Playlist, onMusicSelect?: (music: Track | Episode) => void, onDoubleMusicSelect?: (music: Track | Episode) => void): HTMLElement {
     
     const playlistContainer = document.createElement('div');
     playlistContainer.className = 'playlist-container'
@@ -137,6 +137,9 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
                 musicItem.addEventListener('click', () => {
                     onMusicSelect(item.track);
                     if (selectedMusic === item.track) {
+                        if (onDoubleMusicSelect) {
+                            onDoubleMusicSelect(item.track)
+                        }
                         selectedMusicElement?.classList.remove('selected');
                         selectedMusicElement = null;
                         selectedMusic = null;
