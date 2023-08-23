@@ -82,7 +82,16 @@
     max-width: 900px;
 }
 
-#playlist-e-botoes .btn {
+.botoes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px 0;    
+}
+
+.botoes .btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,15 +101,6 @@
     border-radius: 15px;
     width: 150px;
     font-weight: 600;
-}
-
-.botoes{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px 0;    
 }
 
 #playlist-return {

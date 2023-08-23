@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //    lista/json de usuários
 
         const users = [ 
-            { nickname: "A-nita", cargos: ["Diretora de Artes", "Desenvolvedora"], linkedin: "https://www.linkedin.com/in/anita-moura/" },
+            { nickname: "A-nita", cargos: ["Desenvolvedora"], linkedin: "https://www.linkedin.com/in/anita-moura/" },
             { nickname: "caiopadovan", cargos: ["Desenvolvedor"], linkedin: "https://www.linkedin.com/in/caio-padovan-b28a97262/" },
-            { nickname: "Pandxra", cargos: ["Faltou na reunião", "Desenvolvedora"], linkedin: "https://www.linkedin.com/in/cinthiacosta98/" },
-            { nickname: "GregorioFornetti", cargos: ["Chefe", "Desenvolvedor"], linkedin: "https://www.linkedin.com/in/greg%C3%B3rio-fornetti-azevedo-4a0193201/" },
+            { nickname: "Pandxra", cargos: ["Desenvolvedora"], linkedin: "https://www.linkedin.com/in/cinthiacosta98/" },
+            { nickname: "GregorioFornetti", cargos: ["Desenvolvedor"], linkedin: "https://www.linkedin.com/in/greg%C3%B3rio-fornetti-azevedo-4a0193201/" },
             { nickname: "guilhermesdc", cargos: ["Desenvolvedor"], linkedin: "https://www.linkedin.com/in/guilherme-silva-de-camargo-104618220/" },
-            { nickname: "N4NiNi", cargos: ["Analista"], linkedin: "https://www.linkedin.com/in/vinicius-nanini/"}
+            { nickname: "N4NiNi", cargos: ["Desenvolvedor"], linkedin: "https://www.linkedin.com/in/vinicius-nanini/"}
         ];
 
 
