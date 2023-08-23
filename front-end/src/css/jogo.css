@@ -136,5 +136,41 @@ main{
         align-items: center;
         justify-content: space-between;  
     }
+}
 
+#song-guess-hear-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    /* background-color: blue; */
+    
+    border-radius: 15px;
+    width: 150px;
+    font-weight: 600;
+   
+
+    background-color: black;
+    border: 2px solid black;
+    color: #1DB954;
+}
+
+#song-guess-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    /* background-color: blue; */
+    
+    border-radius: 15px;
+    width: 150px;
+    font-weight: 600;
+    
+
+    background-color: #1DB954;
+    border: 2px solid #1DB954;
+    color: black;
+}
+#div-botoes {
+    margin-top: 20px;
 }
