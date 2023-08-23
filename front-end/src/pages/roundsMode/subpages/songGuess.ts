@@ -99,26 +99,38 @@ function showMusics(playlist: Playlist) {
     const playlistTracks = document.getElementById('playlist-tracks-list-game')!
     playlistTracks.innerHTML = ""
 
-    playlistTracks.appendChild(createPlaylistElement(playlist, (music) => {
-        selectedMusic = music
-    }))
+    playlistTracks.appendChild(
+        createPlaylistElement(
+            playlist, 
+            (music) => {
+                selectedMusic = music
+            },
+            (music) => {
+                submitMusic(music)
+            }
+        )
+    )
+}
+
+function submitMusic(music: Track | Episode) {
+    clearInterval(intervalId)
+
+    showSongResult(
+        GameInfo.playlist.tracks.items[musicsNumberShuffled[GameInfo.roundNumber - 1]].track,
+        music
+    )
+
+    selectedMusic = null
+
+    musicPlayer.pause()
+    musicPlayer.close()
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("song-guess-submit")?.addEventListener('click', () => {
         if (selectedMusic) {
-            clearInterval(intervalId)
-
-            showSongResult(
-                GameInfo.playlist.tracks.items[musicsNumberShuffled[GameInfo.roundNumber - 1]].track,
-                selectedMusic
-            )
-
-            selectedMusic = null
-
-            musicPlayer.pause()
-            musicPlayer.close()
+            submitMusic(selectedMusic)
         }
     })
 
