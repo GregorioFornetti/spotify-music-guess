@@ -70,10 +70,13 @@ export default function createRoundHistoryElement(roundInfo: RoundInfo) {
     
     // Cria a div 'music-round-history-imag'
     const imageElement = document.createElement('div')
+    imageElement.classList.add('row')
     imageElement.classList.add('music-round-history-image')
     
     // Cria a música escolhida
     const guessedMusicElement = createMusicElement(roundInfo.guessedMusic, true)
+    guessedMusicElement.classList.add('col-lg-6')
+    guessedMusicElement.classList.add('col-xl-5')
     if (roundInfo.guessedMusic.id === roundInfo.correctMusic.id) {
         guessedMusicElement.classList.add('music-round-history-choice-ac')
     } else {
@@ -82,6 +85,9 @@ export default function createRoundHistoryElement(roundInfo: RoundInfo) {
      
     // Cria a música correta
     const correctMusicElement = createMusicElement(roundInfo.correctMusic, false)
+    
+    correctMusicElement.classList.add('col-lg-6')
+    correctMusicElement.classList.add('col-xl-5')
     correctMusicElement.classList.add('music-round-history-correct')
     
     // Adiciona os elementos criados
