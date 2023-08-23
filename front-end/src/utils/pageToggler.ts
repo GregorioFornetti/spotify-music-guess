@@ -1,4 +1,3 @@
-
 const pagesDisplay = {
     "empty-page": "none",
     "home-page": "flex",

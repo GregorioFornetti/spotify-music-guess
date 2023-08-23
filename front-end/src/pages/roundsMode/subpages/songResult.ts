@@ -16,9 +16,13 @@ export default function showSongResult(correctMusic: Track|Episode, guessedMusic
 
     if (correctMusic.id === guessedMusic.id) {
         document.getElementById('song-result-message')!.innerText = 'Você acertou !'
+        document.getElementById('song-result-message')!.classList.add('music-round-subpage-choice-ac')
+        document.getElementById('music-title-resposta')!.classList.add('music-round-subpage-choice-ac')
         GameInfo.increaseCorrectAnswerCount()
     } else {
         document.getElementById('song-result-message')!.innerText = 'Você errou !'
+        document.getElementById('song-result-message')!.classList.add('music-round-subpage-choice-re')
+        document.getElementById('music-title-resposta')!.classList.add('music-round-subpage-choice-re')
     }
 
     document.getElementById("song-result-current-round")!.innerText = GameInfo.roundNumber.toString()
@@ -27,23 +31,35 @@ export default function showSongResult(correctMusic: Track|Episode, guessedMusic
 
     const correctMusicElement = document.getElementById("song-result-correct-song") as HTMLElement
     correctMusicElement.innerHTML = ""
-    const musicElemento = createMusicElement(correctMusic)
-    musicElemento.getElementsByClassName("music-image")[0].classList.add("img-fluid")
-    musicElemento.getElementsByClassName("music-image")[0].classList.add("music-image-round-history")
-    musicElemento.getElementsByClassName("music-name")[0].classList.add("music-name-round-history")
-    musicElemento.getElementsByClassName("music-artist")[0].classList.add("music-artist-round-history")
-    correctMusicElement.appendChild(musicElemento)
+    const musicElementCorrect = createMusicElement(correctMusic)
+    musicElementCorrect.getElementsByClassName("music-image")[0].classList.add("img-fluid")
+    musicElementCorrect.getElementsByClassName("music-image")[0].classList.add("music-image-subresult")
+    musicElementCorrect.getElementsByClassName("music-name")[0].classList.add("music-name-subresult")
+    musicElementCorrect.getElementsByClassName("music-artist")[0].classList.add("music-artist-subresult")
+    musicElementCorrect.getElementsByClassName("music-image")[0].classList.add("music-round-subpage")
+    musicElementCorrect.getElementsByClassName("music-name")[0].classList.add("music-round-subpage")
+    musicElementCorrect.getElementsByClassName("music-artist")[0].classList.add("music-round-subpage")
+    correctMusicElement.appendChild(musicElementCorrect)
     
 
     const guessedMusicElement = document.getElementById("song-result-guessed-song") as HTMLElement
     guessedMusicElement.innerHTML = ""
-    const musicElementog = createMusicElement(guessedMusic)
-    musicElementog.getElementsByClassName("music-image")[0].classList.add("img-fluid")
-    musicElementog.getElementsByClassName("music-image")[0].classList.add("music-image-round-history")
-    musicElementog.getElementsByClassName("music-name")[0].classList.add("music-name-round-history")
-    musicElementog.getElementsByClassName("music-artist")[0].classList.add("music-artist-round-history")
-    guessedMusicElement.appendChild(musicElementog)
+    const musicElementGuessed = createMusicElement(guessedMusic)
+    musicElementGuessed.getElementsByClassName("music-image")[0].classList.add("img-fluid")
+    musicElementGuessed.getElementsByClassName("music-image")[0].classList.add("music-image-subresult")
+    musicElementGuessed.getElementsByClassName("music-name")[0].classList.add("music-name-subresult")
+    musicElementGuessed.getElementsByClassName("music-artist")[0].classList.add("music-artist-subresult")
+    if (correctMusic.id === guessedMusic.id) {
+        musicElementGuessed.getElementsByClassName("music-image")[0].classList.add("music-round-subpage-choice-ac")
+        musicElementGuessed.getElementsByClassName("music-name")[0].classList.add("music-round-subpage-choice-ac")
+        musicElementGuessed.getElementsByClassName("music-artist")[0].classList.add("music-round-subpage-choice-ac")
+    } else {
+        musicElementGuessed.getElementsByClassName("music-image")[0].classList.add("music-round-subpage-choice-re")
+        musicElementGuessed.getElementsByClassName("music-name")[0].classList.add("music-round-subpage-choice-re")
+        musicElementGuessed.getElementsByClassName("music-artist")[0].classList.add("music-round-subpage-choice-re")
+    }
 
+    guessedMusicElement.appendChild(musicElementGuessed)
     
     toggleToSubpage('song-result-rounds-subpage')
 }
