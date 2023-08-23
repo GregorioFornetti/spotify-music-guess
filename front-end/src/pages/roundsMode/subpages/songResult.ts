@@ -27,11 +27,22 @@ export default function showSongResult(correctMusic: Track|Episode, guessedMusic
 
     const correctMusicElement = document.getElementById("song-result-correct-song") as HTMLElement
     correctMusicElement.innerHTML = ""
-    correctMusicElement.appendChild(createMusicElement(correctMusic))
+    const musicElemento = createMusicElement(correctMusic)
+    musicElemento.getElementsByClassName("music-image")[0].classList.add("img-fluid")
+    musicElemento.getElementsByClassName("music-image")[0].classList.add("music-image-round-history")
+    musicElemento.getElementsByClassName("music-name")[0].classList.add("music-name-round-history")
+    musicElemento.getElementsByClassName("music-artist")[0].classList.add("music-artist-round-history")
+    correctMusicElement.appendChild(musicElemento)
+    
 
     const guessedMusicElement = document.getElementById("song-result-guessed-song") as HTMLElement
     guessedMusicElement.innerHTML = ""
-    guessedMusicElement.appendChild(createMusicElement(guessedMusic))
+    const musicElementog = createMusicElement(guessedMusic)
+    musicElementog.getElementsByClassName("music-image")[0].classList.add("img-fluid")
+    musicElementog.getElementsByClassName("music-image")[0].classList.add("music-image-round-history")
+    musicElementog.getElementsByClassName("music-name")[0].classList.add("music-name-round-history")
+    musicElementog.getElementsByClassName("music-artist")[0].classList.add("music-artist-round-history")
+    guessedMusicElement.appendChild(musicElementog)
 
     
     toggleToSubpage('song-result-rounds-subpage')

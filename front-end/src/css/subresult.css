@@ -1,0 +1,217 @@
+#tests-page{
+    flex-direction: column;
+    gap: 30px;
+  }
+  #final-result-rounds-subpage{
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  #song-result-title {
+    font-size: 80px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  #song-result-message {
+    font-size: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .rounds-mode-history-title {
+    font-size: 50px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .statistics-game {
+    border: 1px solid black;
+    width: fit-content;
+    padding: 40px;
+    align-content: center;
+    margin: 10px auto;
+    background-color: rgb(5,5,5);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: baseline;
+    border: 2px solid;
+  }
+  
+  .statistics-game-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .statistics-game-body-upper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .statistics-game-body-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .statistics-game p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    margin-right: 15px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .statistics-game span {
+    font-weight: bold;
+  }
+  
+  #rounds-mode-extra-tries {
+    display: none;
+  }
+  
+  .carro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .carousel-inner{
+    max-width: 80%;
+    margin: 0 auto;
+    padding: -1000px;
+  }
+  
+  .rounds-single-mode-history {
+    border-radius: 15px;
+    background-color: rgb(5,5,5);
+    border: 6px solid black;
+  }
+  .rounds-single-result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .rounds-mode-history-rejected {
+    border: 6px solid rgb(158, 39, 39);
+  }
+  
+  .rounds-mode-history-accepted{
+    border: 6px solid rgb(30, 164, 96);
+  
+  }
+  
+  .music-round-history {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .music-round-history-image {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+    border-radius: 15px;
+    /* background-color: blue; */
+    padding: 20px;
+  }
+  .music-round-history-image img {
+    border-radius: 15px;
+    transition: transform .2s;
+  }
+  .music-round-history-image img:hover {
+    transform: scale(1.03);
+  }
+  
+  .music-round-history-correct,
+  .music-round-history-choice-ac,
+  .music-round-history-choice-re {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+  }
+  
+  .music-round-history-choice-re{
+    color: rgb(195, 65, 65);
+    
+  }
+  .music-round-history-choice-re img{
+    border: 6px solid rgb(158, 39, 39);
+    
+  }
+  .music-round-history-choice-ac{
+    color: rgb(30, 164, 96);
+  }
+  .music-round-history-choice-ac img{
+    border: 6px solid rgb(30, 164, 96);
+  }
+  
+  .music-round-history-type {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+    line-height: 30px;
+    text-align: center;
+  }
+  
+  .music-image-round-history {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+  
+  .music-name-round-history,
+  .music-artist-round-history {
+    margin: 5px;
+    text-align: center;
+  }
+  .music-name-round-history {
+    font-size: 25px ;
+    font-weight: bold ;
+  }
+  
+  #tempo-gasto-round {
+    margin: 0px;
+    font-size: 18px;
+  }
+  
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 0px auto;
+  }
+  .btn_result{
+    background-color: white;
+    transition: 0.2s all ease-in-out;
+  }
+  .btn_result:hover{
+    background-color: rgba(255, 255, 255, 0.966);
+    transform: scale(1.03);
+  }
+  
+  #final-result-return,
+  #play-again-rounds-mode-same-configs,
+  #play-again-rounds-mode-new-configs {
+    display: block;
+    margin: 10px auto;
+    font-size: large;
+    width: 200px;
+    padding: 15px 0px 15px;
+    border-radius: 15px;
+    border: none;
+  }
+  
