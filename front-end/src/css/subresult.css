@@ -10,6 +10,7 @@
   font-weight: bold;
 }
 
+
 #song-result-rounds-subpage{
   flex-direction: column;
   gap: 30px;
@@ -45,12 +46,15 @@
 .music-name-subresult {
   font-size: 25px ;
   font-weight: bold ;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
 }
 
 .music-round-subpage,
 .music-round-subpage-choice-ac,
 .music-round-subpage-choice-re {
-  display: flex;
   flex-direction: column;
   align-items: center;
   margin: 5px;
