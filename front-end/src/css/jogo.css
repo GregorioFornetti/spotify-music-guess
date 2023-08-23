@@ -174,3 +174,11 @@ main{
 #div-botoes {
     margin-top: 20px;
 }
+
+#rounds-mode-timer{
+    align-self: center;
+    justify-content: center;
+    display: flex;
+    padding: 20px 0;
+    font-size: 40px;
+}
