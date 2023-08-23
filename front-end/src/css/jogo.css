@@ -8,7 +8,6 @@
     justify-content: center;
     margin-top: 50px;
     width: 60%;
-    min-width: 60%;
 }
 
 
@@ -18,7 +17,7 @@
     justify-content: center;
     gap: 30px;
     margin-bottom: 30px;
-
+    max-width: 900px;
 }
 #playlist-image {
     width: 200px;
@@ -67,6 +66,9 @@
     color: rgba(255, 255, 255, 0.685);
 }
 
+#playlist-tracks-list {
+    width: 100%;
+}
 
 #playlist-e-botoes {
     display: flex;
@@ -76,6 +78,8 @@
     gap: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 900px;
 }
 
 #playlist-e-botoes .btn {
@@ -109,6 +113,7 @@
     border: 2px solid #1DB954;
     color: black;
 }
+
 
 @media (max-width: 900px) {
     #vontade-de-morrer {
