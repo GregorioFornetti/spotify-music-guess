@@ -103,3 +103,15 @@ footer {
     color: rgb(30, 215, 96);
     
 }
+
+body::-webkit-scrollbar {
+    width: 10px;               /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(138, 138, 138);    /* color of the scroll thumb */
+    border-radius: 15px;       /* roundness of the scroll thumb */
+    border: none;  /* creates padding around scroll thumb */
+}
