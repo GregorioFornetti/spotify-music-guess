@@ -184,3 +184,10 @@
     padding: 20px 0;
     font-size: 40px;
 }
+
+#song-guess-rounds-subpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
