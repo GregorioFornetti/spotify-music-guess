@@ -224,3 +224,9 @@
 .select-play-mode option {
     color: black;
 }
+
+.configs-rounds-form-title {
+    font-size: 30px;
+    text-align: center;
+    color: #1DB954;
+}

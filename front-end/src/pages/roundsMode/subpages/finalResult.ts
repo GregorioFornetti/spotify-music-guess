@@ -25,7 +25,7 @@ export default function showFinalResultPage() {
     document.getElementById('rounds-mode-extra-tries-count')!.innerText = GameInfo.extraTriesCount.toString()
 
     if (GameInfo.extraTries) {
-        document.getElementById('rounds-mode-extra-tries')!.style.display = 'block'
+        document.getElementById('rounds-mode-extra-tries')!.style.display = 'none' // TODO: Mudar para 'block' quando implementar
     } else {
         document.getElementById('rounds-mode-extra-tries')!.style.display = 'none'
     }
