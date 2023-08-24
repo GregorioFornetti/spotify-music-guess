@@ -1,0 +1,92 @@
+#song-result-title {
+  font-size: 80px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+#song-result-message {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+#song-result-rounds-subpage{
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.rounds-single-mode-subpage {
+  border-radius: 15px;
+  background-color: rgb(5,5,5);
+  border: 6px solid black;
+  max-width: 70%;
+  justify-content: center;
+  padding: 10px 80px;
+}
+.rounds-single-result-subpage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.music-image-subresult {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.music-name-subresult,
+.music-artist-subresult {
+  margin: 5px;
+  text-align: center;
+}
+.music-name-subresult {
+  font-size: 25px ;
+  font-weight: bold ;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.music-round-subpage,
+.music-round-subpage-choice-ac,
+.music-round-subpage-choice-re {
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+} 
+
+.music-round-subpage-choice-re{
+  color: rgb(195, 65, 65);
+}
+.music-round-subpage-choice-re img{
+  border: 6px solid rgb(158, 39, 39);
+}
+.music-round-subpage-choice-ac{
+  color: rgb(30, 164, 96);
+}
+.music-round-subpage-choice-ac img{
+  border: 6px solid rgb(30, 164, 96);
+}
+
+.music-round-subpage-type {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 10px;
+  line-height: 30px;
+  text-align: center;
+}
+
+#song-result-next {
+  display: block;
+  margin: 10px auto;
+  font-size: large;
+  width: 200px;
+  padding: 15px 0px 15px;
+  border-radius: 15px;
+  border: none;
+}

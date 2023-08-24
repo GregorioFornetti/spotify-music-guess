@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="src/css/simplifiedPlaylist.css">
   <link rel="stylesheet" href="src/css/modal.css">
   <link rel="stylesheet" href="src/css/result-page.css">
+  <link rel="stylesheet" href="src/css/subresult.css">
   <link rel="stylesheet" href="src/css/timer.css">
   <link rel="stylesheet" href="src/css/playlist.css">
 
@@ -220,13 +221,20 @@
         <h2 id="song-result-title">
           Rodada <span id="song-result-current-round"></span> de <span id="song-result-total-rounds"></span>
         </h2>
-        <h3 id="song-result-message"></h3>
-        <p>A música correta era:</p>
-        <div id="song-result-correct-song"></div>
-        <p>A música que foi respondida:</p>
-        <div id="song-result-guessed-song"></div>
-
-        <button id="song-result-next">Próxima rodada</button>
+        <div class="rounds-single-mode-subpage">
+          <h3 id="song-result-message"></h3>
+          <div class="row rounds-single-result-subpage">
+            <div class="col-lg-6 col-xl-5">
+              <p class="music-round-subpage-type">Música correta:</p>
+              <div id="song-result-correct-song" class="music-round-subpage"></div>
+            </div>
+            <div class="col-lg-6 col-xl-5">
+              <p id="music-title-resposta" class="music-round-subpage-type">Música respondida:</p>
+              <div id="song-result-guessed-song" class="music-round-subpage"></div>
+            </div>
+          </div>
+          <button id="song-result-next">Próxima rodada</button>
+        </div>
       </div>
 
       <!-- Sub-página dos resultados finais, após todas as adivinhações terem sido realizadas -->

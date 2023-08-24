@@ -170,6 +170,10 @@
 .music-name-round-history {
   font-size: 25px ;
   font-weight: bold ;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
 }
 
 #tempo-gasto-round {
