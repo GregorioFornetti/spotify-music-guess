@@ -24,6 +24,7 @@
   
   
   
+  
 
   <!-- Todos os códigos que tiverem algum carregamento inicial (DOMContentLoaded), colocar aqui -->
   
@@ -34,10 +35,10 @@
   
   
   
-  <script type="module" crossorigin src="/assets/home-aeaf2227.js"></script>
+  <script type="module" crossorigin src="/assets/home-22b2ebe2.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-  <link rel="modulepreload" crossorigin href="/assets/addLoading-c08e133b.js">
-  <link rel="stylesheet" href="/assets/home-8e44daea.css">
+  <link rel="modulepreload" crossorigin href="/assets/addLoading-82809337.js">
+  <link rel="stylesheet" href="/assets/home-7e34611c.css">
   <link rel="stylesheet" href="/assets/reset-0b93f2c6.css">
 </head>
 
@@ -52,7 +53,7 @@
 
       <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title logo" id="offcanvasNavbarLabel">Spotfy<br> Music <br>Guess</h5>
+          <h5 class="offcanvas-title logo" id="offcanvasNavbarLabel">Spotify<br> Music <br>Guess</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         
@@ -77,6 +78,7 @@
   </nav>
 
   <main id="main">
+    
     <!-- Página home -->
     <div id="home-page" >
       <div>
@@ -117,7 +119,7 @@
     
     <!-- Página de seleção -->
     <div id="playlist-info-page" style="display: none;">
-      <div>
+
         <div id="vontade-de-morrer">
           <img id="playlist-image" src="" alt="Imagem da playlist">
           <div id="playlist-info-text">
@@ -133,61 +135,74 @@
         </div>
         
         <div id="playlist-e-botoes">
-            <div id="playlist-tracks">
             <div id="playlist-tracks-list"></div>
-          </div>
           <div class="botoes">
             <button id="playlist-return" class="btn">Voltar</button>
             <button id="game-start" class="btn">Começar jogo</button>
           </div>
         
         </div>
-      </div>
+
     </div>
 
     <div id="rounds-mode-game-page" style="display: none;">
       <!-- Sub-página de configurações -->
       <div id="configs-rounds-subpage">
         <form id="configs-rounds-form">
+          <h2 class="configs-rounds-form-title">Configurações da partida</h2>
+
           <div class="element-form">
-            <label for="input-premium">Modo premium:</label>
-            <input id="input-premium" class="checkbox" type="checkbox" name="premium">
-            
-          </div>
-          
-          <div class="element-form">
-            <label>Quantidade rounds:</label>
-            <input id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
-            
+            <div class="element-form-header">
+              <label for="input-premium">Modo premium</label>
+              <div class="form-check form-switch">
+                <input name="premium" id="input-premium" class="form-check-input configs-rounds-switch" type="checkbox" role="switch">
+              </div>
+            </div>
           </div>
 
           <div class="element-form">
-            <label>Posição da música:</label>
-            <input type="radio" value="start" name="music-pos" id="music-pos-init" checked>
-            <label>Início</label>
-            <input type="radio" value="random" name="music-pos" id="music-pos-random">
-            <label>Aleatório</label>
+            <div class="element-form-header">
+              <label>Tentativas extras</label>
+              <div class="form-check form-switch">
+                <input class="form-check-input configs-rounds-switch" type="checkbox" role="switch" name="extra-tries">
+              </div>
+            </div>
+          </div>   
+          
+          <div class="element-form">
+            <div class="element-form-header">
+              <label>Quantidade rounds</label>
+              <input class="configs-num-input" id="configs-rounds-rounds-number" type="number" min="0" name="rounds-number" value="1" required>
+            </div>
+          </div>
+
+          <div class="element-form">
+            <div class="element-form-header">
+              <label>Posição da música</label>
+              <div>
+                <div class="select-play-mode-icon"><i class="bi bi-caret-down-fill"></i></div>
+                <select class="select-play-mode" name="music-pos" id="music-pos-init">
+                  <option id='music-pos-init' value="start" selected>Início</option>
+                  <option id='music-pos-random' value="random">Aleatório</option>
+                </select>
+              </div>
+            </div>
           </div>    
     
           <div class="element-form">
-            <label>Tempo de música:</label>
-            <input type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
-            
+            <div class="element-form-header">
+              <label>Tempo de música</label>
+              <input class="configs-num-input" type="number" min="0.1" max="30" step="0.1" name="music-play-time" value="5" required>
+            </div>
           </div>
     
           <div class="element-form">
-            <label>Quantidade de músicas:</label>
-            <input id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
-            
+            <div class="element-form-header">
+              <label>Músicas</label>
+              <input class="configs-num-input" id="configs-rounds-music-qnt" type="number" min="1" name="music-qnt" required>
+            </div>
           </div>
     
-          <div class="element-form">
-            <label>Tentativas extras:</label>
-            <input type="checkbox" name="extra-tries">
-           
-          </div>   
-          
-          
           <input id="config-btn-submit" type="submit" value="Jogar">
         </form>
       </div>
@@ -198,12 +213,14 @@
           
         </div>
         <div id="playlist-tracks-game">
-          <p>Músicas</p>
           <div id="playlist-tracks-list-game"></div>
         </div>
-        
-        <button id="song-guess-hear-next">Ouvir mais</button>
-        <button id="song-guess-submit">Responder</button>
+
+        <div class="botoes" id="div-botoes">
+          <button id="song-guess-hear-next" class="botoes">Ouvir mais</button>
+          <button id="song-guess-submit" class="botoes">Responder</button>
+        </div>
+
       </div>
 
       <!-- Sub-página de resultados da adivinhação da música que o usuário acabou de responder -->
@@ -211,13 +228,20 @@
         <h2 id="song-result-title">
           Rodada <span id="song-result-current-round"></span> de <span id="song-result-total-rounds"></span>
         </h2>
-        <h3 id="song-result-message"></h3>
-        <p>A música correta era:</p>
-        <div id="song-result-correct-song"></div>
-        <p>A música que foi respondida:</p>
-        <div id="song-result-guessed-song"></div>
-
-        <button id="song-result-next">Próxima rodada</button>
+        <div class="rounds-single-mode-subpage">
+          <h3 id="song-result-message"></h3>
+          <div class="row rounds-single-result-subpage">
+            <div class="col-lg-6 col-xl-5">
+              <p class="music-round-subpage-type">Música correta:</p>
+              <div id="song-result-correct-song" class="music-round-subpage"></div>
+            </div>
+            <div class="col-lg-6 col-xl-5">
+              <p id="music-title-resposta" class="music-round-subpage-type">Música respondida:</p>
+              <div id="song-result-guessed-song" class="music-round-subpage"></div>
+            </div>
+          </div>
+          <button id="song-result-next">Próxima rodada</button>
+        </div>
       </div>
 
       <!-- Sub-página dos resultados finais, após todas as adivinhações terem sido realizadas -->
@@ -244,39 +268,41 @@
               <p>
                 Rodadas: <span id="rounds-mode-total-rounds"></span>
               </p>
-              <p id="rounds-mode-extra-tries">
-                Número de tentativas extras utilizadas: <span id="rounds-mode-extra-tries-count"></span>
-              </p>
             </div>
+            <p id="rounds-mode-extra-tries" style="display: none;">
+              Número de tentativas extras utilizadas: <span id="rounds-mode-extra-tries-count"></span>
+            </p>
           </div>
         </div>
 
-      <p class="rounds-mode-history-title"> Histórico de rodadas </p>
-      <div id="carouselExampleCaptions" class="carousel slide carro">
-        <div id = "nslides" class="carousel-indicators">
-          <!--<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
-        </div>
-        <div class="carousel-inner" id="carousel-inner">
+        <p class="rounds-mode-history-title"> Histórico de rodadas </p>
+        <div id="carouselExampleCaptions" class="carousel slide carro">
+          <div id = "nslides" class="carousel-indicators">
+            <!--<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+          </div>
+          <div class="carousel-inner" id="carousel-inner">
 
-        </div>
+          </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="buttons">
+          <button id="final-result-return" class="btn_result"> <i class="bi bi-arrow-return-left"></i> Voltar</button>
+          <button id="play-again-rounds-mode-same-configs" class="btn_result"> <i class="bi bi-arrow-clockwise"></i> Jogar novamente</button>
+        </div>
       </div>
-    <div class="buttons">
-      <button id="final-result-return" class="btn_result"> <i class="bi bi-arrow-return-left"></i> Voltar</button>
-      <button id="play-again-rounds-mode-same-configs" class="btn_result"> <i class="bi bi-arrow-clockwise"></i> Jogar novamente</button>
     </div>
 
     <!-- Página de creditos -->
-    <div id="credits-page" style="display: none;">
+    <div id="credits-page">
       <h1 class="h1 text-center">Créditos</h1>
       <div class="row " id="credits_cards">
       </div>
