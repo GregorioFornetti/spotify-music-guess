@@ -111,9 +111,10 @@
 }
 
 .playlist-body tr.selected {
-    background-color: rgb(200, 200, 200);
+    background-color: white;
     color: black;
     font-weight: bold;
+    opacity: 0.75;
 }
 
 @media (max-width: 900px) {

@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             deviceSelectedModal.show(onFormSubmit)
         }
         else {
-           
             onFormSubmit()
         }
     })
