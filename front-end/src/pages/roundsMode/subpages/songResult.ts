@@ -17,12 +17,16 @@ export default function showSongResult(correctMusic: Track|Episode, guessedMusic
     if (correctMusic.id === guessedMusic.id) {
         document.getElementById('song-result-message')!.innerText = 'Você acertou !'
         document.getElementById('song-result-message')!.classList.add('music-round-subpage-choice-ac')
+        document.getElementById('song-result-message')!.classList.remove('music-round-subpage-choice-re')
         document.getElementById('music-title-resposta')!.classList.add('music-round-subpage-choice-ac')
+        document.getElementById('music-title-resposta')!.classList.remove('music-round-subpage-choice-re')
         GameInfo.increaseCorrectAnswerCount()
     } else {
         document.getElementById('song-result-message')!.innerText = 'Você errou !'
         document.getElementById('song-result-message')!.classList.add('music-round-subpage-choice-re')
+        document.getElementById('song-result-message')!.classList.remove('music-round-subpage-choice-ac')
         document.getElementById('music-title-resposta')!.classList.add('music-round-subpage-choice-re')
+        document.getElementById('music-title-resposta')!.classList.remove('music-round-subpage-choice-ac')
     }
 
     document.getElementById("song-result-current-round")!.innerText = GameInfo.roundNumber.toString()
@@ -50,13 +54,15 @@ export default function showSongResult(correctMusic: Track|Episode, guessedMusic
     musicElementGuessed.getElementsByClassName("music-name")[0].classList.add("music-name-subresult")
     musicElementGuessed.getElementsByClassName("music-artist")[0].classList.add("music-artist-subresult")
     if (correctMusic.id === guessedMusic.id) {
-        musicElementGuessed.getElementsByClassName("music-image")[0].classList.add("music-round-subpage-choice-ac")
         musicElementGuessed.getElementsByClassName("music-name")[0].classList.add("music-round-subpage-choice-ac")
+        musicElementGuessed.getElementsByClassName("music-name")[0].classList.remove("music-round-subpage-choice-re")
         musicElementGuessed.getElementsByClassName("music-artist")[0].classList.add("music-round-subpage-choice-ac")
+        musicElementGuessed.getElementsByClassName("music-artist")[0].classList.remove("music-round-subpage-choice-re")
     } else {
-        musicElementGuessed.getElementsByClassName("music-image")[0].classList.add("music-round-subpage-choice-re")
         musicElementGuessed.getElementsByClassName("music-name")[0].classList.add("music-round-subpage-choice-re")
+        musicElementGuessed.getElementsByClassName("music-name")[0].classList.remove("music-round-subpage-choice-ac")
         musicElementGuessed.getElementsByClassName("music-artist")[0].classList.add("music-round-subpage-choice-re")
+        musicElementGuessed.getElementsByClassName("music-artist")[0].classList.remove("music-round-subpage-choice-ac")
     }
 
     guessedMusicElement.appendChild(musicElementGuessed)

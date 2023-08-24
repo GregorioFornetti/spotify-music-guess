@@ -3,6 +3,7 @@
   margin-bottom: 10px;
   text-align: center;
 }
+
 #song-result-message {
   font-size: 30px;
   margin-bottom: 10px;
@@ -36,6 +37,8 @@
   width: 400px;
   height: 400px;
   object-fit: cover;
+  display: block;
+  margin: auto;
 }
 
 .music-name-subresult,
@@ -52,7 +55,6 @@
   -webkit-box-orient: vertical;
 }
 
-.music-round-subpage,
 .music-round-subpage-choice-ac,
 .music-round-subpage-choice-re {
   flex-direction: column;
@@ -89,4 +91,23 @@
   padding: 15px 0px 15px;
   border-radius: 15px;
   border: none;
+}
+
+@media (max-width: 600px) {
+  #song-result-title {
+    font-size: 40px;
+  }
+
+  .music-image-subresult {
+    width: 200px;
+    height: 200px;
+  }
+
+  .rounds-single-mode-subpage {
+    padding: 10px 40px;
+  }
+
+  .rounds-single-mode-subpage {
+    box-sizing: content-box;
+  }
 }
