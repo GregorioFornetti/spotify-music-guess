@@ -14,10 +14,10 @@ import UserPlaylists from "../spotifyApi/types/UserPlaylists"
 import User from "../global/User"
 import getSimplifiedPlaylist from "../spotifyApi/requests/getSimplifiedPlaylist"
 import PlayAgainPlaylistsIds from "../global/PlayAgainPlaylistsIds"
-import Playlist from "../spotifyApi/types/Playlist"
 import addLoading from "../utils/addLoading"
 import pause from "../spotifyApi/requests/pause"
 import toggleToPage from "../utils/pageToggler"
+import ExtendedPlaylist from "../spotifyApi/types/ExtendedPlaylist"
 
 
 async function loadDevices() {
@@ -160,7 +160,7 @@ export default async function loadHomePage() {
     }
 }
 
-function showPlaylistAndSave(playlist: Playlist, playlistId: string) {
+function showPlaylistAndSave(playlist: ExtendedPlaylist, playlistId: string) {
     const playlistsContainer = document.getElementById('play-again-list') as HTMLElement
     showPlaylistInfo(playlist, playlistId)
     const replacedIndex = PlayAgainPlaylistsIds.savePlaylistId(playlistId)

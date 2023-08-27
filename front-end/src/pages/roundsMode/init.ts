@@ -1,9 +1,9 @@
 
 
-import Playlist from "../../spotifyApi/types/Playlist"
 import GameInfo from "./GameInfo"
 import toggleToPage from "../../utils/pageToggler"
 import initConfigSubpage from "./subpages/configs"
+import ExtendedPlaylist from "../../spotifyApi/types/ExtendedPlaylist"
 
 /**
  * 
@@ -14,7 +14,7 @@ import initConfigSubpage from "./subpages/configs"
  * @param playlistIdParam - ID da playlist
  * 
  */
-export default function init(playlistParam: Playlist, playlistIdParam: string) {
+export default function init(playlistParam: ExtendedPlaylist, playlistIdParam: string) {
 
     GameInfo.reset()
     GameInfo.playlist = playlistParam

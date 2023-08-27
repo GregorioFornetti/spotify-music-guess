@@ -73,6 +73,6 @@ async function makeGetPlaylistRequest(playlistId: String): Promise<ExtendedPlayl
  *  @returns uma promessa de retorno de um objeto contendo informações sobre uma playlist.
  * 
  */
-export default async function getPlaylist(playlistId: String, hasLoading?: boolean): Promise<Playlist> {
+export default async function getPlaylist(playlistId: String, hasLoading?: boolean): Promise<ExtendedPlaylist> {
     return addLoadingWithConditional(makeGetPlaylistRequest, hasLoading, playlistId)
 }

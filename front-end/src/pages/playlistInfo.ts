@@ -2,11 +2,11 @@
     Página com informações da playlist escolhida pelo usuário
 */
 import toggleToPage from '../utils/pageToggler'
-import Playlist from '../spotifyApi/types/Playlist'
 import initRoundsModeGame from './roundsMode/init'
 import createPlaylistElement from '../components/playlist'
+import ExtendedPlaylist from '../spotifyApi/types/ExtendedPlaylist'
 
-export default function showPlaylistInfo(playlist: Playlist, playlistId: string): void {
+export default function showPlaylistInfo(playlist: ExtendedPlaylist, playlistId: string): void {
     document.getElementById('playlist-image')!.setAttribute('src', playlist.images[0].url)
 
     document.getElementById('playlist-name')!.innerText = playlist.name
