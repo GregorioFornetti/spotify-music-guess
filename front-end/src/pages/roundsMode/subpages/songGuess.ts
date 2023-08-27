@@ -52,7 +52,6 @@ export default async function showSongGuess() {
     if (GameInfo.playlist.tracks.items.length === GameInfo.musicsQnt) {
         possibleMusics = GameInfo.playlist.tracks.items
     } else {
-        console.log('ENTREI AQUI')
         let possibleMusicsIndexes: number[] = [musicsNumberShuffled[GameInfo.roundNumber - 1]]
 
         let randomMusicsIndexes = [...musicsNumberShuffled]
@@ -65,7 +64,6 @@ export default async function showSongGuess() {
 
         possibleMusics = possibleMusicsIndexes.map((musicIndex) => GameInfo.playlist.tracks.items[musicIndex])
     }
-    console.log(possibleMusics)
 
     const filteredPlaylist = structuredClone(GameInfo.playlist)
     filteredPlaylist.tracks.items = possibleMusics
@@ -80,7 +78,6 @@ export default async function showSongGuess() {
     }
     musicPlayer = new MusicPlayerClass(
         GameInfo.playlist, 
-        GameInfo.playlistId, 
         musicsNumberShuffled[GameInfo.roundNumber - 1], 
         GameInfo.musicPlaytime
     )
@@ -117,6 +114,7 @@ function showMusics(playlist: Playlist) {
 function submitMusic(music: Track | Episode) {
     clearInterval(intervalId)
 
+    console.log('número da musica', musicsNumberShuffled[GameInfo.roundNumber - 1])
     showSongResult(
         GameInfo.playlist.tracks.items[musicsNumberShuffled[GameInfo.roundNumber - 1]].track,
         music

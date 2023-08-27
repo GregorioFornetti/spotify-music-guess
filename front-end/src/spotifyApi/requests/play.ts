@@ -3,7 +3,7 @@ import { addLoadingWithConditional } from "../../utils/addLoading"
 import pause from "./pause"
 
 
-async function makePlayMusicRequest(musicPos: number, duration: number, playlistId: string, musicPlayPos?: number): Promise<number> {
+async function makePlayMusicRequest(duration: number, trackURI: string, musicPlayPos?: number): Promise<number> {
     let playPos: number = 0
     if (musicPlayPos) {
         playPos = musicPlayPos
@@ -13,11 +13,8 @@ async function makePlayMusicRequest(musicPos: number, duration: number, playlist
         method: "PUT",
         headers: User.accessTokenHeader,
         body: JSON.stringify({
-            context_uri: `spotify:playlist:${playlistId}`,
-            position_ms: playPos,
-            offset: {
-                position: musicPos
-            }
+            uris: [trackURI],
+            position_ms: playPos
         })
     })
 
@@ -45,6 +42,6 @@ async function makePlayMusicRequest(musicPos: number, duration: number, playlist
  *  @returns timeout ID, para que seja possível cancelar o pause.
  *  
  */
-export default async function playMusic(musicPos: number, duration: number, playlistId: string, musicPlayPos?: number, hasLoading?: boolean): Promise<number> {
-    return addLoadingWithConditional(makePlayMusicRequest, hasLoading, musicPos, duration, playlistId, musicPlayPos)
+export default async function playMusic(duration: number, trackURI: string, musicPlayPos?: number, hasLoading?: boolean): Promise<number> {
+    return addLoadingWithConditional(makePlayMusicRequest, hasLoading, duration, trackURI, musicPlayPos)
 }

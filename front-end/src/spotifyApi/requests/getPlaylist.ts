@@ -50,7 +50,7 @@ async function makeGetPlaylistRequest(playlistId: String): Promise<ExtendedPlayl
             })
             .then(response => response.json())
             .then(next_data => {
-                data.tracks.items.forEach(populateItemsAndIndex)
+                next_data.items.forEach(populateItemsAndIndex)
                 next = next_data.next
             })
         }

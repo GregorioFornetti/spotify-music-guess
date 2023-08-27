@@ -10,8 +10,8 @@ export default class PreviewMusicPlayer extends MusicPlayer {
 
     protected playerElement: HTMLAudioElement
 
-    public constructor(playlist: Playlist, playlistId: string, musicNumber: number, musicPlaytime: number) {
-        super(playlist, playlistId, musicNumber, musicPlaytime)
+    public constructor(playlist: Playlist, musicNumber: number, musicPlaytime: number) {
+        super(playlist, musicNumber, musicPlaytime)
         this.playerElement = this.createPlayerElement(playlist)
         this.musicFullDuration = 30000  // O preview tem no máximo 30 segundos
     }

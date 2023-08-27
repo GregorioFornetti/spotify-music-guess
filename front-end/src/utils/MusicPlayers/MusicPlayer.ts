@@ -10,7 +10,7 @@ import pause from "../../spotifyApi/requests/pause"
 export default abstract class MusicPlayer {
 
     protected musicFullDuration: number
-    protected playlistId: string
+    protected trackURI: string
     protected musicNumber: number
     protected musicPlaytimes: number[]
     protected currentIndex: number
@@ -30,12 +30,12 @@ export default abstract class MusicPlayer {
      *  informado em **segundos (s)** 
      *  
      */
-    public constructor(playlist: Playlist, playlistId: string, musicNumber: number, musicPlaytime: number) {
+    public constructor(playlist: Playlist, musicNumber: number, musicPlaytime: number) {
         this.musicNumber = musicNumber
         this.currentIndex = 0
         this.musicPlaytimes = []
         this.musicFullDuration = playlist.tracks.items[this.musicNumber].track.duration_ms
-        this.playlistId = playlistId
+        this.trackURI = playlist.tracks.items[this.musicNumber].track.uri
         this.musicPlaytime = musicPlaytime
 
         this.constructPlaytimes()
@@ -58,7 +58,7 @@ export default abstract class MusicPlayer {
                 duration = (this.musicFullDuration - this.musicPlaytimes[this.currentIndex]) / 1000 - 0.01
             }
 
-            this.timeoutId = await playMusic(this.musicNumber, duration, this.playlistId, this.musicPlaytimes[this.currentIndex], true)
+            this.timeoutId = await playMusic(duration, this.trackURI, this.musicPlaytimes[this.currentIndex], true)
 
             this.currentIndex += 1
         }
