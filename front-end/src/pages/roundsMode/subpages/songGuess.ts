@@ -27,7 +27,7 @@ var intervalId: number = -1
 
 export async function initShowSongGuess() {
 
-    musicsNumberShuffled = shuffle([...Array(GameInfo.playlist.tracks.items.length).keys()])
+    musicsNumberShuffled = shuffle(GameInfo.playlist.playableIndexes)
     selectedMusic = null
     
     const extraTriesBtn = document.getElementById('song-guess-hear-next') as HTMLButtonElement
@@ -52,6 +52,7 @@ export default async function showSongGuess() {
     if (GameInfo.playlist.tracks.items.length === GameInfo.musicsQnt) {
         possibleMusics = GameInfo.playlist.tracks.items
     } else {
+        console.log('ENTREI AQUI')
         let possibleMusicsIndexes: number[] = [musicsNumberShuffled[GameInfo.roundNumber - 1]]
 
         let randomMusicsIndexes = [...musicsNumberShuffled]
@@ -64,10 +65,11 @@ export default async function showSongGuess() {
 
         possibleMusics = possibleMusicsIndexes.map((musicIndex) => GameInfo.playlist.tracks.items[musicIndex])
     }
+    console.log(possibleMusics)
 
-    const filteredPlaylist = GameInfo.playlist
+    const filteredPlaylist = structuredClone(GameInfo.playlist)
     filteredPlaylist.tracks.items = possibleMusics
-    showMusics(GameInfo.playlist)
+    showMusics(filteredPlaylist)
 
     if (!GameInfo.isPremiumMode) {
         MusicPlayerClass = PreviewMusicPlayer
@@ -82,7 +84,7 @@ export default async function showSongGuess() {
         musicsNumberShuffled[GameInfo.roundNumber - 1], 
         GameInfo.musicPlaytime
     )
-
+    
     await musicPlayer.play()
     
     const timerElement = document.getElementById('rounds-mode-timer') as HTMLElement

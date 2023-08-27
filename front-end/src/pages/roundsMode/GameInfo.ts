@@ -3,7 +3,7 @@
 */
 
 import Episode from "../../spotifyApi/types/Episode"
-import Playlist from "../../spotifyApi/types/Playlist"
+import ExtendedPlaylist from "../../spotifyApi/types/ExtendedPlaylist"
 import Track from "../../spotifyApi/types/Track"
 
 export interface RoundInfo {
@@ -19,7 +19,7 @@ export interface RoundInfo {
 
 export default class GameInfo {
 
-    private static _playlist: Playlist
+    private static _playlist: ExtendedPlaylist
     private static _playlistId: string
     private static _roundNumber: number
     private static _correctAnswerCount: number
@@ -54,7 +54,7 @@ export default class GameInfo {
         return this._playlist;
     }
 
-    static set playlist(playlist: Playlist) {
+    static set playlist(playlist: ExtendedPlaylist) {
         this._playlist = playlist
     }
 

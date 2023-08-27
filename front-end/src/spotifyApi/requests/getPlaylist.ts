@@ -1,6 +1,7 @@
 import User from "../../global/User"
 import { addLoadingWithConditional } from "../../utils/addLoading"
 import Playlist, { PlaylistTrackObject } from "../types/Playlist"
+import ExtendedPlaylist from "../types/ExtendedPlaylist"
 
 /**
  *  
@@ -19,15 +20,27 @@ function isPlayable(playlistTrack: PlaylistTrackObject) {
 }
 
 
-async function makeGetPlaylistRequest(playlistId: String): Promise<Playlist> { 
+async function makeGetPlaylistRequest(playlistId: String): Promise<ExtendedPlaylist> { 
     return fetch(`https://api.spotify.com/v1/playlists/${playlistId}?market=${User.country}&additional_types=episode`, {
         method: "GET",
         headers: User.accessTokenHeader
     })
     .then(response => response.json())
     .then(async (data:Playlist) => {
-        var next = data.tracks.next
-        data.tracks.items = data.tracks.items.filter(isPlayable)
+        const finalPlaylist: ExtendedPlaylist = {...data, playableIndexes: []}
+        let next = data.tracks.next
+        let curMusicIndex = 0
+        const finalItems: PlaylistTrackObject[] = []
+        const finalIndexes: number[] = []
+        const populateItemsAndIndex = (currentMusic: PlaylistTrackObject) => {
+            if (isPlayable(currentMusic)) {
+                finalIndexes.push(curMusicIndex)
+            }
+            finalItems.push(currentMusic)
+            curMusicIndex++
+        }
+
+        data.tracks.items.forEach(populateItemsAndIndex)
 
         // Para coletar todas as musicas, pois a API só retorna 100 por vez, por padrão
         while (next) {
@@ -37,12 +50,15 @@ async function makeGetPlaylistRequest(playlistId: String): Promise<Playlist> {
             })
             .then(response => response.json())
             .then(next_data => {
-                data.tracks.items.push(...next_data.items.filter(isPlayable))
+                data.tracks.items.forEach(populateItemsAndIndex)
                 next = next_data.next
             })
         }
 
-        return data
+        finalPlaylist.tracks.items = finalItems
+        finalPlaylist.playableIndexes = finalIndexes
+        
+        return finalPlaylist
     })
 }
 

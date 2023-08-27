@@ -125,6 +125,9 @@ export default function createPlaylistElement(playlist: Playlist, onMusicSelect?
     // Isso vai ser feito na criação do componente e toda vez que for escrito em algum input
     const createMusics = ( musics: PlaylistTrackObject[] ) => {
         for (let item of musics) {
+            if (!item.track.is_playable) {
+                continue
+            }
             let musicItem = createMusicElement(item.track);
 
             if (item.track === selectedMusic) {
