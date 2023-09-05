@@ -33,6 +33,10 @@ app.get('/home.html', (req, res) => {
   res.sendFile('front-end/dist/home.html', {root: root})
 })
 
+app.get('/login.html', (req, res) => {
+  res.sendFile('front-end/dist/login.html', {root: root})
+})
+
 app.get('/assets/:asset', (req, res) => {
   res.sendFile(`front-end/dist/assets/${req.params.asset}`, {root: root})
 })
@@ -50,5 +54,5 @@ app.get('/auth-without-login', async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Spotify music guess app listening on port ${port}`)
 })
