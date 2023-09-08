@@ -1,6 +1,6 @@
 // Códigos do tutorial do spotify: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
 
-const redirectUri = window.location.href.replace('?', '')
+import { redirectUri } from "./configs"
 
 export async function redirectToAuthCodeFlow(clientId: string) {
     const verifier = generateCodeVerifier(128);
@@ -8,11 +8,10 @@ export async function redirectToAuthCodeFlow(clientId: string) {
 
     localStorage.setItem("verifier", verifier);
 
-    const redirUri = window.location.href.replace('?', '')
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", redirUri)
+    params.append("redirect_uri", redirectUri)
     params.append("scope", "user-read-private user-read-email user-modify-playback-state user-read-playback-state playlist-read-private playlist-read-collaborative user-library-read");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
