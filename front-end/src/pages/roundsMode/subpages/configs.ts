@@ -2,13 +2,12 @@ import toggleToSubpage from "../subpageToggler"
 import { initShowSongGuess } from "./songGuess"
 import GameInfo from "../GameInfo"
 import User from "../../../global/User"
-import { PlaylistTrackObject } from "../../../spotifyApi/types/Playlist"
 import  deviceSelectedModal  from "../../../components/Modals/deviceSelectedModal"
 
 export default function initConfigSubpage() {
     resetForm(document.getElementById('configs-rounds-form') as HTMLFormElement)
 
-    const playlistMusicsQnt = GameInfo.playlist.tracks.items.length
+    const playlistMusicsQnt = GameInfo.playlist.playableIndexes.length
 
     const inputRoundsNumber = document.getElementById('configs-rounds-rounds-number') as HTMLElement
     inputRoundsNumber.setAttribute('max', playlistMusicsQnt.toString())
@@ -90,8 +89,8 @@ async function onFormSubmit() {
     // Essa filtragem não deve ficar aqui, depois, os tipos de jogos (premium ou não) devem ser selecionados antes de mostras as musicas...
     if (!GameInfo.isPremiumMode) {
         // Remove as músicas que não possuem o preview, no caso de jogar sem login
-        GameInfo.playlist.tracks.items = GameInfo.playlist.tracks.items.filter((playlistTrack: PlaylistTrackObject) => {
-            const music = playlistTrack.track
+        GameInfo.playlist.playableIndexes = GameInfo.playlist.playableIndexes.filter((musicNumber: number) => {
+            const music = GameInfo.playlist.tracks.items[musicNumber].track
             if (music.type === 'track') {
                 return music.preview_url !== null
             } else if (music.type === 'episode') {
@@ -99,7 +98,7 @@ async function onFormSubmit() {
             }
             return false
         })
-        GameInfo.musicsQnt = Math.min(GameInfo.playlist.tracks.items.length, GameInfo.musicsQnt)
+        GameInfo.musicsQnt = Math.min(GameInfo.playlist.playableIndexes.length, GameInfo.musicsQnt)
     }
 
     await initShowSongGuess()

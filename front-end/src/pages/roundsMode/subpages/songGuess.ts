@@ -55,16 +55,20 @@ export default async function showSongGuess() {
         let possibleMusicsIndexes: number[] = [musicsNumberShuffled[GameInfo.roundNumber - 1]]
 
         let randomMusicsIndexes = [...musicsNumberShuffled]
-        delete randomMusicsIndexes[GameInfo.roundNumber - 1]
+        randomMusicsIndexes.splice(GameInfo.roundNumber - 1, 1)
         randomMusicsIndexes = shuffle(randomMusicsIndexes)
+
         for (let i = 0; i < GameInfo.musicsQnt - 1; i++) {
             possibleMusicsIndexes.push(randomMusicsIndexes[i])
         }
         possibleMusicsIndexes.sort()
 
+        console.log(possibleMusicsIndexes)
+        console.log(GameInfo.playlist.tracks.items)
+
         possibleMusics = possibleMusicsIndexes.map((musicIndex) => GameInfo.playlist.tracks.items[musicIndex])
     }
-
+    console.log(possibleMusics)
     const filteredPlaylist = structuredClone(GameInfo.playlist)
     filteredPlaylist.tracks.items = possibleMusics
     showMusics(filteredPlaylist)
