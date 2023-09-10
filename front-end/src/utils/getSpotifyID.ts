@@ -1,9 +1,15 @@
+import addLoading from "./addLoading"
+import { root } from "../spotifyApi/configs"
 
 const idRegexAnyPlace = "([A-Za-z0-9]{22})"
 const idRegex = new RegExp(`^${idRegexAnyPlace}$`)
 
 const uriPlaylistRegex = new RegExp(`^spotify:playlist:${idRegexAnyPlace}$`)
-const urlPlaylistRegex = new RegExp(`^https:\/\/open.spotify.com\/playlist\/${idRegexAnyPlace}(\\?si=.*)?$`)
+
+const urlPlaylistAnyPlace = new RegExp(`https:\/\/open.spotify.com\/playlist\/${idRegexAnyPlace}(\\?si=.*)?`)
+const urlPlaylistRegex = new RegExp(`^${urlPlaylistAnyPlace.source}$`)
+
+const urlSpotifyLinkRegex = new RegExp(`^https://spotify\.(app\.)?link/[A-Za-z0-9]{11}$`)
 
 /**
  * 
@@ -45,6 +51,10 @@ function isSpotifyPlaylistUrl(urlString: string): boolean {
     return urlPlaylistRegex.test(urlString)
 }
 
+function isSpotifyLinkUrl(urlString: string): boolean {
+    return urlSpotifyLinkRegex.test(urlString)
+}
+
 /**
  * 
  *  Coleta o Spotify ID contido na URI da playlist
@@ -71,6 +81,14 @@ function getSpotifyIdFromPlaylistUrl(url: string): string {
     return url.match(urlPlaylistRegex)![1]
 }
 
+async function getSpotifyIdFromSpotifyLinkUrl(url: string): Promise<string> {
+    const finalUrl = `https://spotify.app.link/${url.split('/')[3]}`
+    const response = await fetch(`${root}/get-redirect-response?url=${finalUrl}`, {method: 'GET'})
+    const text = await response.text()
+    const playlistUrl =  text.match(urlPlaylistAnyPlace)![0]
+    return getSpotifyIdFromPlaylistUrl(playlistUrl)
+}
+
 
 /**
  * 
@@ -81,16 +99,18 @@ function getSpotifyIdFromPlaylistUrl(url: string): string {
  *  @returns spotify ID, caso seja um ID, URL ou URI válido. Caso contrário, lança um erro
  * 
  */
-export default function getSpotifyId(userInput: string): string {
+export default function getSpotifyId(userInput: string): Promise<string> {
     userInput = userInput.trim()
     
     if (isSpotifyPlaylistUri(userInput)) {
-        return getSpotifyIdFromPlaylistUri(userInput)
+        return Promise.resolve(getSpotifyIdFromPlaylistUri(userInput))
     } else if (isSpotifyPlaylistUrl(userInput)) {
-        return getSpotifyIdFromPlaylistUrl(userInput)
+        return Promise.resolve(getSpotifyIdFromPlaylistUrl(userInput))
+    } else if (isSpotifyLinkUrl(userInput)) {
+        return addLoading(getSpotifyIdFromSpotifyLinkUrl, userInput)
     } else if (isSpotifyId(userInput)) {
         // Talves só pelo ID não dê certo no futuro, já que é necessário identificar do que é o id (playlist, album, etc)
-        return userInput
+        return Promise.resolve(userInput)
     } else {
         throw new Error("URI, URL ou ID inválido.")
     }

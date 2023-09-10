@@ -54,6 +54,19 @@ app.get('/spotify-music-guess/auth-without-login', async (req, res) => {
   })
 })
 
+app.get('/spotify-music-guess/get-redirect-response', async (req, res) => {
+  // Não é possível coletar a resposta de redirecionamento no front-end. Então é feito um proxy no back-end
+  var options = {
+    'url': req.query.url,
+    'headers': {
+    }
+  };
+  request.get(options, function (error, response) {
+    if (error) throw new Error(error);
+    res.send(response.body);
+  });
+})
+
 app.listen(port, () => {
   console.log(`Spotify music guess app listening on port ${port}`)
 })

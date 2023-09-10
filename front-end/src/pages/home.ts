@@ -180,7 +180,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         const playlist_input_str = (<HTMLInputElement>document.getElementById("playlist-input")).value;
         try {
-            const playlistId = getSpotifyId(playlist_input_str)
+            const playlistId = await getSpotifyId(playlist_input_str)
+            console.log(playlistId)
             const playlist = await getPlaylist(playlistId, true)
 
             showPlaylistAndSave(playlist, playlistId)
